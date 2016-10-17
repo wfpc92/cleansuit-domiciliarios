@@ -1,0 +1,36 @@
+<!--Controller: AppInicioCtrl-->
+
+<ion-view hide-back-button="true" title="CleanSuit">
+	<ion-content>
+
+		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>		
+
+		<div clas="card" ng-show="!hayPromociones()">
+			<div class="item item-text-wrap">
+				Debes tener conexión a internet para mostrarte las promociones. <a ng-click="cargarPromociones()">cargar</a>
+			</div>
+		</div>
+
+		<div class="bottom">
+			<ion-list ng-if="hayPromociones()">
+				<div class="promociones">
+					<ion-item class="item-image" ng-repeat="promocion in promociones track by $index" ui-sref="app.promociones-detalle({ 'indexPromocion': {{$index}} })">
+
+						<div class="imagen">
+							<img ng-src="{{promocion.url_imagen}}" ng-cloak/>
+						</div>
+						<h3>
+							{{promocion.etiquetaDescuentos}}
+							<i class="icon ico-flechader assertive"></i>
+						</h3>
+						
+					</ion-item>
+				</div>				
+			</ion-list>
+		</div>
+
+	</ion-content>
+	
+	<footer-carrito carrito="carrito"></footer-carrito>
+	
+</ion-view>
