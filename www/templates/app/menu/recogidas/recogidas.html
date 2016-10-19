@@ -1,0 +1,14 @@
+<ion-view title="CleanSuit">
+	<ion-content class="ord-en-proceso">
+
+		<ion-list ng-if="hayOrdenes()">
+			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
+					ui-sref="app.recogida( {'indexOrden': {{$index}} })">
+
+				<h3>orden {{$index}}</h3>
+
+			</ion-item>
+		</ion-list>	
+
+	</ion-content>
+</ion-view>

@@ -1,6 +1,8 @@
 var OrdenesEnRecoleccionCtrl =  function ($scope,
-									$log,
-									OrdenesFactory) {
+										$rootScope,
+										$state,
+										$log,
+										OrdenesFactory) {
 	
 	$log.debug("OrdenesEnRecoleccionCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesEnRecoleccion;
@@ -22,6 +24,12 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 		
 		return false;
 	};
+
+	$scope.$on('$ionicView.beforeEnter', function(event) {
+		//almacenar estado para poder recuperar el historial del tab actual 
+		//por medio de menu/inicio
+		$rootScope.estadoActual = $state.current.name;
+	});
 	
 };
 

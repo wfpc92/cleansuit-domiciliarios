@@ -38,12 +38,17 @@
 					</div>
 				</ion-item>
 
-				<ion-item menu-close ui-sref="app.recoleccion" class="item-icon-left">
+				<ion-item menu-close ui-sref="{{estadoActual ? estadoActual : 'app.recoleccion'}}" class="item-icon-left">
+					Inicio
+					<i class="icon ico-home"></i>
+				</ion-item>
+
+				<ion-item menu-close ui-sref="app.recogidas" class="item-icon-left">
 					Órdenes recogidas
 					<i class="icon ico-home"></i>
 				</ion-item>
 
-				<ion-item menu-close ui-sref="app.entrega" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.entregadas" class="item-icon-left">
 					Órdenes entregadas
 					<i class="icon ico-ordenes"></i>
 				</ion-item>
@@ -53,7 +58,7 @@
 					<i class="icon ico-historial"></i>
 				</ion-item>
 
-				<ion-item menu-close ui-sref="app.sobre-empresa" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.acerca" class="item-icon-left">
 					Datos de CleanSuit
 					<i class="icon ico-about"></i>
 				</ion-item>

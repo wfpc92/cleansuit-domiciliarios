@@ -12,11 +12,18 @@ var OrdenesFactory = function(UsuarioFactory,
 		];
 		$localStorage.ordenesParaEntrega = [
 			{},{},{}
-		];//$localStorage.ordenesEnRecoleccion || [];
+		];
+		$localStorage.ordenesRecogidas = [
+			{},{},{}
+		];
+		$localStorage.ordenesEntregadas = [
+			{},{},{}
+		];
+		//$localStorage.ordenesEnRecoleccion || [];
 		//$localStorage.historialOrdenes = $localStorage.historialOrdenes || [];	
 	};
 
-	var setOrdenesEnProceso = function(ordenesEnRecoleccion) {
+	/*var setOrdenesEnProceso = function(ordenesEnRecoleccion) {
 		init();
 
 		for (var i in $localStorage.ordenesEnRecoleccion) {
@@ -65,7 +72,7 @@ var OrdenesFactory = function(UsuarioFactory,
 		_orden.recoleccion.direccion = UsuarioFactory.getUsuario().direccion;
 		_orden.entrega.direccion = UsuarioFactory.getUsuario().direccion;
 		_orden.telefono = UsuarioFactory.getUsuario().telefono;
-	};
+	};*/
 
 	init();
 
@@ -74,7 +81,11 @@ var OrdenesFactory = function(UsuarioFactory,
 
 		ordenesParaEntrega: $localStorage.ordenesParaEntrega,
 
-		getOrden: function() {
+		ordenesRecogidas: $localStorage.ordenesRecogidas,
+
+		ordenesEntregadas: $localStorage.ordenesEntregadas,
+
+		/*getOrden: function() {
 			if(!_orden) {
 				nuevaOrden();
 			}
@@ -127,26 +138,9 @@ var OrdenesFactory = function(UsuarioFactory,
 		},
 		
 		limpiarOrden: function() {
-			/*
-			//_orden.recoleccion.direccion: '';
-			_orden.recoleccion.posicion = '';
-			_orden.recoleccion.fecha = null;
-			_orden.recoleccion.hora = '';
-			
-			//_orden.entrega.direccion: '';
-			_orden.entrega.posicion = '';
-			_orden.entrega.fecha = null;
-			_orden.entrega.hora = '';
-			
-			_orden.formaPago = '';
-			//_orden.telefono: '';
-			_orden.abono = '';
-			_orden.cupon = '';
-			_orden.terminosCondiciones = false;
-			*/
 			_orden = null;
 			CarritoFactory.vaciar();
-		}
+		}*/
 	};
 
 };

@@ -106,7 +106,7 @@ var AppCtrl = function($scope,
 		});
 	});
 
-	$scope.$on('$ionicView.afterEnter', function(event) {
+	$scope.$on('$ionicView.afterEnter', function(event, $rootScope) {
 		$scope.usuario = UsuarioFactory.getUsuario();
 		$scope.carrito = CarritoFactory;
 

@@ -139,7 +139,7 @@ app.config(function($stateProvider,
 		url: '/recoleccion',
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/recoleccion/recoleccion.html',
+				templateUrl: 'templates/app/orden/recoleccion/recoleccion.html',
 				controller: 'OrdenesEnRecoleccionCtrl'
 			}
 		}
@@ -159,10 +159,10 @@ app.config(function($stateProvider,
 
 
 	.state('app.entrega', {
-		url: '/entrega',
+		url: '/entrega/',
 		views: {
 			'contenedor-entrega': {
-				templateUrl: 'templates/app/entrega/entrega.html',
+				templateUrl: 'templates/app/orden/entrega/entrega.html',
 				controller: 'OrdenesParaEntregaCtrl'
 			}
 		}
@@ -180,16 +180,82 @@ app.config(function($stateProvider,
 
 
 
+	//Rutas de opciones de menu
+	.state('app.recogidas', {
+		url: '/menu-recogidas',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/menu/recogidas/recogidas.html',
+				controller: 'OrdenesRecogidasCtrl'
+			}
+		}
+	})
+	.state('app.recogida', {
+		url: '/menu-recogida/:indexOrden',
+		cache: false,
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/orden/informacion-orden.html',
+				controller: 'OrdenRecogidaCtrl'
+			}
+		}
+	})
+
+
+	.state('app.entregadas', {
+		url: '/menu-entregadas',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/menu/entregadas/entregadas.html',
+				controller: 'OrdenesEntregadasCtrl'
+			}
+		}
+	})
+	.state('app.entregada', {
+		url: '/menu-entregada/:indexOrden',
+		cache: false,
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/orden/informacion-orden.html',
+				controller: 'OrdenEntregadaCtrl'
+			}
+		}
+	})
+
 	/*
-	app.venta-productos
+	app.
 	app.sobre-empresa
 	*/
 
+	.state('app.venta-productos', {
+		url: '/menu-venta-productos',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/menu/venta-productos/productos.html',
+				controller: 'ProductosCtrl'
+			}
+		}
+	})
 
+	.state('app.producto', {
+		url: '/menu-producto/:indexProducto',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/menu/venta-productos/producto.html',
+				controller: 'ProductoCtrl'
+			}
+		}
+	})
 
-
-
-
+	.state('app.acerca', {
+		url: '/acerca',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/menu/acerca/acerca.html',
+				controller: 'AcercaCtrl'
+			}
+		}
+	})
 
 
 
