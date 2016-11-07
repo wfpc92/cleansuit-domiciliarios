@@ -9906,6 +9906,8 @@ img.logoinicio {
     font-family: 'fira_sansmedium'; }
   .menu .item .icon {
     font-size: 1.55em; }
+  .menu .item .icons {
+    font-size: 1.75em; }
 
 .menu .cerrar {
   font-family: 'fira_sansmedium';
@@ -10840,3 +10842,76 @@ html input[disabled] {
   cursor: default;
   color: #000;
   opacity: 1.0; }
+
+/***** * Estilos app domiciliarios * *****/
+.ord-en-proceso.padding {
+  padding-top: 0; }
+
+.ord-en-proceso .titulo {
+  background: url(../img/recoleccion.png) no-repeat 96% center;
+  background-color: #3DA0EB; }
+  .ord-en-proceso .titulo p {
+    display: block;
+    width: 90%;
+    max-width: 295px;
+    margin: 0 auto; }
+
+.ord-en-proceso .item {
+  min-height: 100px; }
+  .ord-en-proceso .item h3 {
+    font-size: 1.1em; }
+  .ord-en-proceso .item h4, .ord-en-proceso .item span {
+    font-family: 'fira_sansmedium';
+    color: #666;
+    font-size: 0.9em; }
+  .ord-en-proceso .item span {
+    font-family: 'fira_sansregular'; }
+
+.entrega .titulo {
+  background: url(../img/entrega.png) no-repeat 96% center;
+  background-color: #3DA0EB; }
+  .entrega .titulo p {
+    max-width: 250px; }
+
+.entregadas .titulo {
+  background: url(../img/reloj.png) no-repeat 96% center;
+  background-color: #3DA0EB; }
+  .entregadas .titulo p {
+    max-width: 260px; }
+
+.ventaDirecta h1 {
+  text-align: center;
+  font-family: "fira_sansmedium";
+  font-size: 1.6em;
+  background-color: #E5E5E5;
+  color: #333333;
+  padding: 16px 0;
+  margin: 10px 10px 0; }
+
+.ventaDirecta h2.subtitulo {
+  background-color: #44A01A;
+  color: #FFFFFF;
+  text-align: center;
+  font-family: "fira_sansmedium";
+  font-size: 1.6em;
+  margin: 20px;
+  padding: 12px 0; }
+
+.producto.directa .orden {
+  display: block;
+  width: 100%;
+  padding: 20px 0;
+  font-size: 1.3em;
+  font-family: 'fira_sansmedium';
+  text-align: center;
+  background-color: #E5E5E5;
+  margin-top: 10px; }
+
+.producto.directa h1 {
+  margin: 0; }
+
+.producto.directa .img {
+  background-size: 100% 270px; }
+
+.button-calm.regresar {
+  border-radius: 0; }

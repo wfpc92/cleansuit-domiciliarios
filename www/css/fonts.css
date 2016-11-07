@@ -139,3 +139,106 @@
   margin-left: -1.00390625em;
   color: rgb(255, 255, 255);
 }
+@font-face {
+  font-family: 'icomoon2';
+  src:  url('../fonts/icomoon2.eot?sb78h2');
+  src:  url('../fonts/icomoon2.eot?sb78h2#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon2.ttf?sb78h2') format('truetype'),
+    url('../fonts/icomoon2.woff?sb78h2') format('woff'),
+    url('../fonts/icomoon2.svg?sb78h2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ico-"], [class*=" icons-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon2' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icons-venta_directa:before {
+  content: "\e900";
+}
+.icons-subir_foto:before {
+  content: "\e901";
+}
+.icons-servicios:before {
+  content: "\e902";
+}
+.icons-productos:before {
+  content: "\e903";
+}
+.icons-ord_recogidas:before {
+  content: "\e904";
+}
+.icons-ord_entregadas:before {
+  content: "\e905";
+}
+.icons-ocultar:before {
+  content: "\e906";
+}
+.icons-info:before {
+  content: "\e907";
+}
+.icons-generar_orden:before {
+  content: "\e908";
+}
+.icons-flecha_abajo:before {
+  content: "\e909";
+}
+.icons-flecha_azul_der:before {
+  content: "\e90a";
+}
+.icons-eliminar_producto:before {
+  content: "\e90b";
+}
+.icons-eliminar_foto:before {
+  content: "\e90c";
+}
+.icons-menos:before {
+  content: "\e90d";
+}
+.icons-desplegar:before {
+  content: "\e90e";
+}
+.icons-cerrar_sesion:before {
+  content: "\e90f";
+}
+.icons-mas:before {
+  content: "\e910";
+}
+.icons-activar_cam:before {
+  content: "\e911";
+}
+.icons-circular_vacio:before {
+  content: "\e912";
+}
+.icons-circular_lleno:before {
+  content: "\e913";
+}
+.icons-check_vacio:before {
+  content: "\e914";
+}
+.icons-check_lleno .path1:before {
+  content: "\e915";
+  color: rgb(239, 248, 255);
+}
+.icons-check_lleno .path2:before {
+  content: "\e916";
+  margin-left: -1em;
+  color: rgb(61, 160, 235);
+}
+.icons-check_lleno .path3:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
