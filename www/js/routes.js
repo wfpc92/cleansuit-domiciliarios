@@ -154,8 +154,37 @@ app.config(function($stateProvider,
 			}
 		}
 	})
-
-
+	// Toma 
+	.state('app.recoleccion-carrito', {
+		url: '/recoleccion-carrito/:indexOrden',
+		cache: false,
+		views: {
+			'contenedor-recoleccion': {
+				templateUrl: 'templates/app/orden/recoleccion/carrito.html',
+				controller: 'CarritoCtrl'
+			}
+		}
+	})
+	.state('app.recoleccion-productos', {
+		url: '/recoleccion-productos/:indexOrden',
+		cache: false,
+		views: {
+			'contenedor-recoleccion': {
+				templateUrl: 'templates/app/orden/productos/productos.html',
+				controller: 'RecoleccionProductosCtrl'
+			}
+		}
+	})
+	.state('app.recoleccion-producto', {
+		url: '/recoleccion-producto/:indexOrden/:indexProducto',
+		cache: false,
+		views: {
+			'contenedor-recoleccion': {
+				templateUrl: 'templates/app/orden/productos/producto.html',
+				controller: 'RecoleccionProductoCtrl'
+			}
+		}
+	})
 
 
 	.state('app.entrega', {

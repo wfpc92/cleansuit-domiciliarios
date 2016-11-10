@@ -1,0 +1,47 @@
+<ion-view title="Cleansuit">
+	<ion-content class="pdBoton contcarro">
+
+		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
+
+		<ion-list class="carro">
+			<ion-item ng-repeat="item in carrito.items"
+				ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">
+				<div class="img">
+					<img ng-src="{{item.url_imagen}}" ng-if="item.tipo=='PRODUCTO'"/>
+				</div>
+				<h2>{{item.nombre}}</h2>
+				<p ng-show="item.tipo=='SERVICIO'">{{item.categoria}}</p>
+				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
+					
+				<div class="contador">
+					<i ng-click="item.tipo=='PRODUCTO' ? aumentar(item, 'PRODUCTO') : aumentar(item, 'SUBSERVICIO')" class="icon ico-mas"></i>
+					<span>{{item.cantidad || 0}}</span>
+					<i ng-click="item.tipo=='PRODUCTO' ? disminuir(item, 'PRODUCTO') : disminuir(item, 'SUBSERVICIO')" class="icon ico-menos"></i>
+				</div>
+			</ion-item>
+		</ion-list>
+
+		<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
+
+		<div clas="card" ng-hide="carrito.hayItems()">
+			<div class="item item-text-wrap">
+				No hay productos o servicios en el carrito de compra.
+			</div>
+		</div>
+
+		<button ng-click="agregarServicio()">+Servicios</button>
+		<button ng-click="agregarProductos()">+Productos</button>
+
+		<elemento-centrado>
+			<a ng-click="cancelarOrden()" class=" cancelar positive" ng-show="carrito.hayItems()"> Cancelar Orden</a>
+		</elemento-centrado>
+	
+	</ion-content>
+
+	<div class="bar bar-footer">
+		<a ui-sref="app.informacion-orden" class="button button-calm button-full" ng-disabled="carrito.contProductos + carrito.contServicios == 0 && !carrito.servicioDirecto"> 
+			SIGUIENTE
+		</a>
+	</div>
+
+</ion-view>

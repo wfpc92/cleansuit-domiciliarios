@@ -1,22 +1,26 @@
 var CarritoCtrl = function($scope, 
 						$ionicHistory, 
 						$state, 
+						$stateParams, 
 						$ionicPopup,
 						OrdenesFactory,
 						$log) {
 	
-	$log.debug("CarritoCtrl");
+	$log.debug("CarritoRecoleccionCtrl");
 	
 	//se ejecuta al dejar la vista, limpiar carrito.
 	$scope.$on('$ionicView.leave', function(event, view){
 		if(view.stateName == "app.carrito"){
 			$scope.carrito.limpiar();
-		}
+		}		
 	});
 
 	$scope.$on("$ionicView.afterEnter", function () {
 		$scope.banderas.swp=false;
 		$scope.banderas.sws=false;
+		$scope.indexOrden = $stateParams.indexOrden;
+		$scope.orden = OrdenesFactory.ordenesEnRecoleccion[$scope.indexOrden];
+		console.log("CarritoRecoleccionCtrl", $scope.indexOrden)
 	});
 
 	$scope.aumentar = function(item, tipo){
@@ -51,6 +55,14 @@ var CarritoCtrl = function($scope,
 		      	}
 		    ]
 	    });
+	};
+
+	$scope.agregarServicio = function() {
+		$state.go("app.recoleccion-servicio");
+	};
+
+	$scope.agregarProductos = function() {
+		$state.go("app.recoleccion-productos", {indexOrden: $scope.indexOrden});		
 	};
 };
 

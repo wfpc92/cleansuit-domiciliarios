@@ -3,7 +3,37 @@ var ProductosFactory = function(RecursosFactory,
 							$log){
 	
 	var init = function() {
-		$localStorage.productos = $localStorage.productos || [];
+		$localStorage.productos = $localStorage.productos || [{
+			_id: 123, 
+			url_image: "https://cdn.shopify.com/s/files/1/0229/0839/files/Untitled_design__1.png?2393",
+			nombre: "producto 1",
+			desc_corta:"descripcin corta del producto 1",
+			precio: 23000
+		},{
+			_id: 123, 
+			url_image: "https://cdn.shopify.com/s/files/1/0229/0839/files/Untitled_design__1.png?2393",
+			nombre: "producto 1",
+			desc_corta:"descripcin corta del producto 1",
+			precio: 23000
+		},{
+			_id: 123, 
+			url_image: "https://cdn.shopify.com/s/files/1/0229/0839/files/Untitled_design__1.png?2393",
+			nombre: "producto 1",
+			desc_corta:"descripcin corta del producto 1",
+			precio: 23000
+		},{
+			_id: 123, 
+			url_image: "https://cdn.shopify.com/s/files/1/0229/0839/files/Untitled_design__1.png?2393",
+			nombre: "producto 1",
+			desc_corta:"descripcin corta del producto 1",
+			precio: 23000
+		},{
+			_id: 123, 
+			url_image: "https://cdn.shopify.com/s/files/1/0229/0839/files/Untitled_design__1.png?2393",
+			nombre: "producto 1",
+			desc_corta:"descripcin corta del producto 1",
+			precio: 23000
+		}];
 	};
 
 	var setProductos = function(productos) {

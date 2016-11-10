@@ -136,11 +136,11 @@ var OrdenesFactory = function(UsuarioFactory,
 				}
 			});
 		},
-		
+		*/
 		limpiarOrden: function() {
 			_orden = null;
 			CarritoFactory.vaciar();
-		}*/
+		}
 	};
 
 };

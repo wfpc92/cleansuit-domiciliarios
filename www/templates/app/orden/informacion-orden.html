@@ -144,12 +144,12 @@
 		</form>
 
 		<elemento-centrado>
-			<a ng-click="confirmarCancelarOrden()" class="cancelar positive" ng-show="carrito.hayItems()">Cancelar Orden</a>
+			<a ng-click="cancelar()" class="cancelar positive" ng-show="true || carrito.hayItems()">{{txt.cancelar}}</a>
 		</elemento-centrado>
 	</ion-content>
 
 	<div class="bar bar-footer">
-		<a ng-click="realizarOrden()" class="button button-calm button-full" ng-disabled="!formIncompleto">REALIZAR ORDEN</a>
+		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="false || !(formIncompleto = true) ">{{txt.siguiente}}</a>
 	</div>
 
 </ion-view>
