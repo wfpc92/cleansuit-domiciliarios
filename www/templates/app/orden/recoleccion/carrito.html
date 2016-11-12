@@ -3,6 +3,12 @@
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
+
+		<div class="titulo">
+			ORDEN # {{orden._id}}
+		</div> 
+
+
 		<ion-list class="carro">
 			<ion-item ng-repeat="item in carrito.items"
 				ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">

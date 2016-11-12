@@ -1,6 +1,9 @@
 var RecoleccionProductosCtrl = function($scope,
 							$log,
 							$stateParams,
+							$state,
+							$ionicPopup,
+							$ionicHistory,
 							ProductosFactory,
 							$timeout,
 							$ionicListDelegate,
@@ -57,6 +60,35 @@ var RecoleccionProductosCtrl = function($scope,
 		}
 		
 		return false;
+	};
+
+	$scope.cancelarPedidoProductos = function() {
+		$ionicPopup
+		.confirm({
+	    	title: '¿Desea cancelar el pedido?',
+	    	template: '',
+	    	buttons: [
+		    	{
+		    		text: 'Si',
+		    		onTap: function(e) {
+		    			//aqui se borra (limpiar) el pedido de productos del carrito.
+		    			$ionicHistory.nextViewOptions({
+							disableBack:'true'
+						});
+						$state.go("app.recoleccion-carrito", { indexOrden: $scope.indexOrden} );
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+	    });
+	};
+
+	$scope.guardarPedidoProductos = function() {
+		//aqui se guarda el pedido de productos en el carrito de la orden en recoleccion.
+		$state.go("app.recoleccion-carrito", { indexOrden: $scope.indexOrden} );
 	};
 };
 

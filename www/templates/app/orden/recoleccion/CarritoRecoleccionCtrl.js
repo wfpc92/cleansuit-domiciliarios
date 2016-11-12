@@ -58,7 +58,7 @@ var CarritoCtrl = function($scope,
 	};
 
 	$scope.agregarServicio = function() {
-		$state.go("app.recoleccion-servicio");
+		$state.go("app.recoleccion-servicio", {indexOrden: $scope.indexOrden});
 	};
 
 	$scope.agregarProductos = function() {

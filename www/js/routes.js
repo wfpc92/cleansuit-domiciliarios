@@ -14,7 +14,7 @@ app.config(function($stateProvider,
   
 	$logProvider.debugEnabled(true);
 
-	/*var toJSON = function(arguments) {
+	var toJSON = function(arguments) {
 		var args = null;
 		args = [].slice.call(arguments);
     	args[0] = ["CleanSuit", ': ', typeof args[0] == 'object' ? JSON.stringify(args[0]) : args[0]].join('');
@@ -49,7 +49,7 @@ app.config(function($stateProvider,
         }     
 
         return $delegate;
-    });*/
+    });
 
 
 	$compileProvider.debugInfoEnabled(false);
@@ -182,6 +182,16 @@ app.config(function($stateProvider,
 			'contenedor-recoleccion': {
 				templateUrl: 'templates/app/orden/productos/producto.html',
 				controller: 'RecoleccionProductoCtrl'
+			}
+		}
+	})
+	.state('app.recoleccion-servicio', {
+		url: '/recoleccion-servicio/:indexOrden',
+		cache: false,
+		views: {
+			'contenedor-recoleccion': {
+				templateUrl: 'templates/app/orden/servicios/formulario-servicio.html',
+				controller: 'FormularioServicioCtrl'
 			}
 		}
 	})

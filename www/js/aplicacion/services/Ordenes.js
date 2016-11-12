@@ -8,7 +8,7 @@ var OrdenesFactory = function(UsuarioFactory,
 
 	var init = function() {
 		$localStorage.ordenesEnRecoleccion = [
-			{},{},{}
+			{_id: 12345},{},{}
 		];
 		$localStorage.ordenesParaEntrega = [
 			{},{},{}
