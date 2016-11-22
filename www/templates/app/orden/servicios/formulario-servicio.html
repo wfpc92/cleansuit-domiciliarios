@@ -5,9 +5,9 @@
 
 		<div class="titulo">
 			ORDEN # {{orden._id}}
-		</div> 
+		</div>
 
-		<form name="formServicio"> 
+		<form name="formServicio">
 			<ion-list>
 				<ion-item class="row">
 					<div 	class="col">
@@ -15,21 +15,21 @@
 							<span class="input-label">Fotos de prenda</span>
 						</label>
 					</div>
-					
-					
+
+
 				</ion-item>
 			</ion-list>
 
 			<ion-list>
-				<ion-item class="item-image" ng-repeat="foto in servicio.fotos track by $index">
+				<div class="row item-image" ng-repeat="foto in servicio.fotos track by $index">
 					<img src="{{foto.src}}">
-				</ion-item>
-				<ion-item class="item-image" ng-click="tomarFoto()">
+				</div>
+				<div class="row item-image" ng-click="tomarFoto()">
 					<img src="img/camara.png">
-				</ion-item>
+				</div>
 			</ion-list>
-				
-			
+
+
 			<ion-list>
 				<ion-item class="row">
 					<div class="col item-icon-right">
@@ -53,8 +53,8 @@
 
 			</ion-list>
 
-			
-			
+
+
 		</form>
 
 		<elemento-centrado>

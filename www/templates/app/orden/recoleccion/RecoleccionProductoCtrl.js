@@ -1,18 +1,18 @@
-var RecoleccionProductoCtrl = function($scope, 
-							$stateParams, 
-							ProductosFactory, 
-							$ionicHistory, 
+var RecoleccionProductoCtrl = function($scope,
+							$stateParams,
+							ProductosFactory,
+							$ionicHistory,
 							$state,
 							$log) {
-	
+
 	$log.debug("RecoleccionProductoCtrl");
-	
+
 	$scope.indexOrden = $stateParams.indexOrden;
 	$scope.indexProducto = $stateParams.indexProducto;
 	$scope.producto = ProductosFactory.productos[$scope.indexProducto];
-	console.log($scope.indexProducto, $scope.indexOrden)
+	console.log($scope.indexProducto, $scope.indexOrden);
 	/*$scope.$on("$ionicView.beforeEnter", function() {
-		
+
 	});	*/
 
 	$scope.aumentarProducto = function(){
@@ -32,7 +32,7 @@ var RecoleccionProductoCtrl = function($scope,
 			disableBack:'true'
 		})
 	};
-	
+
 };
 
 app.controller('RecoleccionProductoCtrl', RecoleccionProductoCtrl);

@@ -1,14 +1,20 @@
-var ProductosCtrl = function($scope,
+var VentaProductosCtrl = function($scope,
 							$log,
-							//ProductosFactory,
+							ProductosFactory,
 							//TutorialFactory,
 							$timeout,
 							$ionicListDelegate,
 							ModalCargaFactory) {
-	
-	$log.debug("ProductosCtrl");
-	//$scope.productos = ProductosFactory.productos;
-	$scope.productos = [{},{},{}]
+
+	$log.debug("VentaProductosCtrl");
+
+	$scope.indexOrden = -1;
+	$scope.productos = ProductosFactory.productos;
+
+	$scope.uiSref = function($index) {
+		return "app.venta-producto({"+
+			"\'indexProducto\': "+ $index +" })";
+	};
 	/*
 
 	$scope.aumentarProducto = function(index) {
@@ -24,7 +30,7 @@ var ProductosCtrl = function($scope,
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		if ($scope.productos.length > 0) {
 			$scope.timeoutTutorial = $timeout(function(){
-				TutorialFactory.mostrarTutorial($scope.tipo);	
+				TutorialFactory.mostrarTutorial($scope.tipo);
 			}, 800);
 		}
 	});
@@ -52,7 +58,7 @@ var ProductosCtrl = function($scope,
 	$scope.idLst = "lstProductos";
 	TutorialFactory.setIdLst("#" + $scope.idLst);
 	*/
-	
+
 	$scope.hayProductos = function() {
 		if(!$scope.productos) {
 			return false;
@@ -61,9 +67,9 @@ var ProductosCtrl = function($scope,
 		if($scope.productos.length > 0) {
 			return true;
 		}
-		
+
 		return false;
 	};
 };
 
-app.controller('ProductosCtrl', ProductosCtrl);
+app.controller('VentaProductosCtrl', VentaProductosCtrl);

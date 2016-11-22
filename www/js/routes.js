@@ -11,23 +11,25 @@ app.config(function($stateProvider,
 
 	//forzar a ionic que tenga las tabs arriba para todas las plataformas
 	$ionicConfigProvider.tabs.position('top');
-  
+
 	$logProvider.debugEnabled(true);
 
-	var toJSON = function(arguments) {
+	var toJSON = function(argumentos) {
 		var args = null;
-		args = [].slice.call(arguments);
+		args = [].slice.call(argumentos);
     	args[0] = ["CleanSuit", ': ', typeof args[0] == 'object' ? JSON.stringify(args[0]) : args[0]].join('');
-    		
+
     	if(typeof args == 'object') {
     		for(var i = 1; i < args.length; i++) {
     			if(typeof args[i] == 'object') {
-    				args[i] = JSON.stringify(args[i]);		
+    				args[i] = JSON.stringify(args[i]);
     			}
     		}
-    	} else {return arguments}
+    	} else {
+				return argumentos;
+			}
 		return args;
-	}
+	};
 
     $provide.decorator('$log', function ($delegate) {
         //Original methods
@@ -36,17 +38,17 @@ app.config(function($stateProvider,
         	origWarn = $delegate.warn,
         	origError = $delegate.error,
         	origDebug = $delegate.debug;
-        
+
         if ($logProvider.debugEnabled()) {
-        	
+
         	$delegate.log = function () {
                 origLog.apply(null, toJSON(arguments));
 	        };
-	    
+
 	        $delegate.debug = function () {
-	            origDebug.apply(null, toJSON(arguments))
+	            origDebug.apply(null, toJSON(arguments));
 	        };
-        }     
+        }
 
         return $delegate;
     });
@@ -54,11 +56,11 @@ app.config(function($stateProvider,
 
 	$compileProvider.debugInfoEnabled(false);
 	$ionicConfigProvider.scrolling.jsScrolling(false);
-	
+
 	var isAndroid = ionic.Platform.isAndroid();
-	
+
 	$ionicConfigProvider.backButton.text("");
-	$ionicConfigProvider.backButton.previousTitleText("")
+	$ionicConfigProvider.backButton.previousTitleText("");
 	$ionicConfigProvider.views.forwardCache(true);
 	$ionicConfigProvider.views.maxCache(5);
 
@@ -96,7 +98,7 @@ app.config(function($stateProvider,
         	}
       	}
 	})
-	
+
 
 
 	/**
@@ -109,7 +111,7 @@ app.config(function($stateProvider,
 		data: {
 	    	rolesAutorizados: [USER_ROLES.domiciliario]
 	    }
-	})	
+	})
 
 	/*
 	.state('app.inicio', {
@@ -154,7 +156,7 @@ app.config(function($stateProvider,
 			}
 		}
 	})
-	// Toma 
+	// Toma
 	.state('app.recoleccion-carrito', {
 		url: '/recoleccion-carrito/:indexOrden',
 		cache: false,
@@ -170,7 +172,11 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/productos/productos.html',
+				templateUrl: 'templates/app/orden/recoleccion/productos.html',
+				controller: 'RecoleccionProductosCtrl'
+			},
+			"productos@app.recoleccion-productos" : {
+				templateUrl: 'templates/app/productos/productos.html',
 				controller: 'RecoleccionProductosCtrl'
 			}
 		}
@@ -180,7 +186,11 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/productos/producto.html',
+				templateUrl: 'templates/app/orden/recoleccion/producto.html',
+				controller: 'RecoleccionProductoCtrl'
+			},
+			"producto@app.recoleccion-producto" : {
+				templateUrl: 'templates/app/productos/producto.html',
 				controller: 'RecoleccionProductoCtrl'
 			}
 		}
@@ -270,18 +280,26 @@ app.config(function($stateProvider,
 		url: '/menu-venta-productos',
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/menu/venta-productos/productos.html',
-				controller: 'ProductosCtrl'
+				templateUrl: 'templates/app/menu/venta-productos/venta-productos.html',
+				controller: 'VentaProductosCtrl'
+			},
+			"productos@app.venta-productos" : {
+				templateUrl: 'templates/app/productos/productos.html',
+				controller: 'VentaProductosCtrl'
 			}
 		}
 	})
 
-	.state('app.producto', {
-		url: '/menu-producto/:indexProducto',
+	.state('app.venta-producto', {
+		url: '/menu-venta-producto/:indexProducto',
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/menu/venta-productos/producto.html',
-				controller: 'ProductoCtrl'
+				templateUrl: 'templates/app/menu/venta-productos/venta-producto.html',
+				controller: 'VentaProductoCtrl'
+			},
+			"producto@app.venta-producto" : {
+				templateUrl: 'templates/app/productos/producto.html',
+				controller: 'VentaProductoCtrl'
 			}
 		}
 	})
@@ -294,7 +312,7 @@ app.config(function($stateProvider,
 				controller: 'AcercaCtrl'
 			}
 		}
-	})
+	});
 
 
 
@@ -318,7 +336,7 @@ app.config(function($stateProvider,
 			}
 		}
 	})
-	
+
 
 	.state('app.productos', {
 		url: '/productos',
@@ -364,7 +382,7 @@ app.config(function($stateProvider,
 		}
 	})
 
-	
+
 
 	.state('app.realizar-orden', {
 		url: '/realizar-orden',
@@ -379,7 +397,7 @@ app.config(function($stateProvider,
 
 
 
-	
+
 	//Rutas de los items del menu
 	.state('app.ordenes-en-proceso', {
 		url: '/ordenes-en-proceso',
@@ -444,7 +462,7 @@ app.config(function($stateProvider,
 			}
 		}
 	})*/
-	
+
 	//$urlRouterProvider.otherwise('/autenticacion/inicio');
 	$urlRouterProvider.otherwise( function($injector, $location) {
     	var $state = $injector.get("$state");

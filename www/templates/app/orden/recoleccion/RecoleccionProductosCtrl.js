@@ -8,14 +8,18 @@ var RecoleccionProductosCtrl = function($scope,
 							$timeout,
 							$ionicListDelegate,
 							ModalCargaFactory) {
-	
-	console.log("Aqui")
+
 	$log.debug("RecoleccionProductosCtrl");
-	
+
 	$scope.productos = ProductosFactory.productos;
 	$scope.indexOrden = $stateParams.indexOrden;
-	console.log($scope.productos, $scope.indexOrden)
+	console.log($scope.productos, $scope.indexOrden);
 
+	$scope.uiSref = function($index) {
+		return "app.recoleccion-producto({"+
+			"\'indexOrden\': " + $scope.indexOrden + ","+
+			"\'indexProducto\': "+ $index +" })";
+	};
 
 	$scope.aumentarProducto = function(index) {
 		$scope.carrito.agregar(index, "PRODUCTO", 1);
@@ -29,7 +33,7 @@ var RecoleccionProductosCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		if ($scope.productos.length > 0) {
-			
+
 		}
 	});
 
@@ -58,7 +62,7 @@ var RecoleccionProductosCtrl = function($scope,
 		if($scope.productos.length > 0) {
 			return true;
 		}
-		
+
 		return false;
 	};
 

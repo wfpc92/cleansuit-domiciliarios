@@ -1,4 +1,4 @@
-var FormularioServicioCtrl = function($scope, 
+var FormularioServicioCtrl = function($scope,
 							$stateParams,
 							$log,
 							$state,
@@ -6,14 +6,14 @@ var FormularioServicioCtrl = function($scope,
 							$ionicHistory,
 							$ionicListDelegate,
 							OrdenesFactory,
-							FotosFactory, 
+							FotosFactory,
 							$timeout) {
 
 	$log.debug("FormularioServicioCtrl");
-	
+
 	$scope.servicio = {
 		fotos: []
-	}
+	};
 
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
@@ -21,11 +21,11 @@ var FormularioServicioCtrl = function($scope,
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		
+
 	});
-	
+
 	$scope.$on("$ionicView.beforeLeave", function() {
-		
+
 	});
 
 	$scope.tomarFoto = function() {
@@ -33,15 +33,15 @@ var FormularioServicioCtrl = function($scope,
 		.tomarFoto()
 		.then(function(imgData){
 			if(imgData) {
-				$scope.fotos.push({
+				$scope.servicio.fotos.push({
 					src: "data:image/jpeg;base64," + imgData
 				});
-				$log.debug("FormularioServicioCtrl: termina seleccion de foto.")
+				$log.debug("FormularioServicioCtrl: termina seleccion de foto.");
 			}
 		}, function(err) {
 			//se cancela la seleccion de fotos.
-			$log.debug("FormularioServicioCtrl.tomarFoto(), err", err)
-		})
+			$log.debug("FormularioServicioCtrl.tomarFoto(), err", err);
+		});
 	};
 
 	$scope.escanearCodigo = function() {
@@ -51,15 +51,15 @@ var FormularioServicioCtrl = function($scope,
 			$log.debug("We got a barcode " +
                 "Result: " + codigo.text + " " +
                 "Format: " + codigo.format + " " +
-                "Cancelled: " + codigo.cancelled)
+                "Cancelled: " + codigo.cancelled);
 			if(codigo && !codigo.cancelled) {
-				$scope.servicio.codigo_prenda = JSON.stringify(codigo);
-				$log.debug("FormularioServicioCtrl: termina escaneo de codigo.")
+				$scope.servicio.codigo_prenda = codigo.text;
+				$log.debug("FormularioServicioCtrl: termina escaneo de codigo.");
 			}
 		}, function(err) {
 			//se cancela la seleccion de fotos.
-			$log.debug("FormularioServicioCtrl.escanearCodigo(), err", err)
-		})
+			$log.debug("FormularioServicioCtrl.escanearCodigo(), err", err);
+		});
 	};
 
 	$scope.cancelar = function() {
@@ -74,7 +74,7 @@ var FormularioServicioCtrl = function($scope,
 		    			$ionicHistory.nextViewOptions({
 							disableBack:'true'
 						});
-						$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden})
+						$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden});
 		    		}
 		    	},
 		      	{
@@ -83,7 +83,7 @@ var FormularioServicioCtrl = function($scope,
 		      	}
 		    ]
 	    });
-		
+
 	};
 
 
@@ -140,7 +140,7 @@ var FormularioServicioCtrl = function($scope,
 
 	$scope.causaCancelacion = function() {
 		$scope.data = "";
-		var template = 
+		var template =
 			'<ion-list>'+
 				'<ion-radio ng-model="data" ng-value="1">Valor elevado</ion-radio>'+
 				'<ion-radio ng-model="data" ng-value="2">Manifiesta mala atención</ion-radio>' +

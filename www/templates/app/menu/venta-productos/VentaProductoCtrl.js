@@ -1,15 +1,15 @@
-var ProductoCtrl = function($scope, 
-							$stateParams, 
-							//ProductosFactory, 
-							$ionicHistory, 
+var VentaProductoCtrl = function($scope,
+							$stateParams,
+							ProductosFactory,
+							$ionicHistory,
 							$state,
 							$log) {
-	
-	$log.debug("ProductoCtrl");
-	/*
-	var indexProducto = $stateParams.indexProducto;
-	$scope.producto = ProductosFactory.productos[indexProducto];
 
+	$log.debug("VentaProductoCtrl");
+
+	$scope.indexProducto = $stateParams.indexProducto;
+	$scope.producto = ProductosFactory.productos[$scope.indexProducto];
+	/*
 
 	$scope.aumentarProducto = function(){
 		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);
@@ -28,7 +28,7 @@ var ProductoCtrl = function($scope,
 			disableBack:'true'
 		})
 	};*/
-	
+
 };
 
-app.controller('ProductoCtrl', ProductoCtrl);
+app.controller('VentaProductoCtrl', VentaProductoCtrl);
