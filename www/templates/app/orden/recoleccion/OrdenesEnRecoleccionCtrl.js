@@ -7,11 +7,12 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 	$log.debug("OrdenesEnRecoleccionCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesEnRecoleccion;
 	
-	/*OrdenesFactory
-	.cargarOrdenesEnProceso() 
+	OrdenesFactory
+	.cargarAsignadas() 
 	.then(function() {
-		//$scope.ordenes = OrdenesFactory.ordenesEnProceso;
-	});*/
+		$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
+		console.log($scope.ordenes)
+	});
 
 	$scope.hayOrdenes = function() {
 		if(!$scope.ordenes) {

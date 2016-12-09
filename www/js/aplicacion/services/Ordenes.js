@@ -7,12 +7,10 @@ var OrdenesFactory = function(UsuarioFactory,
 		_ultimaOrden = null;
 
 	var init = function() {
-		$localStorage.ordenesEnRecoleccion = [
-			{_id: 12345},{},{}
-		];
-		$localStorage.ordenesParaEntrega = [
-			{},{},{}
-		];
+		$localStorage.ordenesRecoleccion = $localStorage.ordenesRecoleccion || [];
+		$localStorage.ordenesEntrega = $localStorage.ordenesEntrega || [];
+		
+
 		$localStorage.ordenesRecogidas = [
 			{},{},{}
 		];
@@ -22,18 +20,32 @@ var OrdenesFactory = function(UsuarioFactory,
 		//$localStorage.ordenesEnRecoleccion || [];
 		//$localStorage.historialOrdenes = $localStorage.historialOrdenes || [];	
 	};
-
-	/*var setOrdenesEnProceso = function(ordenesEnRecoleccion) {
+	
+	var setOrdenesEntrega = function(ordenesEntrega) {
 		init();
 
-		for (var i in $localStorage.ordenesEnRecoleccion) {
-			delete $localStorage.ordenesEnRecoleccion[i];
+		for (var i in $localStorage.ordenesEntrega) {
+			delete $localStorage.ordenesEntrega[i];
 		}
 		
-		for (var i in ordenesEnRecoleccion) {
-			$localStorage.ordenesEnRecoleccion[i] = ordenesEnRecoleccion[i];
+		for (var i in ordenesEntrega) {
+			$localStorage.ordenesEntrega[i] = ordenesEntrega[i];
 		}
 	};
+	
+	var setOrdenesRecoleccion = function(ordenesRecoleccion) {
+		init();
+
+		for (var i in $localStorage.ordenesRecoleccion) {
+			delete $localStorage.ordenesRecoleccion[i];
+		}
+		
+		for (var i in ordenesRecoleccion) {
+			$localStorage.ordenesRecoleccion[i] = ordenesRecoleccion[i];
+		}
+	};
+
+	/*
 
 	var setHistorialOrdenes = function(historialOrdenes) {
 		init();
@@ -77,9 +89,9 @@ var OrdenesFactory = function(UsuarioFactory,
 	init();
 
 	return {
-		ordenesEnRecoleccion: $localStorage.ordenesEnRecoleccion,
+		ordenesRecoleccion: $localStorage.ordenesRecoleccion,
 
-		ordenesParaEntrega: $localStorage.ordenesParaEntrega,
+		ordenesEntrega: $localStorage.ordenesEntrega,
 
 		ordenesRecogidas: $localStorage.ordenesRecogidas,
 
@@ -137,6 +149,20 @@ var OrdenesFactory = function(UsuarioFactory,
 			});
 		},
 		*/
+		
+		//cargar ordenes asignadas de recoelccion y entrega.
+		cargarAsignadas: function() {
+			return RecursosFactory
+			.get('/ordenes/asignadas', {})
+			.then(function(respuesta) {
+				console.log("OrdenesFactory.cargarAsignadas()", respuesta)
+				if(respuesta.data.success) {
+					setOrdenesRecoleccion(respuesta.data.ordenesRecoleccion);
+					setOrdenesEntrega(respuesta.data.ordenesEntrega);
+				}
+			});
+		},
+
 		limpiarOrden: function() {
 			_orden = null;
 			CarritoFactory.vaciar();
