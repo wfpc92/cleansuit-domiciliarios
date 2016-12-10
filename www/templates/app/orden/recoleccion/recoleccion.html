@@ -13,9 +13,9 @@
 					ui-sref="app.recoleccion-detalle( {'indexOrden': {{$index}} })">
 
 				<!--<h3>orden {{$index}}</h3>-->
-				<h3>Carrera 13 # 13-44</h3>
-				<h4>Dany Alejandro Cabrera</h4>
-				<span>orden # {{$index}}</span>
+				<h3>{{orden.orden.recoleccion.direccion}}</h3>
+				<h4>{{orden.cliente_id.nombre}}</h4>
+				<span>orden # {{orden.codigo | numberFixedLen:4}}<span>
 				<i class="icon ico-flechader assertive"></i>
 
 			</ion-item>

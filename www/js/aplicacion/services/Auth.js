@@ -53,23 +53,12 @@ var AuthService = function($q,
 
  	var ingresar = function(usuario) {
 		return $q(function(resolve, reject) {
-			return authCallback(resolve, reject, {
-				data: {
-					success: true,
-					usuario: {
-						nombre: "Nombre de domiciliario",
-						correo: "d@d",
-						url_foto:  null,
-						rol: "domiciliario"
-					}
-				}
-			});
-			/*RecursosFactory
+			RecursosFactory
 			.post('/ingresar', usuario)
 			.then(function(res) {
  				$log.debug("AuthService.ingresar()", res)
 				return authCallback(resolve, reject, res);
-			});*/
+			});
 		});
 	};
  
