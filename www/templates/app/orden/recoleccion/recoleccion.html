@@ -9,13 +9,13 @@
 		</div>
 		
 		<ion-list ng-if="hayOrdenes()">
-			<ion-item class="item-icon-right orden" ng-repeat="orden in ordenes track by $index" 
+			<ion-item class="item-icon-right orden" ng-repeat="infoOrden in ordenes track by $index" 
 					ui-sref="app.recoleccion-detalle( {'indexOrden': {{$index}} })">
 
 				<!--<h3>orden {{$index}}</h3>-->
-				<h3>{{orden.orden.recoleccion.direccion}}</h3>
-				<h4>{{orden.cliente_id.nombre}}</h4>
-				<span>orden # {{orden.codigo | numberFixedLen:4}}<span>
+				<h3>{{infoOrden.orden.recoleccion.direccion}}</h3>
+				<h4>{{infoOrden.cliente_id.nombre}}</h4>
+				<span>orden # {{infoOrden.codigo | numberFixedLen:4}}<span>
 				<i class="icon ico-flechader assertive"></i>
 
 			</ion-item>

@@ -163,7 +163,7 @@ app.config(function($stateProvider,
 		views: {
 			'contenedor-recoleccion': {
 				templateUrl: 'templates/app/orden/recoleccion/carrito.html',
-				controller: 'CarritoCtrl'
+				controller: 'CarritoRecolecionCtrl'
 			}
 		}
 	})

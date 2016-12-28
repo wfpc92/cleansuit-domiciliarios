@@ -5,13 +5,12 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 										OrdenesFactory) {
 	
 	$log.debug("OrdenesEnRecoleccionCtrl")
-	$scope.ordenes = OrdenesFactory.ordenesEnRecoleccion;
+	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
 	
 	OrdenesFactory
 	.cargarAsignadas() 
 	.then(function() {
 		$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
-		console.log($scope.ordenes)
 	});
 
 	$scope.hayOrdenes = function() {

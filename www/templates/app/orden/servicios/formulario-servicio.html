@@ -4,7 +4,7 @@
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
 		<div class="titulo">
-			ORDEN # {{orden._id}}
+			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
 		</div>
 
 		<form name="formServicio">
@@ -22,7 +22,7 @@
 
 			<ion-list>
 				<div class="row item-image" ng-repeat="foto in servicio.fotos track by $index">
-					<img src="{{foto.src}}">
+					<img src="{{foto.src}}"/>
 				</div>
 				<div class="row item-image" ng-click="tomarFoto()">
 					<img src="img/camara.png">

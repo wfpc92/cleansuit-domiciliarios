@@ -5,11 +5,17 @@
 
 
 		<div class="titulo">
-			ORDEN # {{orden._id}}
+			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
 		</div> 
 
 
 		<ion-list class="carro">
+			<ion-item class="item-icon-right item-text-wrap" ng-if="infoOrden.orden.servicioDirecto">
+				<h2>Servicio directo</h2>
+				<p>El total del servicio sera estimado por el domiciliario.</p>
+				<i  class="icon ion-ios-close-outline" ng-click="carrito.servicioDirecto=false;carrito.calcularTotales()" ></i>		
+			</ion-item>
+
 			<ion-item ng-repeat="item in carrito.items"
 				ng-class="{'item-thumbnail-left' : item.tipo=='PRODUCTO'}">
 				<div class="img">
@@ -27,7 +33,7 @@
 			</ion-item>
 		</ion-list>
 
-		<resumen-totales totales="carrito.totales" ng-show="carrito.hayItems()"></resumen-totales>
+		<resumen-totales totales="carrito.totales" ng-if="carrito.hayItems()"></resumen-totales>
 
 		<div clas="card" ng-hide="carrito.hayItems()">
 			<div class="item item-text-wrap">

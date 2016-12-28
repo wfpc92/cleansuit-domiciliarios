@@ -17,7 +17,7 @@ var FormularioServicioCtrl = function($scope,
 
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
-		$scope.orden = OrdenesFactory.ordenesEnRecoleccion[$scope.indexOrden];
+		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -29,6 +29,7 @@ var FormularioServicioCtrl = function($scope,
 	});
 
 	$scope.tomarFoto = function() {
+		console.log("#tomar foto")
 		FotosFactory
 		.tomarFoto()
 		.then(function(imgData){
@@ -41,6 +42,7 @@ var FormularioServicioCtrl = function($scope,
 		}, function(err) {
 			//se cancela la seleccion de fotos.
 			$log.debug("FormularioServicioCtrl.tomarFoto(), err", err);
+			mostrarErrorCamara(err);
 		});
 	};
 
@@ -57,8 +59,10 @@ var FormularioServicioCtrl = function($scope,
 				$log.debug("FormularioServicioCtrl: termina escaneo de codigo.");
 			}
 		}, function(err) {
+			console.log(err)
 			//se cancela la seleccion de fotos.
 			$log.debug("FormularioServicioCtrl.escanearCodigo(), err", err);
+			mostrarErrorCamara(err);
 		});
 	};
 
@@ -84,6 +88,14 @@ var FormularioServicioCtrl = function($scope,
 		    ]
 	    });
 
+	};
+
+	var mostrarErrorCamara = function(err) {
+		$ionicPopup
+		.alert({
+	    	title: 'Camara no disponible',
+	    	template: 'El dispositivo no permite acceso a la camara. Reportar este inconveniente con el administrador. '+err
+	    });
 	};
 
 

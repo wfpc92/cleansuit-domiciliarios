@@ -1,9 +1,10 @@
-var CarritoCtrl = function($scope, 
+var CarritoRecolecionCtrl = function($scope, 
 						$ionicHistory, 
 						$state, 
 						$stateParams, 
 						$ionicPopup,
 						OrdenesFactory,
+						CarritoFactory,
 						$log) {
 	
 	$log.debug("CarritoRecoleccionCtrl");
@@ -19,8 +20,13 @@ var CarritoCtrl = function($scope,
 		$scope.banderas.swp=false;
 		$scope.banderas.sws=false;
 		$scope.indexOrden = $stateParams.indexOrden;
-		$scope.orden = OrdenesFactory.ordenesEnRecoleccion[$scope.indexOrden];
-		console.log("CarritoRecoleccionCtrl", $scope.indexOrden)
+		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
+		$scope.carrito = CarritoFactory;
+		$scope.carrito.items= $scope.infoOrden.items;
+		$scope.carrito.servicioDirecto = $scope.infoOrden.orden.servicioDirecto;
+		$scope.carrito.calcularTotales();
+
+		console.log("CarritoRecoleccionCtrl", $scope.indexOrden, $scope.infoOrden)
 	});
 
 	$scope.aumentar = function(item, tipo){
@@ -67,4 +73,4 @@ var CarritoCtrl = function($scope,
 };
 
 
-app.controller('CarritoCtrl', CarritoCtrl);
+app.controller('CarritoRecolecionCtrl', CarritoRecolecionCtrl);

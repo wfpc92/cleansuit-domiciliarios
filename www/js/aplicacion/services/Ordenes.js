@@ -163,6 +163,21 @@ var OrdenesFactory = function(UsuarioFactory,
 			});
 		},
 
+		soloHayProductos : function(infoOrden){
+			var cont = 0;
+			var items = infoOrden.items;
+
+			for (i in items){
+				if (items[i].tipo == 'PRODUCTO'){
+					cont++;
+				} else {
+					return false;
+				}
+			}
+			console.log("Servicio directo?: ", infoOrden.orden.servicioDirecto);
+			return !infoOrden.orden.servicioDirecto && (cont > 0 ? true : false);
+		},
+
 		limpiarOrden: function() {
 			_orden = null;
 			CarritoFactory.vaciar();
