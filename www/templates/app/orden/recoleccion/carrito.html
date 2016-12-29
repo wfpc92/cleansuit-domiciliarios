@@ -41,8 +41,12 @@
 			</div>
 		</div>
 
-		<button ng-click="agregarServicio()">+Servicios</button>
-		<button ng-click="agregarProductos()">+Productos</button>
+		<button class="addservicios " ng-click="agregarServicio()">
+			<i class="icon icons icons-servicios"></i>
+		</button>
+		<button class="addproductos" ng-click="agregarProductos()">
+			<i class="icon icons icons-productos"></i>
+		</button>
 
 		<elemento-centrado>
 			<a ng-click="cancelarOrden()" class=" cancelar positive" ng-show="carrito.hayItems()"> Cancelar Orden</a>

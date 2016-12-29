@@ -1384,3 +1384,34 @@ html input[disabled] {
 }
 .button-calm.regresar:after {	
 }
+.cancelarPedido {
+	display: block;
+	text-align: center;
+	color: #999999;
+	margin-bottom: 26px;
+}
+.button-calm.guardar {
+	width: 100%;
+	font-family: 'fira_sansmedium';
+	border-radius: 0;
+}
+.button-calm.guardar:after {
+	top: 0 !important;
+	bottom: 0 !important;
+}
+.bottom.button-calm {
+	border-radius: 0;
+}
+.addproductos, .addservicios {
+	display: inline-block;
+	vertical-align: top;
+	width: 67px;
+	height: 67px;
+	background-color: $calm;
+	border: none;
+	border-radius: 35px;
+	color: $light;
+	padding: 0;
+	font-size: 37px;
+	box-shadow: 0px 0px 15px rgba(51, 50, 49, 0.55);
+}
