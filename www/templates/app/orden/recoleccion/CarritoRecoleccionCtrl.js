@@ -1,4 +1,4 @@
-var CarritoRecolecionCtrl = function($scope, 
+var CarritoRecoleccionCtrl = function($scope, 
 						$ionicHistory, 
 						$state, 
 						$stateParams, 
@@ -14,19 +14,22 @@ var CarritoRecolecionCtrl = function($scope,
 		if(view.stateName == "app.carrito"){
 			$scope.carrito.limpiar();
 		}		
+		/*
+		$ionicHistory.clearHistory();
+		$ionicHistory.nextViewOptions({
+			disableBack:'true'
+		})
+		*/
 	});
 
-	$scope.$on("$ionicView.afterEnter", function () {
+	$scope.$on("$ionicView.beforeEnter", function () {
 		$scope.banderas.swp=false;
 		$scope.banderas.sws=false;
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 		$scope.carrito = CarritoFactory;
-		$scope.carrito.items= $scope.infoOrden.items;
-		$scope.carrito.servicioDirecto = $scope.infoOrden.orden.servicioDirecto;
-		$scope.carrito.calcularTotales();
-
-		console.log("CarritoRecoleccionCtrl", $scope.indexOrden, $scope.infoOrden)
+		console.log("CarritoRecoleccionCtrl", $scope.indexOrden, $scope.infoOrden);
+		$scope.carrito.hayItems("PRODUCTO");
 	});
 
 	$scope.aumentar = function(item, tipo){
@@ -73,4 +76,4 @@ var CarritoRecolecionCtrl = function($scope,
 };
 
 
-app.controller('CarritoRecolecionCtrl', CarritoRecolecionCtrl);
+app.controller('CarritoRecoleccionCtrl', CarritoRecoleccionCtrl);

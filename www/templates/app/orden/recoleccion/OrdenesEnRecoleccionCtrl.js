@@ -2,7 +2,8 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 										$rootScope,
 										$state,
 										$log,
-										OrdenesFactory) {
+										OrdenesFactory,
+										CarritoFactory) {
 	
 	$log.debug("OrdenesEnRecoleccionCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
@@ -30,6 +31,11 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 		//por medio de menu/inicio
 		$rootScope.estadoActual = $state.current.name;
 	});
+
+	$scope.verInformacionOrden = function(index) {
+		CarritoFactory.setItemsRecoleccion($scope.ordenes[index]);
+		$state.go("app.recoleccion-detalle", {indexOrden: index});
+	};
 	
 };
 

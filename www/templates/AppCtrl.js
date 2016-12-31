@@ -111,12 +111,12 @@ var AppCtrl = function($scope,
 		$scope.carrito = CarritoFactory;
 
 		if($scope.usuario) {
-	    	/*ControlDescargasFactory
+	    	ControlDescargasFactory
 			.cargarVersiones()
 			.then(function() {
 				$log.debug("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
-				$scope.contOrdenesEnProceso = OrdenesFactory.ordenesEnProceso.length;
-			});*/
+				//$scope.contOrdenesEnProceso = OrdenesFactory.ordenesEnProceso.length;
+			});
 		}
 	});
 

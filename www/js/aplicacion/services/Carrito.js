@@ -22,12 +22,41 @@ var CarritoFactory = function(RecursosFactory,
 
 		totales: {},
 
-		hayItems : function(){
+		hayItems : function(tipo){
 			var cont = 0; 
+			
 			for(var i in this.items){
 				cont += 1;
+
+				if (this.items[i].tipo == tipo) {
+					return true;
+				}
 			}
-			return ((cont > 0) ? true : false) || this.servicioDirecto;
+
+			//si sebuscaportipo de item pero no se encontro retorna falso.
+			if (tipo) {
+				return false;
+			}
+
+			//evaluacion en caso que nose busque por tipo de item.
+			return cont > 0 || this.servicioDirecto;
+		},
+		
+		setItemsRecoleccion: function(infoOrden) {
+			this.items = {};
+			this.contServicios = 0;
+			this.contProductos = 0;
+			this.servicioDirecto = infoOrden.orden.servicioDirecto;
+
+			//quitar los items de tipo servicio
+			for (i in infoOrden.items){
+				if (infoOrden.items[i].tipo == 'PRODUCTO'){
+					this.agregar(infoOrden.items[i], 'PRODUCTO', infoOrden.items[i].cantidad);
+				}
+			}
+
+			this.actualizarContadores();
+			this.calcularTotales();
 		},
 
 		/**
@@ -157,6 +186,22 @@ var CarritoFactory = function(RecursosFactory,
 			return !this.servicioDirecto && (cont > 0 ? true : false);
 		},
 
+		getProductos: function(items) {
+			var productos = [];
+
+			if (!items) {
+				items = this.items;
+			}
+
+			for (i in items){
+				if (items[i].tipo == 'PRODUCTO'){
+					productos.push(items[i]);
+				}
+			}
+
+			return productos;
+		},
+
 		/**
 		 * [vaciar eliminiar los items del carrito]
 		 * @return {[type]} [description]
@@ -174,7 +219,7 @@ var CarritoFactory = function(RecursosFactory,
 			//$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
 			this.calcularTotales();
-		}
+		},
 
 	};
 };

@@ -21,7 +21,7 @@
 			</ion-list>
 
 			<ion-list>
-				<div class="row item-image" ng-repeat="foto in servicio.fotos track by $index">
+				<div class="row item-image" ng-repeat="foto in prenda.fotos track by $index">
 					<img src="{{foto.src}}"/>
 				</div>
 				<div class="row item-image" ng-click="tomarFoto()">
@@ -29,13 +29,14 @@
 				</div>
 			</ion-list>
 
+			
 
 			<ion-list>
 				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Código de identificación de la prenda</span>
-							<input type="text" placeholder="Ingrese un código" ng-model="servicio.codigo_prenda" ng-minlength="3" ng-maxlength="100">
+							<input type="text" placeholder="Ingrese un código" ng-model="prenda.codigo" ng-minlength="3" ng-maxlength="100">
 						</label>
 						<i class="icon ion-camera" ng-click="escanearCodigo()"></i>
 					</div>
@@ -45,8 +46,19 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Tipo de servicio</span>
-							<input type="text" placeholder="Tipo de servicio" ng-model="orden.recoleccion.hora" ng-disabled="true" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
+						<select ng-options="s as s.nombre for s in servicios track by s._id" ng-model="prenda.servicio" ng-change="cargarSubservicios()" ></select>
+						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</ion-item>
+
+				<ion-item class="row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Categoría</span>
+						</label>
+						<select ng-options="s as s.nombre for s in prenda.servicio.subservicios track by s._id" ng-model="prenda.subservicio" ng-change="" ></select>
+						
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
 				</ion-item>

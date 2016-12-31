@@ -6,18 +6,22 @@ var FormularioServicioCtrl = function($scope,
 							$ionicHistory,
 							$ionicListDelegate,
 							OrdenesFactory,
+							ServiciosFactory,
 							FotosFactory,
 							$timeout) {
 
 	$log.debug("FormularioServicioCtrl");
 
-	$scope.servicio = {
-		fotos: []
-	};
+
 
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
+		$scope.infoOrden.prendas = $scope.infoOrden.prendas || [];
+		$scope.servicios = ServiciosFactory.servicios;
+		$scope.prenda = {
+			fotos: []
+		};
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -28,8 +32,8 @@ var FormularioServicioCtrl = function($scope,
 
 	});
 
+	//tomar foto de prenda y agregar a lista servicio.fotos
 	$scope.tomarFoto = function() {
-		console.log("#tomar foto")
 		FotosFactory
 		.tomarFoto()
 		.then(function(imgData){
@@ -96,6 +100,10 @@ var FormularioServicioCtrl = function($scope,
 	    	title: 'Camara no disponible',
 	    	template: 'El dispositivo no permite acceso a la camara. Reportar este inconveniente con el administrador. '+err
 	    });
+	};
+
+	$scope.cargarSubservicios = function(index) {
+		console.log($scope.prenda)
 	};
 
 
