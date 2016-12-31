@@ -53,7 +53,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	    	buttons: [
 		    	{
 		    		text: 'Pedido Pendiente',
-			    	type: 'button-positive',
+			    	type: 'button-calm',
 		    		onTap: function(e) {
 		    			OrdenesFactory.limpiarOrden();
 						$ionicHistory.clearHistory();
@@ -65,7 +65,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		    	},
 		      	{
 			    	text: '<b>Cancelar Pedido</b>',
-			    	type: 'button-positive',
+			    	type: 'button-calm',
 		    		onTap: function(e) {
 		    			OrdenesFactory.limpiarOrden();
 						$ionicHistory.clearHistory();
@@ -107,7 +107,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		    	},
 		      	{
 			    	text: '<b>Enviar</b>',
-			    	type: 'button-positive',
+			    	type: 'button-calm',
 		    		onTap: function(e) {
 		    			//enviar motivo de suspension de Pedido
 		    			OrdenesFactory.limpiarOrden();
