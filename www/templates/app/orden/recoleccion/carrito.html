@@ -23,15 +23,9 @@
 
 			<ion-item ng-repeat="item in carrito.items track by $index" ng-if="item.tipo !== 'PRODUCTO'">
 				<h2>{{item.nombre}}</h2>
-				<p>{{item.categoria}}</p>
-				<p>{{item.prenda.codigo}}</p>
-				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
-					
-				<div class="contador">
-					<i ng-click="aumentar(item, 'SUBSERVICIO')" class="icon ico-mas"></i>
-					<span>{{item.cantidad || 0}}</span>
-					<i ng-click="disminuir(item, 'SUBSERVICIO')" class="icon ico-menos"></i>
-				</div>
+				<p>{{item.servicio.nombre}}</p>
+				<p>ID: {{item.prenda.codigo}}</p>
+				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>
 			</ion-item>
 
 
@@ -54,7 +48,7 @@
 			</ion-item>
 		</ion-list>
 
-		<resumen-totales totales="carrito.totales" ng-if="carrito.contProductos + carrito.contProductos > 0"></resumen-totales>
+		<resumen-totales totales="carrito.totales" ng-if="carrito.contProductos + carrito.contServicios > 0"></resumen-totales>
 
 		<div clas="card" ng-hide="carrito.hayItems()">
 			<div class="item item-text-wrap">

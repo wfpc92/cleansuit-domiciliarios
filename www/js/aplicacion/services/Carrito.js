@@ -69,20 +69,29 @@ var CarritoFactory = function(RecursosFactory,
 		agregar : function(item, tipo, cantidad){
 			//$log.debug("CarritoFactory.agregar()", item, tipo, cantidad);
 			if(!item){ return; }
-			//existe el item en el carrito de compra, aumentar cantidad
-			if(typeof this.items[item._id] !== 'undefined'){
-				this.items[item._id].cantidad += cantidad;
+
+			if(tipo == "PRODUCTO") {
+				//existe el item en el carrito de compra, aumentar cantidad
+				if(typeof this.items[item._id] !== 'undefined'){
+					this.items[item._id].cantidad += cantidad;
+				} else {
+					var index = item._id;
+					this.items[index] = item;
+					this.items[index].tipo = tipo;
+					this.items[index].cantidad = cantidad;	
+				}
+			} else {
+				//no existe hay que agregarlo al carrito de compras
+				var index = item._id + "-" + item.prenda.codigo;
+				this.items[index] = item;
+				this.items[index].tipo = tipo;
+				this.items[index].cantidad = cantidad;
 			}
-			//no existe hay que agregarlo al carrito de compras
-			else {
-				//$log.debug("no existe el item... creando")
-				this.items[item._id] = item;
-				this.items[item._id].tipo = tipo;
-				this.items[item._id].cantidad = cantidad;
-			}
+
 			
 			this.actualizarContadores();
 			this.calcularTotales();
+			return true;
 		},
 
 		disminuir : function(item, tipo, cantidad){
@@ -97,6 +106,7 @@ var CarritoFactory = function(RecursosFactory,
 
 			this.actualizarContadores();
 			this.calcularTotales();
+			return true;
 		},
 
 		cantidad: function(id) {

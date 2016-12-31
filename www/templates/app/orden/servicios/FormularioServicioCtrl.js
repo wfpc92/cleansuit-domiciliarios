@@ -8,6 +8,7 @@ var FormularioServicioCtrl = function($scope,
 							OrdenesFactory,
 							ServiciosFactory,
 							FotosFactory,
+							CarritoFactory,
 							$timeout) {
 
 	$log.debug("FormularioServicioCtrl");
@@ -19,6 +20,7 @@ var FormularioServicioCtrl = function($scope,
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 		$scope.infoOrden.prendas = $scope.infoOrden.prendas || [];
 		$scope.servicios = ServiciosFactory.servicios;
+		$scope.nuevoItem = {};
 		$scope.prenda = {
 			fotos: []
 		};
@@ -103,26 +105,61 @@ var FormularioServicioCtrl = function($scope,
 	};
 
 	$scope.cargarSubservicios = function(index) {
-		console.log($scope.prenda)
+		//console.log($scope.prenda)
 	};
 
-
-	/*$scope.txt = {
-		cancelar: "Suspender pedido",
-		siguiente: "TOMAR PEDIDO"
+	$scope.txt = {
+		cancelar: "Cancelar Prenda",
+		siguiente: "GUARDAR PRENDA"
 	};
 
 	$scope.siguiente = function() {
-		if ($scope.formularioValido) {
-			$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden})
+		console.log("FormularioServicioCtrl.siguiente", $scope.formularioValido)
+		if ($scope.formularioValido && (typeof $scope.nuevoItem.subservicio !== 'undefined')) {
+			$scope.nuevoItem.subservicio.prenda = $scope.prenda;
+			$scope.nuevoItem.subservicio.servicio = $scope.nuevoItem.servicio;
+
+			if (!CarritoFactory.agregar($scope.nuevoItem.subservicio, 'SUBSERVICIO', 1)) {
+				mostrarAlertaCodigoDuplicado();
+			} else {
+				/*ServiciosFactory
+				.validarCodigoPrenda()
+				.then(function(res) {
+					if(res.data.sucess) {*/
+						$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden});
+					/*} else {
+						mostrarAlertaCodigoDuplicado();
+					}
+				});*/
+			}
+			
 		}
 		else {
-			console.log("Formulario incompleto.")
+			$ionicPopup
+			.alert({
+		    	title: 'Formulario Incompleto',
+		    	template: 'Complete los campos para continuar',
+		    });
 		}
 	};
 
 	$scope.formularioValido = true;
 
+	var mostrarAlertaCodigoDuplicado = function() {
+		$ionicPopup
+		.alert({
+	    	title: 'Código Duplicado',
+	    	template: 'El codigo que se asignó a esta prenda ya existe.',
+	    });
+	};
+
+	/*
+	$scope.$watch('servicio', function(oldV, newV) {
+		console.log(oldV, newV)
+	});
+	*/
+
+	/*
 	//cancelar orden:
 	$scope.cancelar = function() {
 		$ionicPopup

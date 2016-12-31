@@ -47,7 +47,7 @@
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Tipo de servicio</span>
 						</label>
-						<select ng-options="s as s.nombre for s in servicios track by s._id" ng-model="prenda.servicio" ng-change="cargarSubservicios()" ></select>
+						<select ng-options="s as s.nombre for s in servicios track by s._id" ng-model="nuevoItem.servicio" ng-change="cargarSubservicios()" ></select>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
 				</ion-item>
@@ -57,9 +57,58 @@
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Categoría</span>
 						</label>
-						<select ng-options="s as s.nombre for s in prenda.servicio.subservicios track by s._id" ng-model="prenda.subservicio" ng-change="" ></select>
+						<select ng-options="s as s.nombre for s in nuevoItem.servicio.subservicios track by s._id" ng-model="nuevoItem.subservicio" ng-change="" ></select>
 						
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</ion-item>
+
+				<ion-item class="row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Marca</span>
+							<input type="text" placeholder="Marca" ng-model="prenda.marca" ng-minlength="1" ng-maxlength="100">
+						</label>
+						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</ion-item>
+
+				<ion-item class="row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Talla</span>
+							<input type="text" placeholder="Talla" ng-model="prenda.talla" ng-minlength="1" ng-maxlength="100">
+						</label>
+						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</ion-item>
+
+				<ion-item class="row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Material</span>
+							<input type="text" placeholder="Material" ng-model="prenda.material" ng-minlength="1" ng-maxlength="100">
+						</label>
+						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</ion-item>
+
+				<ion-item class="row">
+					<div class="col item-icon-right">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Prenses</span>
+							<input type="text" placeholder="Prenses" ng-model="prenda.prenses" ng-minlength="1" ng-maxlength="100">
+						</label>
+						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+					</div>
+				</ion-item>
+
+				<ion-item class="row">
+					<div class="col">
+						<label class="item-input item-stacked-label item-floating-label">
+							<span class="input-label item-icon-right">Comentario</span>
+							<textarea placeholder="Comentario" ng-model="prenda.comentario" ng-minlength="0" ng-maxlength="100"></textarea>
+						</label>
 					</div>
 				</ion-item>
 
@@ -75,7 +124,7 @@
 	</ion-content>
 
 	<div class="bar bar-footer">
-		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="false || !(formIncompleto = true) ">{{txt.siguiente}}</a>
+		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="formIncompleto">{{txt.siguiente}}</a>
 	</div>
 
 </ion-view>

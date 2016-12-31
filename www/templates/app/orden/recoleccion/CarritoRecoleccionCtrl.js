@@ -28,8 +28,7 @@ var CarritoRecoleccionCtrl = function($scope,
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 		$scope.carrito = CarritoFactory;
-		console.log("CarritoRecoleccionCtrl", $scope.indexOrden, $scope.infoOrden);
-		$scope.carrito.hayItems("PRODUCTO");
+		console.log("CarritoRecoleccionCtrl", $scope.indexOrden, $scope.carrito.items);
 	});
 
 	$scope.aumentar = function(item, tipo){
