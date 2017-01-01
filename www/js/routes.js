@@ -206,6 +206,17 @@ app.config(function($stateProvider,
 		}
 	})
 
+	.state('app.recoleccion-confirmacion', {
+		url: '/recoleccion-confirmacion/:indexOrden',
+		cache: false,
+		views: {
+			'contenedor-recoleccion': {
+				templateUrl: 'templates/app/orden/informacion-orden.html',
+				controller: 'ConfirmacionOrdenCtrl'
+			}
+		}
+	})
+
 
 	.state('app.entrega', {
 		url: '/entrega/',

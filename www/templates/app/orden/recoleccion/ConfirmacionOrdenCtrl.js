@@ -1,4 +1,4 @@
-var OrdenEnRecoleccionCtrl = function($scope, 
+var ConfirmacionOrdenCtrl = function($scope, 
 							$stateParams,
 							$log,
 							$state,
@@ -7,9 +7,6 @@ var OrdenEnRecoleccionCtrl = function($scope,
 							$ionicListDelegate,
 							OrdenesFactory, 
 							$timeout) {
-
-	$log.debug("OrdenEnRecoleccionCtrl");
-	
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
@@ -147,5 +144,4 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	};
 };
 
-
-app.controller("OrdenEnRecoleccionCtrl", OrdenEnRecoleccionCtrl);
+app.controller("ConfirmacionOrdenCtrl", ConfirmacionOrdenCtrl);
