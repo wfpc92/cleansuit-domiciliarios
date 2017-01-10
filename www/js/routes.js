@@ -195,13 +195,13 @@ app.config(function($stateProvider,
 			}
 		}
 	})
-	.state('app.recoleccion-servicio', {
-		url: '/recoleccion-servicio/:indexOrden',
+	.state('app.recoleccion-prenda', {
+		url: '/recoleccion-prenda/:indexOrden/:indexPrenda',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/servicios/formulario-servicio.html',
-				controller: 'FormularioServicioCtrl'
+				templateUrl: 'templates/app/orden/recoleccion/formulario-prenda.html',
+				controller: 'FormularioPrendaCtrl'
 			}
 		}
 	})

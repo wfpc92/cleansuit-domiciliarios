@@ -54,8 +54,13 @@ var CarritoRecoleccionCtrl = function($scope,
 	    });
 	};
 
-	$scope.agregarServicio = function() {
-		$state.go("app.recoleccion-servicio", {indexOrden: $scope.indexOrden});
+	$scope.agregarPrenda = function() {
+		$state.go("app.recoleccion-prenda", {indexOrden: $scope.indexOrden});
+	};
+
+	$scope.editarPrenda = function(index) {
+		console.log("Editar Prenda ", $scope.carrito.items, index)
+		$state.go("app.recoleccion-prenda", {indexOrden: $scope.indexOrden, indexPrenda: index});	
 	};
 
 	$scope.agregarProductos = function() {

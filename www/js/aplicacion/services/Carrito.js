@@ -12,13 +12,13 @@ var CarritoFactory = function(RecursosFactory,
 	return {
 		items: {},
 
+		contProducto: 0,
+
+		contServicios: 0,
+
 		servicioDirecto: false,
 
 		domicilio: 0,
-
-		contProductos: 0,
-
-		contServicios: 0,
 
 		totales: {},
 
@@ -144,10 +144,6 @@ var CarritoFactory = function(RecursosFactory,
 						break;		
 				}
 			}
-
-			/*if(this.contServicios > 0) {
-				this.servicioDirecto = false;
-			}*/
 		},
 		
 		calcularTotales : function(){//calcular precios de total y subtotal
@@ -229,7 +225,7 @@ var CarritoFactory = function(RecursosFactory,
 			//$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
 			this.calcularTotales();
-		},
+		}
 
 	};
 };

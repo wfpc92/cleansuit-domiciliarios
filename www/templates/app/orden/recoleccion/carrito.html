@@ -20,7 +20,10 @@
 				<a class="cancelar positive" ng-if="carrito.hayItems('SUBSERVICIO') || carrito.contServicios > 0">Servicios</a>
 			</elemento-centrado>
 
-			<ion-item ng-repeat="item in carrito.items track by $index" ng-if="item.tipo !== 'PRODUCTO'">
+			<ion-item ng-repeat="(key, item) in carrito.items track by $index" ng-if="item.tipo !== 'PRODUCTO'" ng-class="{ 'item-thumbnail-left': item.prenda.fotos.length > 0 }" ng-click="editarPrenda(key)">
+				<div class="img" ng-if="item.prenda.fotos.length > 0">
+					<img ng-src="{{item.prenda.fotos[0].src || item.url_imagen }}"/>
+				</div>
 				<h2>{{item.nombre}}</h2>
 				<p>{{item.servicio.nombre}}</p>
 				<p>ID: {{item.prenda.codigo}}</p>
@@ -56,7 +59,7 @@
 		</div>
 
 		<div class="contagregar">
-			<button class="addservicios " ng-click="agregarServicio()">
+			<button class="addservicios " ng-click="agregarPrenda()">
 			<i class="icon icons icons-servicios"></i>
 			</button>
 			<button class="addproductos" ng-click="agregarProductos()">
