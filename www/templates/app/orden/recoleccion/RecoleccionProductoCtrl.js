@@ -1,6 +1,7 @@
 var RecoleccionProductoCtrl = function($scope,
 							$stateParams,
 							ProductosFactory,
+							OrdenesFactory,
 							$ionicHistory,
 							$state,
 							$log) {
@@ -8,6 +9,8 @@ var RecoleccionProductoCtrl = function($scope,
 	$log.debug("RecoleccionProductoCtrl");
 
 	$scope.indexOrden = $stateParams.indexOrden;
+	$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
+
 	$scope.indexProducto = $stateParams.indexProducto;
 	$scope.producto = ProductosFactory.productos[$scope.indexProducto];
 	console.log($scope.indexProducto, $scope.indexOrden);

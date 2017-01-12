@@ -12,46 +12,35 @@ var CarritoFactory = function(RecursosFactory,
 	return {
 		items: {},
 
-		contProducto: 0,
+		contProductos: 0,
 
-		contServicios: 0,
-
-		servicioDirecto: false,
+		contPrendas: 0,
 
 		domicilio: 0,
 
 		totales: {},
-
-		hayItems : function(tipo){
-			var cont = 0; 
-			
-			for(var i in this.items){
-				cont += 1;
-
-				if (this.items[i].tipo == tipo) {
-					return true;
-				}
-			}
-
-			//si sebuscaportipo de item pero no se encontro retorna falso.
-			if (tipo) {
-				return false;
-			}
-
-			//evaluacion en caso que nose busque por tipo de item.
-			return cont > 0 || this.servicioDirecto;
-		},
 		
-		setItemsRecoleccion: function(infoOrden) {
-			this.items = {};
-			this.contServicios = 0;
+		init: function() {
+			this.items = {
+				productos: {},
+				prendas: {}
+			};
+			this.contPrendas = 0;
 			this.contProductos = 0;
-			this.servicioDirecto = infoOrden.orden.servicioDirecto;
+		},
 
-			//quitar los items de tipo servicio
-			for (i in infoOrden.items){
-				if (infoOrden.items[i].tipo == 'PRODUCTO'){
-					this.agregar(infoOrden.items[i], 'PRODUCTO', infoOrden.items[i].cantidad);
+		setProductosRecoleccion: function(infoOrden) {
+			this.init();
+
+			if (!((typeof infoOrden.recoleccion == 'undefined')
+				&& (typeof infoOrden.recoleccion.items == 'undefined')
+				&& (typeof infoOrden.recoleccion.items.productos == 'undefined'))) {
+				console.log("se agregan por primera vez los productos al carrito.")
+				//quitar los items de tipo servicio (puesto que es .items es una cotizacion hecha por cliente)
+				for (i in infoOrden.items) {
+					if (infoOrden.items[i].tipo == 'PRODUCTO') {
+						this.agregar(infoOrden.items[i], 'PRODUCTO', infoOrden.items[i].cantidad);
+					}
 				}
 			}
 
@@ -61,34 +50,32 @@ var CarritoFactory = function(RecursosFactory,
 
 		/**
 		 * agregar un item a la lista de items del carrito
-		 * @param  {object} item item de producto o servicio
-		 * @param  {string} tipo      'PRODUCTO' o 'SERVICIO'
+		 * @param  {object} item item de producto o prenda
+		 * @param  {string} tipo      'PRODUCTO' o 'PRENDA'
 		 * @param  {int} cantidad  cantidad que se adiciona al carrito 
 		 * @return {void}
 		 */
 		agregar : function(item, tipo, cantidad){
-			//$log.debug("CarritoFactory.agregar()", item, tipo, cantidad);
+			$log.debug("CarritoFactory.agregar()", item, tipo, cantidad);
+			
 			if(!item){ return; }
 
 			if(tipo == "PRODUCTO") {
 				//existe el item en el carrito de compra, aumentar cantidad
-				if(typeof this.items[item._id] !== 'undefined'){
-					this.items[item._id].cantidad += cantidad;
+				if (typeof this.items.productos[item._id] !== 'undefined'){
+					this.items.productos[item._id].cantidad += cantidad;
 				} else {
 					var index = item._id;
-					this.items[index] = item;
-					this.items[index].tipo = tipo;
-					this.items[index].cantidad = cantidad;	
+					this.items.productos[index] = item;
+					this.items.productos[index].tipo = tipo;
+					this.items.productos[index].cantidad = cantidad;	
 				}
 			} else {
 				//no existe hay que agregarlo al carrito de compras
-				var index = item._id + "-" + item.prenda.codigo;
-				this.items[index] = item;
-				this.items[index].tipo = tipo;
-				this.items[index].cantidad = cantidad;
+				var index = item.codigo;
+				this.items.prendas[index] = item;
 			}
 
-			
 			this.actualizarContadores();
 			this.calcularTotales();
 			return true;
@@ -97,12 +84,14 @@ var CarritoFactory = function(RecursosFactory,
 		disminuir : function(item, tipo, cantidad){
 			//$log.debug("CarritoFactory.disminuir()", item, tipo, cantidad);
 			//existe el item en el carrito de compra, disminuri cantidad
-			if(typeof this.items[item._id] !== 'undefined'){
-				this.items[item._id].cantidad -= cantidad;
-				if(this.items[item._id].cantidad <= 0){
-					this.items[item._id].cantidad = 0;
-				}
-			}//si no existe no se hace nada
+			if(tipo == "PRODUCTO") {
+				if(typeof this.items.productos[item._id] !== 'undefined'){
+					this.items.productos[item._id].cantidad -= cantidad;
+					if(this.items.productos[item._id].cantidad <= 0){
+						this.items.productos[item._id].cantidad = 0;
+					}
+				}//si no existe no se hace nada
+			}
 
 			this.actualizarContadores();
 			this.calcularTotales();
@@ -110,7 +99,67 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		cantidad: function(id) {
-			return (typeof this.items[id] !== 'undefined') ? this.items[id].cantidad : 0;
+			return (typeof this.items.productos !== 'undefined' && typeof this.items.productos[id] !== 'undefined') ? this.items.productos[id].cantidad : 0;
+		},
+
+		hayProductos: function() {
+			var cont = 0; 
+
+			for (var index in this.items.productos) {
+				cont += 1;
+			}
+			return cont > 0;
+		},
+
+		calcularPrecioPrenda: function(prenda) {
+			return prenda.subservicio.precio;
+		},
+
+		actualizarContadores : function(){
+			this.contProductos = 0;
+			this.contPrendas = this.items.prendas.length;
+
+			$log.debug("CarritoFactory.actualizarContadores()", this.items);
+			
+			for (var i in this.items.productos) {
+				this.contProductos += this.items.productos[i].cantidad;
+			}
+		},
+		
+		calcularTotales : function(){//calcular precios de total y subtotal
+			var subtotal = 0, descuento = 0;			
+			
+			for (var index in this.items.prendas) {
+				//precio * cantidad
+				
+				subtotal += this.calcularPrecioPrenda(this.items.prendas[index])
+
+				//revisar en lista de descuentos del cupon si este item aplica para descuento
+				/*if(this.totales.promocion && this.totales.promocion.items[index]){
+					//$log.debug("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[index]);
+					descuento += item.precio * item.cantidad * (this.totales.promocion.items[index].descuento / 100.0);
+				}*/	
+			}
+			
+			for (var index in this.items.productos) {
+				//precio * cantidad
+				var item = this.items.productos[index];
+				subtotal += item.precio * item.cantidad;
+
+				//revisar en lista de descuentos del cupon si este item aplica para descuento
+				/*if(this.totales.promocion && this.totales.promocion.items[index]){
+					//$log.debug("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[index]);
+					descuento += item.precio * item.cantidad * (this.totales.promocion.items[index].descuento / 100.0);
+				}*/	
+			}
+			
+			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
+			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;	
+			this.totales.subtotal = subtotal;
+			this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
+
+			//$log.debug("CarritoFactory.calcularTotales", this.totales)
+			return this.totales;
 		},
 
 		/**
@@ -119,60 +168,15 @@ var CarritoFactory = function(RecursosFactory,
 		 */
 		limpiar : function(){//limpiar los items que no tienen cantidades.
 			//$log.debug("CarritoFactory.limpiar(): antes", this.items);
-			for(var i in this.items){
-				if(this.items[i].cantidad == 0 ){
-					delete this.items[i];
+			for(var i in this.items.productos){
+				if(this.items.productos[i].cantidad == 0 ){
+					delete this.items.productos[i];
 				}
 			}
 			//$log.debug("CarritoFactory.limpiar(): despues", this.items);
 			this.actualizarContadores();
 		},
 
-		actualizarContadores : function(){
-			this.contProductos = 0;
-			this.contServicios = 0;
-			//$log.debug("CarritoFactory.actualizarContadores()", this.items);
-			for (var i in this.items) {
-				switch(this.items[i].tipo){
-					case "PRODUCTO":
-						this.contProductos += this.items[i].cantidad;
-						break;
-					case "SUBSERVICIO":
-						this.contServicios += this.items[i].cantidad;
-						break;
-					default:
-						break;		
-				}
-			}
-		},
-		
-		calcularTotales : function(){//calcular precios de total y subtotal
-			var subtotal = 0, descuento = 0;			
-			
-			for (var idItem in this.items) {//precio * cantidad			 	
-				subtotal += this.items[idItem].precio * this.items[idItem].cantidad;
-
-				//revisar en lista de descuentos del cupon si este item aplica para descuento
-				if(this.totales.promocion && this.totales.promocion.items[idItem]){
-					//$log.debug("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[idItem]);
-					descuento +=this.items[idItem].precio * this.items[idItem].cantidad * (this.totales.promocion.items[idItem].descuento / 100.0);
-				}
-			}
-
-			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
-			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;	
-
-			if (this.servicioDirecto) {
-				this.totales.subtotal = subtotal !== 0 ? subtotal : null;
-				this.totales.total = null;
-			} else {
-				this.totales.subtotal = subtotal;
-				this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
-			}
-
-			//$log.debug("CarritoFactory.calcularTotales", this.totales)
-			return this.totales;
-		},
 
 		soloHayProductos : function(items){
 			var cont = 0;
@@ -217,7 +221,6 @@ var CarritoFactory = function(RecursosFactory,
 				delete this.items[i];
 			}
 			this.totales.promocion = null;
-			this.servicioDirecto = false;
 			this.actualizarContadores();
 		},
 

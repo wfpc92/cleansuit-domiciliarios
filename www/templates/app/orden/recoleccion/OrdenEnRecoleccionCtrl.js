@@ -17,7 +17,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		$scope.infoOrden.orden.entrega.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
 		$scope.soloProductos = OrdenesFactory.soloHayProductos($scope.infoOrden);
 		$scope.ocultarResumen = true;
-		$scope.ocultarCupon = true;
+		$scope.ocultarCupon = false;
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {

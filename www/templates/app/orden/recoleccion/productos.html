@@ -1,12 +1,23 @@
 <ion-view title="Cleansuit">
 	<ion-content>
 
-		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
+		<div class="titulo">
+			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
+		</div>
+
+		<div class="subtitulo">
+			-AGREGAR PRODUCTOS-
+		</div>
 
  		<div ui-view="productos"></div>
 
+ 		<a class="cancelarPedido" ng-click="cancelarPedidoProductos()">Cancelar pedido productos</a>
 	</ion-content>
 
-   <footer-carrito carrito="carrito"></footer-carrito>
-
+   <div class="bar bar-footer">
+		<a ng-click="guardarPedidoProductos()" class="button button-calm guardar"> 
+			GUARDAR PEDIDO
+		</a>
+	</div>
+	
 </ion-view>

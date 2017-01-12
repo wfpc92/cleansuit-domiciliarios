@@ -7,12 +7,15 @@ var RecoleccionProductosCtrl = function($scope,
 							ProductosFactory,
 							$timeout,
 							$ionicListDelegate,
+							OrdenesFactory,
 							ModalCargaFactory) {
 
 	$log.debug("RecoleccionProductosCtrl");
 
 	$scope.productos = ProductosFactory.productos;
 	$scope.indexOrden = $stateParams.indexOrden;
+	$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
+
 	console.log($scope.productos, $scope.indexOrden);
 
 	$scope.uiSref = function($index) {
@@ -93,6 +96,7 @@ var RecoleccionProductosCtrl = function($scope,
 	$scope.guardarPedidoProductos = function() {
 		//aqui se guarda el pedido de productos en el carrito de la orden en recoleccion.
 		$state.go("app.recoleccion-carrito", { indexOrden: $scope.indexOrden} );
+		//$ionicHistory.goBack();
 	};
 };
 

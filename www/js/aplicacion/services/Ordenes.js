@@ -181,6 +181,10 @@ var OrdenesFactory = function(UsuarioFactory,
 		limpiarOrden: function() {
 			_orden = null;
 			CarritoFactory.vaciar();
+		},
+
+		iniciarRecoleccion: function(infoOrden) {
+			infoOrden.recoleccion = infoOrden.recoleccion || {};
 		}
 	};
 

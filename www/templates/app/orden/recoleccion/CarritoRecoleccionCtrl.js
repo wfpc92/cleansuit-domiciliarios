@@ -9,11 +9,7 @@ var CarritoRecoleccionCtrl = function($scope,
 	
 	$log.debug("CarritoRecoleccionCtrl");
 	
-
-
 	$scope.$on("$ionicView.beforeEnter", function () {
-		$scope.banderas.swp=false;
-		$scope.banderas.sws=false;
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 		$scope.carrito = CarritoFactory;
@@ -63,12 +59,32 @@ var CarritoRecoleccionCtrl = function($scope,
 		$state.go("app.recoleccion-prenda", {indexOrden: $scope.indexOrden, indexPrenda: index});	
 	};
 
+	$scope.eliminarPrenda = function(index) {
+		$ionicPopup
+		.confirm({
+	    	title: 'Eliminar Servicio',
+	    	template: '¿Está seguro que desea eliminar este servicio?',
+	    	buttons: [
+		    	{
+		    		text: 'Si',
+		    		onTap: function(e) {
+		    			delete $scope.carrito.items.prendas[index];
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+	    });	    
+	};
+
 	$scope.agregarProductos = function() {
-		$state.go("app.recoleccion-productos", {indexOrden: $scope.indexOrden});		
+		$state.go("app.recoleccion-productos", {indexOrden: $scope.indexOrden});
 	};
 
 	$scope.siguiente = function() {
-		$state.go("app.recoleccion-confirmacion");
+		$state.go("app.recoleccion-confirmacion", {indexOrden: $scope.indexOrden});
 	};
 };
 

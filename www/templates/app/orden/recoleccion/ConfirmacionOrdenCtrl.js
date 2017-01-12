@@ -10,11 +10,15 @@ var ConfirmacionOrdenCtrl = function($scope,
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
-		$scope.infoOrden.orden.recoleccion.fecha = new Date($scope.infoOrden.orden.recoleccion.fecha);
 		$scope.infoOrden.orden.entrega.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
 		$scope.soloProductos = OrdenesFactory.soloHayProductos($scope.infoOrden);
 		$scope.ocultarResumen = true;
 		$scope.ocultarCupon = true;
+		$scope.formulario = {
+			recoleccion: {
+				direccion: true
+			}
+		};
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {

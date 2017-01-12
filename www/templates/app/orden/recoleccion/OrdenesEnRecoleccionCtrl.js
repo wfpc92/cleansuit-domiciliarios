@@ -33,7 +33,11 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 	});
 
 	$scope.verInformacionOrden = function(index) {
-		CarritoFactory.setItemsRecoleccion($scope.ordenes[index]);
+		var infoOrden = $scope.ordenes[index];
+		//iniciar orden de recoleccion.
+		OrdenesFactory.iniciarRecoleccion(infoOrden);
+		//asignar los productos solicitados en app cliente al carrito.
+		CarritoFactory.setProductosRecoleccion(infoOrden);
 		$state.go("app.recoleccion-detalle", {indexOrden: index});
 	};
 	

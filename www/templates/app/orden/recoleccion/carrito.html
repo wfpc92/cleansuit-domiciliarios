@@ -1,41 +1,35 @@
 <ion-view title="Cleansuit">
 	<ion-content class="pdBoton contcarro">
 
-		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
-
-
 		<div class="titulo">
 			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
 		</div> 
 
-
 		<ion-list class="carro">
-			<ion-item class="item-icon-right item-text-wrap" ng-if="carrito.servicioDirecto && carrito.contServicios == 0">
-				<h2>Servicio directo</h2>
-				<p>El total del servicio sera estimado por el domiciliario.</p>
-				<i  class="icon ion-ios-close-outline" ng-click="carrito.servicioDirecto=false;carrito.calcularTotales()" ></i>		
-			</ion-item>
-
+			
 			<elemento-centrado>
-				<a class="cancelar positive" ng-if="carrito.hayItems('SUBSERVICIO') || carrito.contServicios > 0">Servicios</a>
+				<a class="cancelar positive" ng-if="carrito.contPrendas > 0">Servicios</a>
 			</elemento-centrado>
 
-			<ion-item ng-repeat="(key, item) in carrito.items track by $index" ng-if="item.tipo !== 'PRODUCTO'" ng-class="{ 'item-thumbnail-left': item.prenda.fotos.length > 0 }" ng-click="editarPrenda(key)">
-				<div class="img" ng-if="item.prenda.fotos.length > 0">
-					<img ng-src="{{item.prenda.fotos[0].src || item.url_imagen }}"/>
+			<ion-item ng-repeat="(index, item) in carrito.items.prendas track by $index" ng-class="{ 'item-thumbnail-left': item.fotos.length > 0 }" >
+				<div ng-click="editarPrenda(index)">
+					<div class="img" ng-if="item.fotos.length > 0">
+						<img ng-src="{{item.fotos[0].src}}"/>
+					</div>
+					<h2>{{item.subservicio.nombre}}</h2>
+					<p>{{item.subservicio.servicio.nombre}}</p>
+					<p>ID: {{item.codigo}}</p>
+					<h3>{{carrito.calcularPrecioPrenda(item) || 0  | currency : "$ " : 0 }}</h3>
 				</div>
-				<h2>{{item.nombre}}</h2>
-				<p>{{item.servicio.nombre}}</p>
-				<p>ID: {{item.prenda.codigo}}</p>
-				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>
+				<i  class="icon ion-ios-close-outline" ng-click="eliminarPrenda(index)" ></i>
 			</ion-item>
 
 
 			<elemento-centrado>
-				<a class="cancelar positive" ng-if="carrito.hayItems('PRODUCTO') || carrito.contProductos > 0">Productos</a>
+				<a class="cancelar positive" ng-if="carrito.hayProductos() || carrito.contProductos > 0">Productos</a>
 			</elemento-centrado>
 
-			<ion-item ng-repeat="item in carrito.items track by $index" ng-if="item.tipo == 'PRODUCTO'" class="item-thumbnail-left">
+			<ion-item ng-repeat="(index, item) in carrito.items.productos track by $index" class="item-thumbnail-left">
 				<div class="img">
 					<img ng-src="{{item.url_imagen}}"/>
 				</div>
@@ -50,13 +44,14 @@
 			</ion-item>
 		</ion-list>
 
-		<resumen-totales totales="carrito.totales" ng-if="carrito.contProductos + carrito.contServicios > 0"></resumen-totales>
-
-		<div clas="card" ng-hide="carrito.hayItems()">
+		<div clas="card"  ng-if="!carrito.hayProductos() && carrito.contProductos + carrito.contPrendas == 0">
 			<div class="item item-text-wrap">
 				Para agregar prendas y productos presiona el botón flotante.
 			</div>
 		</div>
+
+		<resumen-totales totales="carrito.totales" ng-if="carrito.hayProductos() || carrito.contProductos + carrito.contPrendas > 0"></resumen-totales>
+
 
 		<div class="contagregar">
 			<button class="addservicios " ng-click="agregarPrenda()">
@@ -82,7 +77,7 @@
 	</ion-content>
 
 	<div class="bar bar-footer">
-		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="carrito.contProductos + carrito.contServicios == 0 && !carrito.servicioDirecto"> 
+		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="(carrito.contProductos + carrito.contPrendas == 0)"> 
 			SIGUIENTE
 		</a>
 	</div>

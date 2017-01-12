@@ -1,9 +1,21 @@
 <ion-view title="Cleansuit">
   	<ion-content>
-		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
-		<div ui-view="producto"></div>
-  	</ion-content>
 
-  	<footer-carrito carrito="carrito"></footer-carrito>
+  		<div class="titulo">
+			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
+		</div>
+
+		<div class="subtitulo">
+			-AGREGAR PRODUCTOS-
+		</div>
+
+		<div ui-view="producto"></div>
+		
+		<elemento-centrado>
+			<button class="bottom button button-calm" ng-click="regresarCatalogo()">
+				Regresar al Catálogo de Productos
+			</button>
+		</elemento-centrado>
+  	</ion-content>
 
 </ion-view>

@@ -22,13 +22,11 @@ var FormularioPrendaCtrl = function($scope,
 		$scope.infoOrden.prendas = $scope.infoOrden.prendas || [];
 		$scope.servicios = ServiciosFactory.servicios;
 		
-		//aqui se almacena la informaion de los serviios solicitados.
-		$scope.nuevoItem = {};
-
-		console.log("agregar/editar prenda: ", CarritoFactory.items, $scope.indexPrenda)
+		console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", CarritoFactory.items)
 		//la informacionde la prenda, en caso de edicion se obtiene la informaion de la
-		$scope.prenda = $scope.indexPrenda ? 
-			CarritoFactory.items[$scope.indexPrenda] : 
+		$scope.esNueva = $scope.indexPrenda.length > 0;
+		$scope.prenda = $scope.esNueva ? 
+			CarritoFactory.items.prendas[$scope.indexPrenda] : 
 			{
 				fotos: []
 			};
@@ -38,7 +36,7 @@ var FormularioPrendaCtrl = function($scope,
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.$watchGroup([
 				'prenda.codigo',
-				'nuevoItem.subservicio'
+				'prenda.subservicio'
 			], function(newV, oldV) {
 			if (newV[0] && newV[1]) {
 				$scope.formularioValido = true;
@@ -104,7 +102,7 @@ var FormularioPrendaCtrl = function($scope,
                 "Format: " + codigo.format + " " +
                 "Cancelled: " + codigo.cancelled);
 			if(codigo && !codigo.cancelled) {
-				$scope.servicio.codigo_prenda = codigo.text;
+				$scope.prenda.codigo = codigo.text;
 				$log.debug("FormularioServicioCtrl: termina escaneo de codigo.");
 			}
 		}, function(err) {
@@ -157,27 +155,33 @@ var FormularioPrendaCtrl = function($scope,
 	};
 
 	$scope.siguiente = function() {
-		console.log("FormularioServicioCtrl.siguiente", $scope.formularioValido)
-		if ($scope.formularioValido && (typeof $scope.nuevoItem.subservicio !== 'undefined')) {
-			$scope.nuevoItem.subservicio.prenda = $scope.prenda;
-			$scope.nuevoItem.subservicio.servicio = $scope.nuevoItem.servicio;
+		var agregar = false;
 
-			if (!CarritoFactory.agregar($scope.nuevoItem.subservicio, 'SUBSERVICIO', 1)) {
+		console.log("FormularioServicioCtrl.siguiente", $scope.formularioValido)
+		if ($scope.formularioValido && (typeof $scope.prenda.subservicio !== 'undefined')) {
+			
+			if (!$scope.esNueva) {
+				agregar = CarritoFactory.agregar($scope.prenda, 'PRENDA', 1);
+			}
+
+			console.log(OrdenesFactory.ordenesRecoleccion[$scope.indexOrden])
+			$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden});
+
+			/*if (!agregar) {
 				mostrarAlertaCodigoDuplicado();
 			} else {
 				/*ServiciosFactory
 				.validarCodigoPrenda()
 				.then(function(res) {
 					if(res.data.sucess) {*/
-						$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden});
+
 					/*} else {
 						mostrarAlertaCodigoDuplicado();
 					}
-				});*/
-			}
+				});
+			}*/
 			
-		}
-		else {
+		} else {
 			$ionicPopup
 			.alert({
 		    	title: 'Formulario Incompleto',
