@@ -164,6 +164,9 @@ app.config(function($stateProvider,
 			'contenedor-recoleccion': {
 				templateUrl: 'templates/app/orden/recoleccion/carrito.html',
 				controller: 'CarritoRecoleccionCtrl'
+			},
+			"lista-carrito@app.recoleccion-carrito" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
@@ -176,8 +179,7 @@ app.config(function($stateProvider,
 				controller: 'RecoleccionProductosCtrl'
 			},
 			"productos@app.recoleccion-productos" : {
-				templateUrl: 'templates/app/productos/productos.html',
-				controller: 'RecoleccionProductosCtrl'
+				templateUrl: 'templates/app/productos/productos.html'
 			}
 		}
 	})
@@ -190,8 +192,7 @@ app.config(function($stateProvider,
 				controller: 'RecoleccionProductoCtrl'
 			},
 			"producto@app.recoleccion-producto" : {
-				templateUrl: 'templates/app/productos/producto.html',
-				controller: 'RecoleccionProductoCtrl'
+				templateUrl: 'templates/app/productos/producto.html'
 			}
 		}
 	})
@@ -213,9 +214,17 @@ app.config(function($stateProvider,
 			'contenedor-recoleccion': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
 				controller: 'ConfirmacionOrdenCtrl'
+			},
+			"lista-carrito@app.recoleccion-confirmacion" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
+
+
+
+
+
 
 
 	.state('app.entrega', {

@@ -5,44 +5,7 @@
 			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
 		</div> 
 
-		<ion-list class="carro">
-			
-			<elemento-centrado>
-				<a class="cancelar positive" ng-if="carrito.contPrendas > 0">Servicios</a>
-			</elemento-centrado>
-
-			<ion-item ng-repeat="(index, item) in carrito.items.prendas track by $index" ng-class="{ 'item-thumbnail-left': item.fotos.length > 0 }" >
-				<div ng-click="editarPrenda(index)">
-					<div class="img" ng-if="item.fotos.length > 0">
-						<img ng-src="{{item.fotos[0].src}}"/>
-					</div>
-					<h2>{{item.subservicio.nombre}}</h2>
-					<p>{{item.subservicio.servicio.nombre}}</p>
-					<p>ID: {{item.codigo}}</p>
-					<h3>{{carrito.calcularPrecioPrenda(item) || 0  | currency : "$ " : 0 }}</h3>
-				</div>
-				<i  class="icon ion-ios-close-outline" ng-click="eliminarPrenda(index)" ></i>
-			</ion-item>
-
-
-			<elemento-centrado>
-				<a class="cancelar positive" ng-if="carrito.hayProductos() || carrito.contProductos > 0">Productos</a>
-			</elemento-centrado>
-
-			<ion-item ng-repeat="(index, item) in carrito.items.productos track by $index" class="item-thumbnail-left">
-				<div class="img">
-					<img ng-src="{{item.url_imagen}}"/>
-				</div>
-				<h2>{{item.nombre}}</h2>
-				<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
-					
-				<div class="contador">
-					<i ng-click="aumentar(item, 'PRODUCTO')" class="icon ico-mas"></i>
-					<span>{{item.cantidad || 0}}</span>
-					<i ng-click="disminuir(item, 'PRODUCTO')" class="icon ico-menos"></i>
-				</div>
-			</ion-item>
-		</ion-list>
+		<div ui-view="lista-carrito"></div>
 
 		<div clas="card"  ng-if="!carrito.hayProductos() && carrito.contProductos + carrito.contPrendas == 0">
 			<div class="item item-text-wrap">

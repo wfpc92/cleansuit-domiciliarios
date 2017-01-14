@@ -10,14 +10,25 @@ var OrdenEnRecoleccionCtrl = function($scope,
 
 	$log.debug("OrdenEnRecoleccionCtrl");
 	
+	$scope.formulario = {
+		totales: {
+			hide: true
+		},
+		cupon: {
+			hide: true
+		},
+		abono: {
+			hide: true
+		},
+		valido: true
+	};
+	
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 		$scope.infoOrden.orden.recoleccion.fecha = new Date($scope.infoOrden.orden.recoleccion.fecha);
 		$scope.infoOrden.orden.entrega.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
 		$scope.soloProductos = OrdenesFactory.soloHayProductos($scope.infoOrden);
-		$scope.ocultarResumen = true;
-		$scope.ocultarCupon = false;
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {

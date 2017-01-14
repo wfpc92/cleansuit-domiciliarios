@@ -7,18 +7,32 @@ var ConfirmacionOrdenCtrl = function($scope,
 							$ionicListDelegate,
 							OrdenesFactory, 
 							$timeout) {
+	
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 		$scope.infoOrden.orden.entrega.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
 		$scope.soloProductos = OrdenesFactory.soloHayProductos($scope.infoOrden);
-		$scope.ocultarResumen = true;
-		$scope.ocultarCupon = true;
+		
 		$scope.formulario = {
 			recoleccion: {
-				direccion: true
-			}
+				direccion: {
+					hide: true
+				},
+				fecha: {
+					hide: true
+				},
+				hora: {
+					hide: true
+				}
+			},
+			cupon: {
+				hide: true,
+			},
+			valido: true,
 		};
+
+		
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -32,6 +46,26 @@ var ConfirmacionOrdenCtrl = function($scope,
 	$scope.txt = {
 		cancelar: "Suspender pedido",
 		siguiente: "TOMAR PEDIDO"
+	};
+
+	$scope.eliminarPrenda = function(index) {
+		$ionicPopup
+		.confirm({
+	    	title: 'Eliminar Servicio',
+	    	template: '¿Está seguro que desea eliminar este servicio?',
+	    	buttons: [
+		    	{
+		    		text: 'Si',
+		    		onTap: function(e) {
+		    			delete $scope.carrito.items.prendas[index];
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+	    });	    
 	};
 
 	$scope.siguiente = function() {
