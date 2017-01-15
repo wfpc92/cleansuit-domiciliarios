@@ -11,6 +11,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
+		$scope.infoOrden.orden.recoleccion.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
 		$scope.infoOrden.orden.entrega.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
 		$scope.soloProductos = OrdenesFactory.soloHayProductos($scope.infoOrden);
 		
@@ -26,10 +27,30 @@ var ConfirmacionOrdenCtrl = function($scope,
 					hide: true
 				}
 			},
+			entrega: {
+				direccion: {
+					disabled: true
+				},
+				fecha: {
+					disabled: true
+				},
+				hora: {
+					disabled: true
+				}
+			},
+			telefono: {
+				disabled: true
+			},
+			formaPago: {
+				disabled: true
+			},
 			cupon: {
 				hide: true,
 			},
 			valido: true,
+			productos: {
+				eliminar: true
+			}
 		};
 
 		
@@ -57,7 +78,27 @@ var ConfirmacionOrdenCtrl = function($scope,
 		    	{
 		    		text: 'Si',
 		    		onTap: function(e) {
-		    			delete $scope.carrito.items.prendas[index];
+		    			$scope.carrito.eliminar(index, 'PRENDA');
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+	    });	    
+	};
+
+	$scope.eliminarProducto = function(index) {
+		$ionicPopup
+		.confirm({
+	    	title: 'Eliminar Productos',
+	    	template: '¿Está seguro que desea eliminar este pedido?',
+	    	buttons: [
+		    	{
+		    		text: 'Si',
+		    		onTap: function(e) {
+		    			$scope.carrito.eliminar(index, 'PRODUCTO');
 		    		}
 		    	},
 		      	{

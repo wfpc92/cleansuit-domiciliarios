@@ -18,6 +18,9 @@ var AppCtrl = function($scope,
 		swp:false,
 		sws:false
 	}; 
+
+	$scope.carrito = CarritoFactory;
+	$scope.$state = $state;
 	
 	//verificar si esta autenticado y autorizado.
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -108,7 +111,6 @@ var AppCtrl = function($scope,
 
 	$scope.$on('$ionicView.afterEnter', function(event, $rootScope) {
 		$scope.usuario = UsuarioFactory.getUsuario();
-		$scope.carrito = CarritoFactory;
 
 		if($scope.usuario) {
 	    	ControlDescargasFactory

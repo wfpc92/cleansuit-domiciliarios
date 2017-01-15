@@ -2,8 +2,7 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 										$rootScope,
 										$state,
 										$log,
-										OrdenesFactory,
-										CarritoFactory) {
+										OrdenesFactory) {
 	
 	$log.debug("OrdenesEnRecoleccionCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
@@ -37,7 +36,7 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 		//iniciar orden de recoleccion.
 		OrdenesFactory.iniciarRecoleccion(infoOrden);
 		//asignar los productos solicitados en app cliente al carrito.
-		CarritoFactory.setProductosRecoleccion(infoOrden);
+		$scope.carrito.setProductosRecoleccion(infoOrden);
 		$state.go("app.recoleccion-detalle", {indexOrden: index});
 	};
 	

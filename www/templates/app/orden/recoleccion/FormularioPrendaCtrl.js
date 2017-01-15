@@ -8,7 +8,6 @@ var FormularioPrendaCtrl = function($scope,
 							OrdenesFactory,
 							ServiciosFactory,
 							FotosFactory,
-							CarritoFactory,
 							$timeout) {
 
 	$log.debug("FormularioServicioCtrl");
@@ -22,11 +21,11 @@ var FormularioPrendaCtrl = function($scope,
 		$scope.infoOrden.prendas = $scope.infoOrden.prendas || [];
 		$scope.servicios = ServiciosFactory.servicios;
 		
-		console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", CarritoFactory.items)
+		console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", $scope.carrito.items)
 		//la informacionde la prenda, en caso de edicion se obtiene la informaion de la
 		$scope.esNueva = $scope.indexPrenda.length > 0;
 		$scope.prenda = $scope.esNueva ? 
-			CarritoFactory.items.prendas[$scope.indexPrenda] : 
+			$scope.carrito.items.prendas[$scope.indexPrenda] : 
 			{
 				fotos: []
 			};
@@ -161,7 +160,7 @@ var FormularioPrendaCtrl = function($scope,
 		if ($scope.formularioValido && (typeof $scope.prenda.subservicio !== 'undefined')) {
 			
 			if (!$scope.esNueva) {
-				agregar = CarritoFactory.agregar($scope.prenda, 'PRENDA', 1);
+				agregar = $scope.carrito.agregar($scope.prenda, 'PRENDA', 1);
 			}
 
 			console.log(OrdenesFactory.ordenesRecoleccion[$scope.indexOrden])

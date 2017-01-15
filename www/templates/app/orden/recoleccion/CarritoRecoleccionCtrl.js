@@ -4,16 +4,19 @@ var CarritoRecoleccionCtrl = function($scope,
 						$stateParams, 
 						$ionicPopup,
 						OrdenesFactory,
-						CarritoFactory,
 						$log) {
 	
 	$log.debug("CarritoRecoleccionCtrl");
-	
+
 	$scope.$on("$ionicView.beforeEnter", function () {
 		$scope.indexOrden = $stateParams.indexOrden;
 		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
-		$scope.carrito = CarritoFactory;
 		console.log("CarritoRecoleccionCtrl", $scope.indexOrden, $scope.carrito.items);
+	});
+
+	$scope.$on("$ionicView.afterLeave", function () {
+		console.log("CarritoRecoleccionCtrl.$ionicView.afterLeave")
+		$scope.carrito.limpiar();
 	});
 
 	$scope.aumentar = function(item, tipo){
@@ -68,7 +71,7 @@ var CarritoRecoleccionCtrl = function($scope,
 		    	{
 		    		text: 'Si',
 		    		onTap: function(e) {
-		    			delete $scope.carrito.items.prendas[index];
+		    			$scope.carrito.eliminar(index, 'PRENDA');
 		    		}
 		    	},
 		      	{

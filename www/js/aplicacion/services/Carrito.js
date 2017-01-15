@@ -1,6 +1,7 @@
 var CarritoFactory = function(RecursosFactory, 
 							PromocionesFactory, 
-							$log, 
+							$log,
+							$state,
 							ConfiguracionesFactory){
 	/**
 	 * [this.items ]
@@ -19,6 +20,8 @@ var CarritoFactory = function(RecursosFactory,
 		domicilio: 0,
 
 		totales: {},
+
+		ordenPreparada: false, //bandera que indica si una orden tiene items para poder enviarse
 		
 		init: function() {
 			this.items = {
@@ -45,7 +48,6 @@ var CarritoFactory = function(RecursosFactory,
 			}
 
 			this.actualizarContadores();
-			this.calcularTotales();
 		},
 
 		/**
@@ -77,7 +79,6 @@ var CarritoFactory = function(RecursosFactory,
 			}
 
 			this.actualizarContadores();
-			this.calcularTotales();
 			return true;
 		},
 
@@ -94,8 +95,20 @@ var CarritoFactory = function(RecursosFactory,
 			}
 
 			this.actualizarContadores();
-			this.calcularTotales();
 			return true;
+		},
+
+		eliminar : function(index, tipo) {
+			console.log("CarritoFactory.eliminar", index, tipo, this.items);
+			if (tipo == 'PRODUCTO') {
+				console.log(this.items.productos[index])
+				delete this.items.productos[index];
+			} else {
+				console.log(this.items.prendas[index])
+				delete this.items.prendas[index];
+			}
+			console.log(this.items)
+			this.actualizarContadores();
 		},
 
 		cantidad: function(id) {
@@ -117,13 +130,21 @@ var CarritoFactory = function(RecursosFactory,
 
 		actualizarContadores : function(){
 			this.contProductos = 0;
-			this.contPrendas = this.items.prendas.length;
+			this.contPrendas = 0;
 
 			$log.debug("CarritoFactory.actualizarContadores()", this.items);
 			
 			for (var i in this.items.productos) {
 				this.contProductos += this.items.productos[i].cantidad;
 			}
+
+			for (var i in this.items.prendas) {
+				this.contPrendas += 1;
+			}
+
+			this.ordenPreparada = this.contProductos + this.contPrendas > 0;
+			console.log(this.contProductos + this.contPrendas, this.ordenPreparada);
+			this.calcularTotales();
 		},
 		
 		calcularTotales : function(){//calcular precios de total y subtotal
@@ -227,7 +248,7 @@ var CarritoFactory = function(RecursosFactory,
 		aplicarPromocion: function(promocion) {
 			//$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
-			this.calcularTotales();
+			this.actualizarContadores();
 		}
 
 	};

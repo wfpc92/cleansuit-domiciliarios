@@ -8,6 +8,10 @@
 				<button menu-toggle="left" class="button button-icon button-clear ico-menu" >
 				</button>
 			</ion-nav-buttons>
+			<ion-nav-buttons side="right">
+				<button ng-if="$state.current.name == 'app.recoleccion-carrito'" ng-disabled="!carrito.ordenPreparada" class="button button-icon button-clear ion-paper-airplane" ui-sref="app.recoleccion-confirmacion({'indexOrden': indexOrden})"></button>
+			</ion-nav-buttons>
+
 		</ion-nav-bar>
 
 		<ion-tabs class="tabs-light">
@@ -34,7 +38,7 @@
 						<img ng-src="{{usuario.url_foto || 'img/perfil.png'}}">
 					</div>
 					<div class="nombre">
-						<h2>{{usuario.nombre | uppercase}}</h2>
+						<h2>{{carrito.ordenPreparada ? 'true' : 'false'}} {{usuario.nombre | uppercase}} </h2>
 					</div>
 				</ion-item>
 
