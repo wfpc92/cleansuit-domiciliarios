@@ -41,7 +41,7 @@
 							<span class="input-label item-icon-right">Hora de recolección</span>
 							<input type="text" placeholder="Hora de recolección" ng-model="infoOrden.orden.recoleccion.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.recoleccion.hora.disabled" />
 						</label>
-						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
+						<!--<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>-->
 					</div>
 				</ion-item>
 
@@ -70,7 +70,7 @@
 							<span class="input-label item-icon-right">Hora de entrega</span>
 							<input type="text" placeholder="Hora de entrega" ng-model="infoOrden.orden.entrega.hora" ng-disabled="" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.entrega.hora.disabled" />
 						</label>
-						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
+						<!--<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>-->
 					</div>
 				</ion-item>			
 				
@@ -128,7 +128,7 @@
 		</form>
 
 		<elemento-centrado>
-			<a ng-click="cancelar()" class="cancelar positive">{{txt.cancelar}}</a>
+			<a ng-click="cancelar()" class="cancelar">{{txt.cancelar}}</a>
 		</elemento-centrado>
 	</ion-content>
 

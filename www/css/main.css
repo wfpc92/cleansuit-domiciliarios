@@ -10319,7 +10319,8 @@ p {
     font-size: 1.3em;
     text-align: center;
     background-color: #E5E5E5;
-    padding: 20px 0; }
+    padding: 20px 0;
+    margin-top: 15px; }
   .orden form .list {
     margin-bottom: 0; }
   .orden form .card {
@@ -10869,6 +10870,9 @@ html input[disabled] {
   .ord-en-proceso .item span {
     font-family: 'fira_sansregular'; }
 
+.recoleccion .orden.item {
+  padding: 16px 54px 16px 16px; }
+
 .entrega .titulo {
   background: url(../img/entrega.png) no-repeat 96% center;
   background-color: #3DA0EB; }
@@ -10974,7 +10978,24 @@ html input[disabled] {
   text-align: center;
   background-color: #E5E5E5;
   padding: 20px 0;
-  margin: 0 10px 20px; }
+  margin: 10px 10px 20px; }
+
+.scroll .titulo {
+  font-family: 'fira_sansmedium';
+  font-size: 1.3em;
+  text-align: center;
+  background-color: #E5E5E5;
+  padding: 20px 0;
+  margin: 10px; }
+
+.subtitulo {
+  font-family: 'fira_sansmedium';
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #44A01A;
+  color: #fff;
+  padding: 15px 0;
+  margin: 10px; }
 
 .serviadd form {
   background-color: #FFFFFF;
