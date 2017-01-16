@@ -1,7 +1,7 @@
 <ion-list class="carro">
-	
+	<div class="contenedor">	
 	<elemento-centrado>
-		<a class="cancelar positive" ng-if="carrito.contPrendas > 0">Servicios</a>
+		<a class="cancelar assertive" ng-if="carrito.contPrendas > 0">-Servicios-</a>
 	</elemento-centrado>
 
 	<ion-item ng-repeat="(index, item) in carrito.items.prendas track by $index" ng-class="{ 'item-thumbnail-left': item.fotos.length > 0 }" >
@@ -19,7 +19,7 @@
 
 
 	<elemento-centrado>
-		<a class="cancelar positive" ng-if="carrito.hayProductos() || carrito.contProductos > 0">Productos</a>
+		<a class="cancelar assertive" ng-if="carrito.hayProductos() || carrito.contProductos > 0">-Productos-</a>
 	</elemento-centrado>
 
 	<ion-item ng-repeat="(index, item) in carrito.items.productos track by $index" class="item-thumbnail-left">
@@ -36,4 +36,5 @@
 		</div>
 		<i  class="icon ion-ios-close-outline" ng-click="eliminarProducto(index)" ng-if="formulario.productos.eliminar"></i>
 	</ion-item>
+	</div>
 </ion-list>
