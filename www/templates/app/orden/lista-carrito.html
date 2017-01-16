@@ -31,7 +31,7 @@
 			
 		<div class="contador">
 			<i ng-click="aumentar(item, 'PRODUCTO')" class="icon ico-mas" ng-hide="formulario.productos.eliminar"></i>
-			<span>{{item.cantidad || 0}}</span>
+			<span>{{item.cantidad || 0}} {{formulario.productos.eliminar ? 'true':'false'}}</span>
 			<i ng-click="disminuir(item, 'PRODUCTO')" class="icon ico-menos" ng-hide="formulario.productos.eliminar"></i>
 		</div>
 		<i  class="icon ion-ios-close-outline" ng-click="eliminarProducto(index)" ng-if="formulario.productos.eliminar"></i>

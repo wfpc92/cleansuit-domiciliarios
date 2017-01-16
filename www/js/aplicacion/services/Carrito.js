@@ -21,23 +21,26 @@ var CarritoFactory = function(RecursosFactory,
 
 		totales: {},
 
-		ordenPreparada: false, //bandera que indica si una orden tiene items para poder enviarse
+		infoOrden: null, //referencia a una orden de recoleccion seleccionada 
 		
-		init: function() {
+		init: function(infoOrden) {
 			this.items = {
 				productos: {},
 				prendas: {}
 			};
 			this.contPrendas = 0;
 			this.contProductos = 0;
+
+			delete this.infoOrden;
+			this.infoOrden = infoOrden;
 		},
 
 		setProductosRecoleccion: function(infoOrden) {
-			this.init();
+			this.init(infoOrden);
 
-			if (!((typeof infoOrden.recoleccion == 'undefined')
-				&& (typeof infoOrden.recoleccion.items == 'undefined')
-				&& (typeof infoOrden.recoleccion.items.productos == 'undefined'))) {
+			if (!((typeof this.infoOrden.recoleccion == 'undefined')
+				&& (typeof this.infoOrden.recoleccion.items == 'undefined')
+				&& (typeof this.infoOrden.recoleccion.items.productos == 'undefined'))) {
 				console.log("se agregan por primera vez los productos al carrito.")
 				//quitar los items de tipo servicio (puesto que es .items es una cotizacion hecha por cliente)
 				for (i in infoOrden.items) {
@@ -142,8 +145,6 @@ var CarritoFactory = function(RecursosFactory,
 				this.contPrendas += 1;
 			}
 
-			this.ordenPreparada = this.contProductos + this.contPrendas > 0;
-			console.log(this.contProductos + this.contPrendas, this.ordenPreparada);
 			this.calcularTotales();
 		},
 		
@@ -200,21 +201,7 @@ var CarritoFactory = function(RecursosFactory,
 
 
 		soloHayProductos : function(items){
-			var cont = 0;
-			
-			if (!items){
-				items = this.items;
-			}
-
-			for (i in items){
-				if (items[i].tipo == 'PRODUCTO'){
-					cont++;
-				} else {
-					return false;
-				}
-			}
-
-			return !this.servicioDirecto && (cont > 0 ? true : false);
+			return this.contPrendas == 0 && this.contProductos >= 1;
 		},
 
 		getProductos: function(items) {

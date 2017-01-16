@@ -147,7 +147,7 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.recoleccion-detalle', {
-		url: '/recoleccion-detalle/:indexOrden',
+		url: '/recoleccion-detalle',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
@@ -158,7 +158,7 @@ app.config(function($stateProvider,
 	})
 	// Toma
 	.state('app.recoleccion-carrito', {
-		url: '/recoleccion-carrito/:indexOrden',
+		url: '/recoleccion-carrito',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
@@ -171,7 +171,7 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.recoleccion-productos', {
-		url: '/recoleccion-productos/:indexOrden',
+		url: '/recoleccion-productos',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
@@ -184,7 +184,7 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.recoleccion-producto', {
-		url: '/recoleccion-producto/:indexOrden/:indexProducto',
+		url: '/recoleccion-producto/:indexProducto',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
@@ -197,7 +197,7 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.recoleccion-prenda', {
-		url: '/recoleccion-prenda/:indexOrden/:indexPrenda',
+		url: '/recoleccion-prenda/:indexPrenda',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
@@ -208,7 +208,7 @@ app.config(function($stateProvider,
 	})
 
 	.state('app.recoleccion-confirmacion', {
-		url: '/recoleccion-confirmacion/:indexOrden',
+		url: '/recoleccion-confirmacion',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
@@ -217,6 +217,17 @@ app.config(function($stateProvider,
 			},
 			"lista-carrito@app.recoleccion-confirmacion" : {
 				templateUrl: 'templates/app/orden/lista-carrito.html'
+			}
+		}
+	})
+
+	.state('app.recoleccion-envio', {
+		url: '/recoleccion-envio',
+		cache: false,
+		views: {
+			'contenedor-recoleccion': {
+				templateUrl: 'templates/app/orden/envio-orden.html',
+				controller: 'EnviarRecoleccionCtrl'
 			}
 		}
 	})
@@ -237,7 +248,7 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.entrega-detalle', {
-		url: '/entrega-detalle/:indexOrden',
+		url: '/entrega-detalle',
 		cache: false,
 		views: {
 			'contenedor-entrega': {

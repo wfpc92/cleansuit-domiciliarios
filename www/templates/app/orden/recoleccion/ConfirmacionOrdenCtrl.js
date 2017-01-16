@@ -8,13 +8,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 							OrdenesFactory, 
 							$timeout) {
 	
-	$scope.$on("$ionicView.beforeEnter", function() {
-		$scope.indexOrden = $stateParams.indexOrden;
-		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
-		$scope.infoOrden.orden.recoleccion.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
-		$scope.infoOrden.orden.entrega.fecha = new Date($scope.infoOrden.orden.entrega.fecha);
-		$scope.soloProductos = OrdenesFactory.soloHayProductos($scope.infoOrden);
-		
+	$scope.$on("$ionicView.beforeEnter", function() {		
 		$scope.formulario = {
 			recoleccion: {
 				direccion: {
@@ -111,7 +105,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 
 	$scope.siguiente = function() {
 		if ($scope.formularioValido) {
-			$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden})
+			$state.go("app.recoleccion-exito")
 		}
 		else {
 			console.log("Formulario incompleto.")

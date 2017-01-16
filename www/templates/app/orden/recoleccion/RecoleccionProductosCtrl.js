@@ -13,15 +13,9 @@ var RecoleccionProductosCtrl = function($scope,
 	$log.debug("RecoleccionProductosCtrl");
 
 	$scope.productos = ProductosFactory.productos;
-	$scope.indexOrden = $stateParams.indexOrden;
-	$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
 
-	console.log($scope.productos, $scope.indexOrden);
-
-	$scope.uiSref = function($index) {
-		return "app.recoleccion-producto({"+
-			"\'indexOrden\': " + $scope.indexOrden + ","+
-			"\'indexProducto\': "+ $index +" })";
+	$scope.verDetalle = function($index) {
+		return "app.recoleccion-producto({'indexProducto': "+ $index +" })";
 	};
 
 	$scope.aumentarProducto = function(index) {
@@ -41,7 +35,7 @@ var RecoleccionProductosCtrl = function($scope,
 	});
 
 	$scope.$on("$ionicView.beforeLeave", function() {
-		$timeout.cancel($scope.timeoutTutorial);
+		
 	});
 
 	$scope.$on("limpiarLista", function() {
@@ -50,10 +44,11 @@ var RecoleccionProductosCtrl = function($scope,
 
 	$scope.cargarProductos = function() {
 		$log.debug("RecoleccionProductosCtrl.cargarProductos()");
+		
 		ProductosFactory
 		.cargar()
 		.then( function() {
-			//$scope.productos = ProductosFactory.productos;
+			$scope.productos = ProductosFactory.productos;
 		});
 	};
 
@@ -82,7 +77,7 @@ var RecoleccionProductosCtrl = function($scope,
 		    			$ionicHistory.nextViewOptions({
 							disableBack:'true'
 						});
-						$state.go("app.recoleccion-carrito", { indexOrden: $scope.indexOrden} );
+						$state.go("app.recoleccion-carrito");
 		    		}
 		    	},
 		      	{
@@ -95,8 +90,7 @@ var RecoleccionProductosCtrl = function($scope,
 
 	$scope.guardarPedidoProductos = function() {
 		//aqui se guarda el pedido de productos en el carrito de la orden en recoleccion.
-		$state.go("app.recoleccion-carrito", { indexOrden: $scope.indexOrden} );
-		//$ionicHistory.goBack();
+		$state.go("app.recoleccion-carrito");
 	};
 };
 

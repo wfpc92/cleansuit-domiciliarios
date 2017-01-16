@@ -1,37 +1,15 @@
-var OrdenEnRecoleccionCtrl = function($scope, 
+var EnviarRecoleccionCtrl = function($scope, 
 							$stateParams,
 							$log,
 							$state,
 							$ionicPopup,
 							$ionicHistory,
-							$ionicListDelegate, 
+							$ionicListDelegate,
+							OrdenesFactory, 
 							$timeout) {
-
-	$log.debug("OrdenEnRecoleccionCtrl");
 	
-	$scope.formularioValido = true;
-
-	$scope.formulario = {
-		totales: {
-			hide: true
-		},
-		cupon: {
-			hide: true
-		},
-		abono: {
-			hide: true
-		},
-		valido: true
-	};
-	
-	$scope.txt = {
-		cancelar: "Suspender pedido",
-		siguiente: "TOMAR PEDIDO"
-	};
-
 	$scope.$on("$ionicView.beforeEnter", function() {
-		$scope.carrito.infoOrden.orden.recoleccion.fecha = new Date($scope.carrito.infoOrden.orden.recoleccion.fecha);
-		$scope.carrito.infoOrden.orden.entrega.fecha = new Date($scope.carrito.infoOrden.orden.entrega.fecha);
+				
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -42,14 +20,24 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		
 	});
 
+	$scope.enviar = function() {
+		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito.infoOrden);
+	};
+
+	$scope.regresar = function() {
+		$ionicHistory.goBack();
+	};
+
 	$scope.siguiente = function() {
 		if ($scope.formularioValido) {
-			$state.go("app.recoleccion-carrito")
+			$state.go("app.recoleccion-exito")
 		}
 		else {
 			console.log("Formulario incompleto.")
 		}
 	};
+
+	$scope.formularioValido = true;
 
 	//cancelar orden:
 	$scope.cancelar = function() {
@@ -109,7 +97,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 						$ionicHistory.nextViewOptions({
 							disableBack:'true'
 						});
-						$state.go("app.recoleccion-detalle");
+						$state.go("app.recoleccion-detalle", {indexOrden: $scope.indexOrden});
 		    		}
 		    	},
 		      	{
@@ -154,5 +142,4 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	};
 };
 
-
-app.controller("OrdenEnRecoleccionCtrl", OrdenEnRecoleccionCtrl);
+app.controller("EnviarRecoleccionCtrl", EnviarRecoleccionCtrl);

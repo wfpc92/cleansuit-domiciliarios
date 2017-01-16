@@ -2,7 +2,7 @@
 	<ion-content class="pdBoton orden">
 
 		<div class="titulo">
-			INFORMACIÓN DE ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
+			INFORMACIÓN DE ORDEN # {{carrito.infoOrden.codigo | numberFixedLen:4}}
 		</div> 
 
 		<form name="formInformacionOrden"> 
@@ -11,35 +11,35 @@
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input type="text" placeholder="Nombres y Apellidos" value="{{infoOrden.cliente_id.nombre}}" disabled style="color: #000 !important; opacity: 1.0 !important">
+							<input type="text" placeholder="Nombres y Apellidos" value="{{carrito.infoOrden.cliente_id.nombre}}" disabled style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 					</div>
 				</ion-item>
 				
-				<ion-item class="row" ng-hide="soloProductos || formulario.recoleccion.direccion.hide">
+				<ion-item class="row" ng-hide="carrito.soloHayProductos() || formulario.recoleccion.direccion.hide">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Dirección de recolección </span>
-							<input type="text" placeholder="Dirección de recolección " ng-model="infoOrden.orden.recoleccion.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100" ng-disabled="formulario.recoleccion.direccion.disabled">
+							<input type="text" placeholder="Dirección de recolección " ng-model="carrito.infoOrden.orden.recoleccion.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100" ng-disabled="formulario.recoleccion.direccion.disabled">
 						</label>
 						<i class="icon ion-location" ng-click="openModal('DIRECCIONRECOLECCION')"></i>
 					</div>
 				</ion-item>
 
-				<ion-item class="row" ng-hide="soloProductos || formulario.recoleccion.fecha.hide">
+				<ion-item class="row" ng-hide="carrito.soloHayProductos() || formulario.recoleccion.fecha.hide">
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de recolección</span>
-							<input id="inputFechaRecoleccion" type="date" placeholder="Fecha de recolección" ng-model="infoOrden.orden.recoleccion.fecha" ng-click="openPopover('FECHARECOLECCION', $event)" readonly required ng-disabled="formulario.recoleccion.fecha.disabled">
+							<input id="inputFechaRecoleccion" type="date" placeholder="Fecha de recolección" ng-model="carrito.infoOrden.orden.recoleccion.fecha" ng-click="openPopover('FECHARECOLECCION', $event)" readonly required ng-disabled="formulario.recoleccion.fecha.disabled">
 						</label>
 					</div>
 				</ion-item>
 
-				<ion-item class="row" ng-hide="soloProductos || formulario.recoleccion.hora.hide">
+				<ion-item class="row" ng-hide="carrito.soloHayProductos() || formulario.recoleccion.hora.hide">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Hora de recolección</span>
-							<input type="text" placeholder="Hora de recolección" ng-model="infoOrden.orden.recoleccion.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.recoleccion.hora.disabled" />
+							<input type="text" placeholder="Hora de recolección" ng-model="carrito.infoOrden.orden.recoleccion.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.recoleccion.hora.disabled" />
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>
 					</div>
@@ -49,7 +49,7 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Dirección de entrega</span>
-							<input type="text" placeholder="Dirección de entrega" ng-model="infoOrden.orden.entrega.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100" ng-disabled="formulario.entrega.direccion.disabled" />
+							<input type="text" placeholder="Dirección de entrega" ng-model="carrito.infoOrden.orden.entrega.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100" ng-disabled="formulario.entrega.direccion.disabled" />
 						</label>
 						<i class="icon ion-location" ng-click="openModal('DIRECCIONENTREGA')"></i>
 					</div>
@@ -59,7 +59,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label">
 							<span class="input-label">Fecha de entrega</span>
-							<input id="inputFechaEntrega" type="date" placeholder="Fecha de entrega" ng-model="infoOrden.orden.entrega.fecha" ng-click="openPopover('FECHAENTREGA', $event)" readonly required ng-disabled="formulario.entrega.fecha" />
+							<input id="inputFechaEntrega" type="date" placeholder="Fecha de entrega" ng-model="carrito.infoOrden.orden.entrega.fecha" ng-click="openPopover('FECHAENTREGA', $event)" readonly required ng-disabled="formulario.entrega.fecha" />
 						</label>
 					</div>
 				</ion-item>
@@ -68,7 +68,7 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Hora de entrega</span>
-							<input type="text" placeholder="Hora de entrega" ng-model="infoOrden.orden.entrega.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.entrega.hora.disabled" />
+							<input type="text" placeholder="Hora de entrega" ng-model="carrito.infoOrden.orden.entrega.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.entrega.hora.disabled" />
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>
 					</div>
@@ -78,7 +78,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Teléfono de contacto</span>
-							<input type="tel" placeholder="Teléfono de contacto" ng-model="infoOrden.orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10" ng-disabled="formulario.telefono.disabled" />
+							<input type="tel" placeholder="Teléfono de contacto" ng-model="carrito.infoOrden.orden.telefono" name="telefono"maxlength="10" ng-minlength="7" ng-maxlength="10" ng-disabled="formulario.telefono.disabled" />
 						</label>
 					</div>
 				</ion-item>
@@ -87,7 +87,7 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Forma de pago</span>
-							<input type="text" placeholder="Forma de pago" ng-model="infoOrden.orden.formaPago" ng-disabled="formulario.formaPago.disabled" required style="color: #000 !important; opacity: 1.0 !important">
+							<input type="text" placeholder="Forma de pago" ng-model="carrito.infoOrden.orden.formaPago" ng-disabled="formulario.formaPago.disabled" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
 						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
 					</div>
@@ -97,7 +97,7 @@
 					<div class="col col-75">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Cupón de Descuento</span>
-							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon" ng-change="infoOrden.orden.cupon=infoOrden.orden.cupon.toUpperCase();" ng-disabled="formulario.cupon.disabled" >
+							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon" ng-change="carrito.infoOrden.orden.cupon=carrito.infoOrden.orden.cupon.toUpperCase();" ng-disabled="formulario.cupon.disabled" >
 						</label>
 					</div>
 				</ion-item>
@@ -119,7 +119,7 @@
 
 			<!--<ion-list>
 				<ion-item class="item-text-wrap terminos">
-					<ion-checkbox ng-model="infoOrden.orden.terminosCondiciones" ng-checked="infoOrden.orden.terminosCondiciones"></ion-checkbox>
+					<ion-checkbox ng-model="carrito.infoOrden.orden.terminosCondiciones" ng-checked="carrito.infoOrden.orden.terminosCondiciones"></ion-checkbox>
 					<div class="enlace">
 						Acepto los <a ng-click="abrirModalTC()">Términos y Condiciones.</a>
 					</div>			

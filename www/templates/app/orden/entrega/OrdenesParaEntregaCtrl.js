@@ -26,9 +26,7 @@ var OrdenesParaEntregaCtrl =  function ($scope,
 	};
 
 	$scope.$on('$ionicView.beforeEnter', function(event) {
-		//almacenar estado para poder recuperar el historial del tab actual 
-		//por medio de menu/inicio
-		$rootScope.estadoActual = $state.current.name;
+		
 	});
 	
 };

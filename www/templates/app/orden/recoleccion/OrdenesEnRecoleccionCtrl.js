@@ -1,4 +1,4 @@
-var OrdenesEnRecoleccionCtrl =  function ($scope,
+	var OrdenesEnRecoleccionCtrl =  function ($scope,
 										$rootScope,
 										$state,
 										$log,
@@ -26,9 +26,7 @@ var OrdenesEnRecoleccionCtrl =  function ($scope,
 	};
 
 	$scope.$on('$ionicView.beforeEnter', function(event) {
-		//almacenar estado para poder recuperar el historial del tab actual 
-		//por medio de menu/inicio
-		$rootScope.estadoActual = $state.current.name;
+		
 	});
 
 	$scope.verInformacionOrden = function(index) {

@@ -5,7 +5,6 @@ var FormularioPrendaCtrl = function($scope,
 							$ionicPopup,
 							$ionicHistory,
 							$ionicListDelegate,
-							OrdenesFactory,
 							ServiciosFactory,
 							FotosFactory,
 							$timeout) {
@@ -15,20 +14,17 @@ var FormularioPrendaCtrl = function($scope,
 	$scope.formularioValido = false;
 
 	$scope.$on("$ionicView.beforeEnter", function() {
-		$scope.indexOrden = $stateParams.indexOrden;
-		$scope.indexPrenda = $stateParams.indexPrenda;
-		$scope.infoOrden = OrdenesFactory.ordenesRecoleccion[$scope.indexOrden];
-		$scope.infoOrden.prendas = $scope.infoOrden.prendas || [];
 		$scope.servicios = ServiciosFactory.servicios;
-		
-		console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", $scope.carrito.items)
 		//la informacionde la prenda, en caso de edicion se obtiene la informaion de la
+		$scope.indexPrenda = $stateParams.indexPrenda;
 		$scope.esNueva = $scope.indexPrenda.length > 0;
 		$scope.prenda = $scope.esNueva ? 
 			$scope.carrito.items.prendas[$scope.indexPrenda] : 
 			{
 				fotos: []
 			};
+
+		console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", $scope.carrito.items)
 		console.log("prenda vacia/editable: ", $scope.prenda);
 	});
 
@@ -163,8 +159,7 @@ var FormularioPrendaCtrl = function($scope,
 				agregar = $scope.carrito.agregar($scope.prenda, 'PRENDA', 1);
 			}
 
-			console.log(OrdenesFactory.ordenesRecoleccion[$scope.indexOrden])
-			$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden});
+			$state.go("app.recoleccion-carrito");
 
 			/*if (!agregar) {
 				mostrarAlertaCodigoDuplicado();
