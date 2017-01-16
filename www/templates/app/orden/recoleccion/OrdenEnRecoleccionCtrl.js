@@ -5,7 +5,8 @@ var OrdenEnRecoleccionCtrl = function($scope,
 							$ionicPopup,
 							$ionicHistory,
 							$ionicListDelegate, 
-							$timeout) {
+							$timeout,
+							OrdenesFactory) {
 
 	$log.debug("OrdenEnRecoleccionCtrl");
 	
@@ -62,7 +63,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		    		text: 'Pedido Pendiente',
 			    	type: 'button-calm',
 		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
+		    			$scope.carrito.vaciar();
 						$ionicHistory.clearHistory();
 						$ionicHistory.nextViewOptions({
 							disableBack:'true'
@@ -74,11 +75,6 @@ var OrdenEnRecoleccionCtrl = function($scope,
 			    	text: '<b>Cancelar Pedido</b>',
 			    	type: 'button-calm',
 		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
 						$scope.causaCancelacion();
 		    		}
 		      	}
@@ -87,12 +83,19 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	};
 
 	$scope.causaCancelacion = function() {
-		$scope.data = "";
-		var template = 
-			'<ion-list>'+
-				'<ion-radio ng-model="data" ng-value="1">Valor elevado</ion-radio>'+
-				'<ion-radio ng-model="data" ng-value="2">Manifiesta mala atención</ion-radio>' +
-				'<ion-radio ng-model="data" ng-value="3">Prefiere otra empresa</ion-radio>' +
+		$scope.motivos= {
+			m1: "1",
+			m2: "2",
+			m3: "3",
+		}
+		;
+		$scope.motivo = $scope.motivos.m1;
+		
+		var template =
+			'<ion-list >'+
+				'<ion-radio ng-model="motivo" ng-value="motivos.m1">Valor elevado</ion-radio>'+
+				'<ion-radio ng-model="motivo" value="motivos.m2">Manifiesta mala atención</ion-radio>' +
+				'<ion-radio ng-model="motivo" value="motivos.m3">Prefiere otra empresa</ion-radio>' +
 			'</ion-list>';
 
 		$ionicPopup
@@ -104,12 +107,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		    		text: 'Volver a información de orden',
 			    	type: 'button-ligth',
 		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$state.go("app.recoleccion-detalle");
+
 		    		}
 		    	},
 		      	{
@@ -117,20 +115,17 @@ var OrdenEnRecoleccionCtrl = function($scope,
 			    	type: 'button-calm',
 		    		onTap: function(e) {
 		    			//enviar motivo de suspension de Pedido
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$scope.mensajeConfirmacion();
+						scope.enviarCancelacion();
 		    		}
 		      	}
 		    ]
 	    });
 	};
 
-	$scope.mensajeConfirmacion = function() {
-		console.log("Seleccion de motivo: ", $scope.data);
+	$scope.enviarCancelacion = function() {
+		console.log("Seleccion de motivo: ", $scope.motivo);
+		//enviar
+		$scope.carrito.vaciar();
 
 		$ionicPopup
 		.confirm({
@@ -141,7 +136,6 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		    		text: 'Aceptar',
 			    	type: 'button-ligth',
 		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
 						$ionicHistory.clearHistory();
 						$ionicHistory.nextViewOptions({
 							disableBack:'true'

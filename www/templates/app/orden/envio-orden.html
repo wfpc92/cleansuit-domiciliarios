@@ -6,34 +6,18 @@
 		</div> 
 
 		
-		<div class="card"  ng-if="!carrito.hayProductos() && carrito.contProductos + carrito.contPrendas == 0">
-			<div class="item item-text-wrap">
-				Para agregar prendas y productos presiona el botón flotante.
-			</div>
+		<div >
 		</div>
-
-		<resumen-totales totales="carrito.totales" ng-if="carrito.hayProductos() || carrito.contProductos + carrito.contPrendas > 0"></resumen-totales>
-
-
-		<div class="contagregar">
-			<button class="addservicios " ng-click="agregarPrenda()">
-			<i class="icon icons icons-servicios"></i>
+		<elemento-centrado>
+			<i class="ion-paper-airplane"></i>
+			<p>¿Desea enviar la orden # {{carrito.infoOrden.codigo | numberFixedLen:4}}?</p>
+			<button class="" ng-click="enviar()">
+				Enviar
 			</button>
-			<button class="addproductos" ng-click="agregarProductos()">
-				<i class="icon icons icons-productos"></i>
-			</button>
-			<button class="btncerrar" ng-click="">
-				<i class="icon icons icons-ocultar"></i>
-			</button>
-		</div>
-
-		<button class="adds" ng-click="">
-			<i class="icon icons icons-desplegar"></i>
-		</button>
-		
+		</elemento-centrado>
 
 		<elemento-centrado>
-			<a ng-click="cancelarOrden()" class="cancelar"> Cancelar Orden</a>
+			<a ng-click="regresar()" class="cancelar"> Regresar a toma de orden</a>
 		</elemento-centrado>
 	
 	</ion-content>

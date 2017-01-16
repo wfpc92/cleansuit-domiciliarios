@@ -34,7 +34,71 @@ var CarritoRecoleccionCtrl = function($scope,
 		    	{
 		    		text: 'Si',
 		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
+		    			$scope.causaCancelacion();
+		    		}
+		    	},
+		      	{
+			    	text: '<b>No</b>',
+			    	type: 'button-positive'
+		      	}
+		    ]
+	    });
+	};
+
+	$scope.causaCancelacion = function() {
+		$scope.motivos= {
+			m1: "1",
+			m2: "2",
+			m3: "3",
+		}
+		;
+		$scope.motivo = $scope.motivos.m1;
+		
+		var template =
+			'<ion-list >'+
+				'<ion-radio ng-model="motivo" ng-value="motivos.m1">Valor elevado</ion-radio>'+
+				'<ion-radio ng-model="motivo" value="motivos.m2">Manifiesta mala atención</ion-radio>' +
+				'<ion-radio ng-model="motivo" value="motivos.m3">Prefiere otra empresa</ion-radio>' +
+			'</ion-list>';
+
+		$ionicPopup
+		.confirm({
+	    	title: 'Causa por la cual el cliente cancela el pedido',
+	    	template: template,
+	    	buttons: [
+		    	{
+		    		text: 'Volver a información de orden',
+			    	type: 'button-ligth',
+		    		onTap: function(e) {
+		    			$ionicHistory.goBack();
+		    		}
+		    	},
+		      	{
+			    	text: '<b>Enviar</b>',
+			    	type: 'button-calm',
+		    		onTap: function(e) {
+		    			//enviar motivo de suspension de Pedido
+						scope.enviarCancelacion();
+		    		}
+		      	}
+		    ]
+	    });
+	};
+
+	$scope.enviarCancelacion = function() {
+		console.log("Seleccion de motivo: ", $scope.motivo);
+		//enviar
+		$scope.carrito.vaciar();
+
+		$ionicPopup
+		.confirm({
+	    	title: 'La causa por la cual el cliente cancela el pedido fue enviada.',
+	    	template: '',
+	    	buttons: [
+		    	{
+		    		text: 'Aceptar',
+			    	type: 'button-ligth',
+		    		onTap: function(e) {
 						$ionicHistory.clearHistory();
 						$ionicHistory.nextViewOptions({
 							disableBack:'true'
@@ -42,10 +106,6 @@ var CarritoRecoleccionCtrl = function($scope,
 						$state.go("app.recoleccion");
 		    		}
 		    	},
-		      	{
-			    	text: '<b>No</b>',
-			    	type: 'button-positive'
-		      	}
 		    ]
 	    });
 	};

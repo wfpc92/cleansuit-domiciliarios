@@ -225,10 +225,14 @@ var CarritoFactory = function(RecursosFactory,
 		 * @return {[type]} [description]
 		 */
 		vaciar: function() {
-			for (var i in this.items) {
-				delete this.items[i];
+			for (var i in this.items.productos) {
+				delete this.items.productos[i];
 			}
-			this.totales.promocion = null;
+			for (var i in this.items.prendas) {
+				delete this.items.prendas[i];
+			}
+			
+			this.infoOrden = null;
 			this.actualizarContadores();
 		},
 

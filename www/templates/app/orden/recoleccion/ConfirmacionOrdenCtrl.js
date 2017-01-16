@@ -105,7 +105,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 
 	$scope.siguiente = function() {
 		if ($scope.formularioValido) {
-			$state.go("app.recoleccion-exito")
+			$state.go("app.recoleccion-envio")
 		}
 		else {
 			console.log("Formulario incompleto.")
