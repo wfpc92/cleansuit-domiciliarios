@@ -5,7 +5,8 @@ var ConfirmacionOrdenCtrl = function($scope,
 							$ionicPopup,
 							$ionicHistory,
 							$ionicListDelegate,
-							OrdenesFactory, 
+							OrdenesFactory,
+							CancelarOrdenFactory, 
 							$timeout) {
 	
 	$scope.$on("$ionicView.beforeEnter", function() {		
@@ -59,8 +60,8 @@ var ConfirmacionOrdenCtrl = function($scope,
 	});
 
 	$scope.txt = {
-		cancelar: "Suspender pedido",
-		siguiente: "TOMAR PEDIDO"
+		cancelar: "Validación del cliente",
+		siguiente: "REALIZAR ORDEN"
 	};
 
 	$scope.eliminarPrenda = function(index) {
@@ -112,11 +113,36 @@ var ConfirmacionOrdenCtrl = function($scope,
 		}
 	};
 
-	$scope.formularioValido = true;
+	$scope.formularioValido = false;
 
 	//cancelar orden:
 	$scope.cancelar = function() {
-		$ionicPopup
+		CancelarOrdenFactory.$scope = $scope;
+		CancelarOrdenFactory.cb = {
+			deacuerdo: function() {
+				$scope.formularioValido = true;
+			},
+			
+			volverInfoOrden: function(e) {
+				$ionicHistory.goBack(-2);
+			},
+
+			enviar: function(e) {
+				$scope.carrito.vaciar();
+			},
+
+			cancelar: function(e) {
+				$ionicHistory.clearHistory();
+				$ionicHistory.nextViewOptions({
+					disableBack:'true'
+				});
+				$state.go("app.recoleccion");
+			},
+		};
+
+		CancelarOrdenFactory.mostrarValidacionCliente();
+
+		/*$ionicPopup
 		.confirm({
 	    	title: 'Suspender Pedido',
 	    	template: '',
@@ -146,7 +172,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 		    		}
 		      	}
 		    ]
-	    });
+	    });*/
 	};
 
 	$scope.causaCancelacion = function() {

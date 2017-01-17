@@ -9,39 +9,18 @@ var OrdenesFactory = function(UsuarioFactory,
 	var init = function() {
 		$localStorage.ordenesRecoleccion = $localStorage.ordenesRecoleccion || [];
 		$localStorage.ordenesEntrega = $localStorage.ordenesEntrega || [];
-		
-
-		$localStorage.ordenesRecogidas = [
-			{},{},{}
-		];
-		$localStorage.ordenesEntregadas = [
-			{},{},{}
-		];
-		//$localStorage.ordenesEnRecoleccion || [];
-		//$localStorage.historialOrdenes = $localStorage.historialOrdenes || [];	
+		$localStorage.ordenesRecolectadas = $localStorage.ordenesRecolectadas || [];
+		$localStorage.ordenesEntregadas = $localStorage.ordenesEntregadas || [];	
 	};
 	
-	var setOrdenesEntrega = function(ordenesEntrega) {
+	var setOrdenes = function(ordenesLocales, ordenesNuevas) {
 		init();
 
-		for (var i in $localStorage.ordenesEntrega) {
-			delete $localStorage.ordenesEntrega[i];
-		}
-		
-		for (var i in ordenesEntrega) {
-			$localStorage.ordenesEntrega[i] = ordenesEntrega[i];
-		}
-	};
-	
-	var setOrdenesRecoleccion = function(ordenesRecoleccion) {
-		init();
+		ordenesLocales.splice(0,ordenesLocales.length);
+		//ordenesLocales = [];
 
-		for (var i in $localStorage.ordenesRecoleccion) {
-			delete $localStorage.ordenesRecoleccion[i];
-		}
-		
-		for (var i in ordenesRecoleccion) {
-			$localStorage.ordenesRecoleccion[i] = ordenesRecoleccion[i];
+		for (var i in ordenesNuevas) {
+			ordenesLocales[i] = ordenesNuevas[i];
 		}
 	};
 
@@ -93,7 +72,7 @@ var OrdenesFactory = function(UsuarioFactory,
 
 		ordenesEntrega: $localStorage.ordenesEntrega,
 
-		ordenesRecogidas: $localStorage.ordenesRecogidas,
+		ordenesRecolectadas: $localStorage.ordenesRecolectadas,
 
 		ordenesEntregadas: $localStorage.ordenesEntregadas,
 
@@ -157,8 +136,10 @@ var OrdenesFactory = function(UsuarioFactory,
 			.then(function(respuesta) {
 				console.log("OrdenesFactory.cargarAsignadas()", respuesta)
 				if(respuesta.data.success) {
-					setOrdenesRecoleccion(respuesta.data.ordenesRecoleccion);
-					setOrdenesEntrega(respuesta.data.ordenesEntrega);
+					setOrdenes($localStorage.ordenesRecoleccion,  respuesta.data.ordenesRecoleccion);
+					setOrdenes($localStorage.ordenesRecolectadas, respuesta.data.ordenesRecolectadas);
+					setOrdenes($localStorage.ordenesEntrega, respuesta.data.ordenesEntrega);
+					setOrdenes($localStorage.ordenesEntregadas, respuesta.data.ordenesEntregadas);
 				}
 			});
 		},
@@ -185,6 +166,23 @@ var OrdenesFactory = function(UsuarioFactory,
 
 		iniciarRecoleccion: function(infoOrden) {
 			infoOrden.recoleccion = infoOrden.recoleccion || {};
+		},
+
+		cancelarOrden: function(motivo) {
+			var self = this;
+			return RecursosFactory
+			.post('/ordenes/cancelar', {
+				orden_id: CarritoFactory.infoOrden._id, 
+				motivo: motivo
+			})
+			.then(function(respuesta) {
+				console.log("OrdenesFactory.cancelarOrden()", respuesta)
+				self.cargarAsignadas()
+				.then(function() {
+					
+				});
+				return respuesta;	
+			});
 		}
 	};
 
