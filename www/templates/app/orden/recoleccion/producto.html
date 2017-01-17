@@ -2,7 +2,7 @@
   	<ion-content>
 
   		<div class="tituloOrden">
-			ORDEN # {{infoOrden.codigo | numberFixedLen:4}}
+			ORDEN # {{carrito.infoOrden.codigo | numberFixedLen:4}}
 		</div>
 
 		<div class="subtituloOrden">
@@ -11,11 +11,11 @@
 
 		<div ui-view="producto"></div>
 		
-		<elemento-centrado>
+		<!--<elemento-centrado>
 			<button class="bottom button button-calm" ng-click="regresarCatalogo()">
 				Regresar al Catálogo de Productos
 			</button>
-		</elemento-centrado>
+		</elemento-centrado>-->
   	</ion-content>
 
 </ion-view>
