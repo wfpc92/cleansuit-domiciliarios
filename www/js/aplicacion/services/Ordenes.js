@@ -184,6 +184,25 @@ var OrdenesFactory = function(UsuarioFactory,
 				});
 				return respuesta;	
 			});
+		},
+
+		enviarRecolectada: function() {
+			var self = this;
+			CarritoFactory.infoOrden.recoleccion = {
+				items: CarritoFactory.items, 
+			};
+			CarritoFactory.infoOrden.estado = 'recolectada';
+
+			return RecursosFactory
+			.put('/ordenes/'+CarritoFactory.infoOrden._id, CarritoFactory.infoOrden)
+			.then(function(respuesta) {
+				console.log("OrdenesFactory.enviarRecolectada()", respuesta)
+				self.cargarAsignadas()
+				.then(function() {
+					
+				});
+				return respuesta;	
+			});
 		}
 	};
 

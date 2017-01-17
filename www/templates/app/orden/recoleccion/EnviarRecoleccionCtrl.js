@@ -22,19 +22,24 @@ var EnviarRecoleccionCtrl = function($scope,
 
 	$scope.enviar = function() {
 		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito.infoOrden);
-		$ionicPopup
-		.alert({
-	    	title: 'Orden enviada',
-	    	template: 'Revise en el Menú las ordenes enviadas.',
-	    })
-	    .then(function(){
-	    	$ionicHistory.clearHistory();
-			$ionicHistory.nextViewOptions({
-				disableBack:'true'
-			});
-	    	$state.go("app.recoleccion");
-	    })
 
+		
+		OrdenesFactory
+		.enviarRecolectada()
+		.then(function() {
+			$ionicPopup
+			.alert({
+		    	title: 'Orden enviada',
+		    	template: 'Revise en el Menú las ordenes enviadas.',
+		    })
+		    .then(function(){
+		    	$ionicHistory.clearHistory();
+				$ionicHistory.nextViewOptions({
+					disableBack:'true'
+				});
+		    	$state.go("app.recoleccion");
+		    });
+		});
 	};
 
 	$scope.regresar = function() {

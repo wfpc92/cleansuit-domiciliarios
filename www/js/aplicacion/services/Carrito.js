@@ -53,6 +53,13 @@ var CarritoFactory = function(RecursosFactory,
 			this.actualizarContadores();
 		},
 
+		setOrdenRecolectada: function(infoOrden) {
+			this.init(infoOrden);
+			console.log(infoOrden)
+			this.items = infoOrden.recoleccion.items;
+			this.actualizarContadores();
+		},
+
 		/**
 		 * agregar un item a la lista de items del carrito
 		 * @param  {object} item item de producto o prenda

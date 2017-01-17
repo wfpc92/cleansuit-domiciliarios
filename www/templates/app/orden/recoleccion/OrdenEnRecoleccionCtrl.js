@@ -11,8 +11,6 @@ var OrdenEnRecoleccionCtrl = function($scope,
 
 	$log.debug("OrdenEnRecoleccionCtrl");
 	
-	$scope.formularioValido = true;
-
 	$scope.formulario = {
 		totales: {
 			hide: true
@@ -45,7 +43,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	});
 
 	$scope.siguiente = function() {
-		if ($scope.formularioValido) {
+		if ($scope.formulario.valido) {
 			$state.go("app.recoleccion-carrito")
 		}
 		else {

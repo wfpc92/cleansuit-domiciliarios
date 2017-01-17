@@ -261,22 +261,25 @@ app.config(function($stateProvider,
 
 
 	//Rutas de opciones de menu
-	.state('app.recogidas', {
-		url: '/menu-recogidas',
+	.state('app.recolectadas', {
+		url: '/menu-recolectadas',
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/menu/recogidas/recogidas.html',
-				controller: 'OrdenesRecogidasCtrl'
+				templateUrl: 'templates/app/menu/recolectadas/recolectadas.html',
+				controller: 'OrdenesRecolectadasCtrl'
 			}
 		}
 	})
-	.state('app.recogida', {
-		url: '/menu-recogida/:indexOrden',
+	.state('app.recolectada', {
+		url: '/menu-recolectada',
 		cache: false,
 		views: {
 			'contenedor-menu': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
-				controller: 'OrdenRecogidaCtrl'
+				controller: 'OrdenRecolectadaCtrl'
+			},
+			"lista-carrito@app.recolectada" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})

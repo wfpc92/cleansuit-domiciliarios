@@ -42,7 +42,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 			cupon: {
 				hide: true,
 			},
-			valido: true,
+			valido: false,
 			productos: {
 				eliminar: true
 			}
@@ -105,7 +105,7 @@ var ConfirmacionOrdenCtrl = function($scope,
 	};
 
 	$scope.siguiente = function() {
-		if ($scope.formularioValido) {
+		if ($scope.formulario.valido) {
 			$state.go("app.recoleccion-envio")
 		}
 		else {
@@ -113,14 +113,12 @@ var ConfirmacionOrdenCtrl = function($scope,
 		}
 	};
 
-	$scope.formularioValido = false;
-
 	//cancelar orden:
 	$scope.cancelar = function() {
 		CancelarOrdenFactory.$scope = $scope;
 		CancelarOrdenFactory.cb = {
 			deacuerdo: function() {
-				$scope.formularioValido = true;
+				$scope.formulario.valido = true;
 			},
 			
 			volverInfoOrden: function(e) {
