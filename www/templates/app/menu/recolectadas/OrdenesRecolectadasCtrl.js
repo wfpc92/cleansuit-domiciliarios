@@ -21,8 +21,7 @@ var OrdenesRecolectadasCtrl =  function ($scope,
 	$scope.verInformacionOrden = function(index) {
 		$scope.carrito.setOrdenRecolectada($scope.ordenes[index])
 		$state.go("app.recolectada")
-	}
-	
+	}	
 };
 
 app.controller('OrdenesRecolectadasCtrl', OrdenesRecolectadasCtrl);

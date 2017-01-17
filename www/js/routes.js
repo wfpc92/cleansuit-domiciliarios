@@ -295,15 +295,21 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.entregada', {
-		url: '/menu-entregada/:indexOrden',
+		url: '/menu-entregada',
 		cache: false,
 		views: {
 			'contenedor-menu': {
 				templateUrl: 'templates/app/orden/informacion-orden.html',
 				controller: 'OrdenEntregadaCtrl'
+			},
+			"lista-carrito@app.entregada" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
+
+
+	
 
 	/*
 	app.

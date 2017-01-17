@@ -5,12 +5,6 @@ var OrdenesEntregadasCtrl =  function ($scope,
 	$log.debug("OrdenesEntregadasCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesEntregadas;
 	
-	/*OrdenesFactory
-	.cargarOrdenesEnProceso() 
-	.then(function() {
-		//$scope.ordenes = OrdenesFactory.ordenesEnProceso;
-	});*/
-
 	$scope.hayOrdenes = function() {
 		if(!$scope.ordenes) {
 			return false;
@@ -22,6 +16,11 @@ var OrdenesEntregadasCtrl =  function ($scope,
 		
 		return false;
 	};
+
+	$scope.verInformacionOrden = function(index) {
+		$scope.carrito.setOrdenEntregada($scope.ordenes[index])
+		$state.go("app.entregada");
+	}
 	
 };
 

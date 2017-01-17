@@ -6,6 +6,12 @@
 			<p>Estas son las ordenes que ha recogido</p>
 		</div>
 		
+		<div clas="card" ng-if="ordenes.length == 0">
+			<div class="item item-text-wrap">
+				No hay órdenes recogidas aún.
+			</div>
+		</div>
+
 		<ion-list ng-if="hayOrdenes()">
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 					ng-click="verInformacionOrden($index)">

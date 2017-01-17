@@ -60,6 +60,12 @@ var CarritoFactory = function(RecursosFactory,
 			this.actualizarContadores();
 		},
 
+		setOrdenEntregada: function(infoOrden) {
+			this.init(infoOrden);
+			this.items = infoOrden.entrega.items;
+			this.actualizarContadores();
+		},
+
 		/**
 		 * agregar un item a la lista de items del carrito
 		 * @param  {object} item item de producto o prenda
