@@ -44,13 +44,15 @@ var OrdenEntregadaCtrl = function($scope,
 			eliminar: {
 				hide: true
 			}
-		}
+		},
+		cancelar: {
+			hide: true
+		},
+		siguiente: {
+			hide: true
+		},
 	};
 	
-	$scope.txt = {
-		hide: true
-	};
-
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.carrito.infoOrden.orden.recoleccion.fecha = new Date($scope.carrito.infoOrden.orden.recoleccion.fecha);
 		$scope.carrito.infoOrden.orden.entrega.fecha = new Date($scope.carrito.infoOrden.orden.entrega.fecha);

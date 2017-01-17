@@ -257,6 +257,16 @@ app.config(function($stateProvider,
 			}
 		}
 	})
+	.state('app.entrega-envio', {
+		url: '/entrega-envio',
+		cache: false,
+		views: {
+			'contenedor-entrega': {
+				templateUrl: 'templates/app/orden/envio-orden.html',
+				controller: 'EnviarEntregaCtrl'
+			}
+		}
+	})
 
 
 

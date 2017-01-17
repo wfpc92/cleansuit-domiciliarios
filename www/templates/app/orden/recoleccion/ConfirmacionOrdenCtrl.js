@@ -45,10 +45,14 @@ var ConfirmacionOrdenCtrl = function($scope,
 			valido: false,
 			productos: {
 				eliminar: true
+			},
+			cancelar: {
+				texto: "Validación del cliente"
+			},
+			siguiente: {
+				texto: "REALIZAR ORDEN"
 			}
 		};
-
-		
 	});
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -58,11 +62,6 @@ var ConfirmacionOrdenCtrl = function($scope,
 	$scope.$on("$ionicView.beforeLeave", function() {
 		
 	});
-
-	$scope.txt = {
-		cancelar: "Validación del cliente",
-		siguiente: "REALIZAR ORDEN"
-	};
 
 	$scope.eliminarPrenda = function(index) {
 		$ionicPopup

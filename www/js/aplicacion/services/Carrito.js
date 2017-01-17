@@ -55,14 +55,21 @@ var CarritoFactory = function(RecursosFactory,
 
 		setOrdenRecolectada: function(infoOrden) {
 			this.init(infoOrden);
-			console.log(infoOrden)
 			this.items = infoOrden.recoleccion.items;
+			this.actualizarContadores();
+		},
+
+		setOrdenParaEntrega: function(infoOrden) {
+			this.init(infoOrden);
+			this.items = infoOrden.entrega.items || {};
 			this.actualizarContadores();
 		},
 
 		setOrdenEntregada: function(infoOrden) {
 			this.init(infoOrden);
-			this.items = infoOrden.entrega.items;
+			console.log(infoOrden)
+			//this.items = infoOrden.entrega.items || {};
+			this.items = {};
 			this.actualizarContadores();
 		},
 

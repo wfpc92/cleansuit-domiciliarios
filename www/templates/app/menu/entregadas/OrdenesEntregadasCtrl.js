@@ -1,5 +1,6 @@
 var OrdenesEntregadasCtrl =  function ($scope,
 									$log,
+									$state,
 									OrdenesFactory) {
 	
 	$log.debug("OrdenesEntregadasCtrl")

@@ -21,12 +21,13 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		abono: {
 			hide: true
 		},
-		valido: true
-	};
-	
-	$scope.txt = {
-		cancelar: "Suspender pedido",
-		siguiente: "TOMAR PEDIDO"
+		valido: true,
+		cancelar: {
+			texto: "Suspender pedido", 
+		},
+		siguiente: {
+			texto: "TOMAR PEDIDO",
+		}
 	};
 
 	$scope.$on("$ionicView.beforeEnter", function() {

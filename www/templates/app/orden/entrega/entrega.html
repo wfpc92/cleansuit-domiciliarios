@@ -1,5 +1,5 @@
 <ion-view title="CleanSuit">
-	<ion-content class="ord-en-proceso entrega padding">
+	<ion-content class="ord-en-proceso recoleccion padding">
 
 		<menu-tabs carrito="carrito" banderas="banderas"></menu-tabs>
 
@@ -7,15 +7,21 @@
 			<h3>Ordenes para entrega</h3>
 			<p>Este es el listado de ordenes para entregar</p>
 		</div>
+
+		<div clas="card" ng-show="!hayOrdenes()">
+            <div class="item item-text-wrap">
+                No tienes ordenes para recolectar.
+            </div>
+        </div>
 		
 		<ion-list ng-if="hayOrdenes()">
-			<ion-item class="item-icon-right orden" ng-repeat="orden in ordenes track by $index" 
-					ui-sref="app.entrega-detalle( {'indexOrden': {{$index}} })">
+			<ion-item class="item-icon-right orden" ng-repeat="infoOrden in ordenes track by $index" 
+					ng-click="verInformacionOrden($index)">
 
 				<!--<h3>orden {{$index}}</h3>-->
-				<h3>Carrera 13 # 13-44</h3>
-				<h4>Dany Alejandro Cabrera</h4>
-				<span>orden # {{$index}}</span>
+				<h3>{{infoOrden.orden.recoleccion.direccion}}</h3>
+				<h4>{{infoOrden.cliente_id.nombre}}</h4>
+				<span>orden # {{infoOrden.codigo | numberFixedLen:4}}<span>
 				<i class="icon ico-flechader assertive"></i>
 
 			</ion-item>

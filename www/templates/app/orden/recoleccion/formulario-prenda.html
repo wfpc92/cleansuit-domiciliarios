@@ -112,12 +112,12 @@
 		</form>
 
 		<elemento-centrado>
-			<a ng-click="cancelar()" class="cancelar">Cancelar prenda</a>
+			<a ng-click="cancelar()" class="cancelar">{{formulario.cancelar.texto}}</a>
 		</elemento-centrado>
 	</ion-content>
 
 	<div class="bar bar-footer">
-		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="!formularioValido">{{txt.siguiente}}</a>
+		<a ng-click="siguiente()" class="button button-calm button-full" ng-disabled="!formulario.valido">{{formulario.siguiente.texto}}</a>
 	</div>
 
 </ion-view>
