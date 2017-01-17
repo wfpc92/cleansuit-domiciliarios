@@ -170,6 +170,7 @@ var OrdenesFactory = function(UsuarioFactory,
 
 		cancelarOrden: function(motivo) {
 			var self = this;
+			console.log("OrdenesFactory.cancelarOrden() motivo: ", motivo)
 			return RecursosFactory
 			.post('/ordenes/cancelar', {
 				orden_id: CarritoFactory.infoOrden._id, 
