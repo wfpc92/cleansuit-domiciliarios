@@ -11126,3 +11126,7 @@ html input[disabled] {
       width: 26px;
       text-align: center;
       color: #3DA0EB; }
+
+.bar-positive .button.button-icon {
+  color: #FFFFFF;
+  opacity: 1; }
