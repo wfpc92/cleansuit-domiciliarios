@@ -29,11 +29,7 @@ var RecoleccionProductoCtrl = function($scope,
 	};
 
 	$scope.regresarCatalogo = function() {
-		$state.go("app.recoleccion-productos", {indexOrden: $scope.indexOrden});
-		$ionicHistory.clearHistory();
-		$ionicHistory.nextViewOptions({
-			disableBack:'true'
-		})
+		$ionicHistory.goBack();
 	};
 
 };

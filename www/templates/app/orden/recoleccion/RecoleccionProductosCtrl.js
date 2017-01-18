@@ -74,6 +74,7 @@ var RecoleccionProductosCtrl = function($scope,
 		    		text: 'Si',
 		    		onTap: function(e) {
 		    			//aqui se borra (limpiar) el pedido de productos del carrito.
+		    			$scope.carrito.eliminarProductos();
 		    			$ionicHistory.nextViewOptions({
 							disableBack:'true'
 						});

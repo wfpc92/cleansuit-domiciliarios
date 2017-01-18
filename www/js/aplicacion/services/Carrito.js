@@ -256,6 +256,13 @@ var CarritoFactory = function(RecursosFactory,
 			this.actualizarContadores();
 		},
 
+		eliminarProductos: function() {
+			for (var i in this.items.productos) {
+				delete this.items.productos[i];
+			}
+			this.actualizarContadores();
+		},
+
 		aplicarPromocion: function(promocion) {
 			//$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
