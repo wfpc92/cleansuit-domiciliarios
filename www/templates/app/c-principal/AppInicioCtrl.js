@@ -17,14 +17,12 @@ var AppInicioCtrl = function($scope,
 		$log.debug("=============", PromocionesFactory.promociones)
 	});
 
-	$scope.$on("$ionicView.beforeEnter", function () {
+	/*$scope.$on("$ionicView.beforeEnter", function () {
 		//si esta almacena anteriormente
-		$scope.promociones = PromocionesFactory.promociones;
-		$scope.banderas.swp=false;
-		$scope.banderas.sws=false;
-	});
+		//$scope.promociones = PromocionesFactory.promociones;
+	});*/
 
-	$scope.cargarPromociones = function() {
+	/*$scope.cargarPromociones = function() {
 		$log.debug("AppInicioCtrl.cargarPromociones().");
 		PromocionesFactory
 		.cargar()
@@ -43,7 +41,7 @@ var AppInicioCtrl = function($scope,
 		}
 		
 		return false;
-	};
+	};*/
 };
 
 app.controller('AppInicioCtrl', AppInicioCtrl);

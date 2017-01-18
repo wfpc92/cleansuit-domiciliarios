@@ -15,8 +15,9 @@ var AppCtrl = function($scope,
 	$log.debug("AppCtrl");
 
 	$scope.banderas = {
-		swp:false,
-		sws:false
+		recoleccion: false,
+		entrega: false,
+		ultimoEstado: 'app.recoleccion'
 	}; 
 
 	$scope.carrito = CarritoFactory;

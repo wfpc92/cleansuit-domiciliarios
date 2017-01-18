@@ -26,7 +26,11 @@ var OrdenesParaEntregaCtrl =  function ($scope,
 	};
 
 	$scope.$on('$ionicView.beforeEnter', function(event) {
-		
+		$scope.banderas = {
+			recoleccion: false,
+			entrega: true,
+			ultimoEstado: $state.current.name
+		};
 	});
 
 	$scope.verInformacionOrden = function(index) {
@@ -37,6 +41,8 @@ var OrdenesParaEntregaCtrl =  function ($scope,
 		$scope.carrito.setOrdenParaEntrega(infoOrden);
 		$state.go("app.entrega-detalle");
 	};
+
+	
 	
 };
 
