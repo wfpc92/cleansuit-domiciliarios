@@ -6,7 +6,7 @@
 	
 	$log.debug("OrdenesEnRecoleccionCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
-	
+
 	OrdenesFactory
 	.cargarAsignadas() 
 	.then(function() {
@@ -26,11 +26,9 @@
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.banderas = {
-			recoleccion: true,
-			entrega: false,
-			ultimoEstado: $state.current.name
-		};
+		$scope.historial.recoleccion = true; 
+		$scope.historial.entrega = false; 
+		$scope.historial.ultimoEstado = $state.current.name; 
 	});
 
 	$scope.verInformacionOrden = function(index) {

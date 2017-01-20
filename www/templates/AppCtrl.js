@@ -2,6 +2,7 @@ var AppCtrl = function($scope,
 					$rootScope, 
 					$state, 
 					$log,
+					HistorialTabsFactory,
 					UsuarioFactory,
 					ControlDescargasFactory,
 					CarritoFactory,
@@ -14,12 +15,7 @@ var AppCtrl = function($scope,
 
 	$log.debug("AppCtrl");
 
-	$scope.banderas = {
-		recoleccion: false,
-		entrega: false,
-		ultimoEstado: 'app.recoleccion'
-	}; 
-
+	$scope.historial = HistorialTabsFactory;
 	$scope.carrito = CarritoFactory;
 	$scope.$state = $state;
 	
@@ -122,6 +118,10 @@ var AppCtrl = function($scope,
 			});
 		}
 	});
+
+	$scope.irUltimoEstado = function() {
+		$state.go($scope.historial.ultimoEstado);
+	};
 
 	$scope.logout = function() {
 		$log.debug("AppCtrl.logout():");	

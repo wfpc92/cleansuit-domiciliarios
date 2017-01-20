@@ -151,7 +151,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenEnRecoleccionCtrl'
 			}
 		}
@@ -212,7 +212,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'ConfirmacionOrdenCtrl'
 			},
 			"lista-carrito@app.recoleccion-confirmacion" : {
@@ -252,7 +252,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-entrega': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenParaEntregaCtrl'
 			}
 		}
@@ -285,7 +285,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenRecolectadaCtrl'
 			},
 			"lista-carrito@app.recolectada" : {
@@ -309,7 +309,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenEntregadaCtrl'
 			},
 			"lista-carrito@app.entregada" : {

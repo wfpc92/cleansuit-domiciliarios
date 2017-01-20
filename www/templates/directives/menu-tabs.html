@@ -1,8 +1,10 @@
 <div class="row tabs-menu">
-	<div class="col aIni" ui-sref="app.recoleccion" ng-class="{'active':banderas.recoleccion}" ng-click="banderas.recoleccion=true;banderas.entrega=false">
-		Recolección
+	<div class="col aIni" ui-sref="app.recoleccion" ng-class="{'active':historial.recoleccion}" ng-click="historial.recoleccion=true;historial.entrega=false">
+		{{carrito.contProductos}}
+		Recolección {{historial.recoleccion ? 't': 'f'}} {{historial.ultimoEstado}}
 	</div>
-	<div class="col aFin" ui-sref="app.entrega" ng-class="{'active':banderas.entrega}" ng-click="banderas.recoleccion=false;banderas.entrega=true">
-		Entrega
+	<div class="col aFin" ui-sref="app.entrega" ng-class="{'active':historial.entrega}" ng-click="historial.recoleccion=false;historial.entrega=true">
+		Entrega {{historial.entrega ? 't': 'f'}} {{historial.ultimoEstado}}
 	</div>
 </div>
+
