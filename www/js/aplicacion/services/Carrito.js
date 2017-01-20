@@ -67,9 +67,17 @@ var CarritoFactory = function(RecursosFactory,
 
 		setOrdenEntregada: function(infoOrden) {
 			this.init(infoOrden);
-			console.log(infoOrden)
 			//this.items = infoOrden.entrega.items || {};
 			this.items = {};
+			this.actualizarContadores();
+		},
+
+		setVentaDirecta: function() {
+			if (!this.ventaDirecta) {
+				this.init({});
+			} 
+
+			this.ventaDirecta = true;
 			this.actualizarContadores();
 		},
 
@@ -245,6 +253,8 @@ var CarritoFactory = function(RecursosFactory,
 		 * @return {[type]} [description]
 		 */
 		vaciar: function() {
+			this.ventaDirecta = false;
+
 			for (var i in this.items.productos) {
 				delete this.items.productos[i];
 			}

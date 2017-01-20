@@ -234,10 +234,6 @@ app.config(function($stateProvider,
 
 
 
-
-
-
-
 	.state('app.entrega', {
 		url: '/entrega/',
 		views: {
@@ -334,8 +330,7 @@ app.config(function($stateProvider,
 				controller: 'VentaProductosCtrl'
 			},
 			"productos@app.venta-productos" : {
-				templateUrl: 'templates/app/productos/productos.html',
-				controller: 'VentaProductosCtrl'
+				templateUrl: 'templates/app/productos/productos.html'
 			}
 		}
 	})
@@ -348,8 +343,20 @@ app.config(function($stateProvider,
 				controller: 'VentaProductoCtrl'
 			},
 			"producto@app.venta-producto" : {
-				templateUrl: 'templates/app/productos/producto.html',
-				controller: 'VentaProductoCtrl'
+				templateUrl: 'templates/app/productos/producto.html'
+			}
+		}
+	})
+
+	.state('app.venta-confirmar', {
+		url: '/menu-venta-producto-confirmar/',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
+				controller: 'VentaProductoConfirmarCtrl'
+			},
+			"lista-carrito@app.venta-confirmar" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})

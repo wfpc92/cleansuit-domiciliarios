@@ -1,6 +1,7 @@
 var AppCtrl = function($scope,
 					$rootScope, 
-					$state, 
+					$state,
+					$ionicHistory, 
 					$log,
 					HistorialTabsFactory,
 					UsuarioFactory,
@@ -120,6 +121,9 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.irUltimoEstado = function() {
+		$ionicHistory.nextViewOptions({
+			disableBack:'true'
+		});
 		$state.go($scope.historial.ultimoEstado);
 	};
 

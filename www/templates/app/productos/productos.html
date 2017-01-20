@@ -6,9 +6,7 @@
 
 <ion-list id="{{idLst}}" ng-if="hayProductos()" can-swipe="true">
 	<div class="productos lista">
-		<ion-item class="item-thumbnail-left item-icon-right item-text-wrap"
-			ng-repeat="producto in productos track by $index"
-			 ui-sref="{{verDetalle($index)}}">
+		<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" ng-click="verDetalle($index)">
 
 			<div class="imagen">
 			<!--{{producto.foto_url}}-->

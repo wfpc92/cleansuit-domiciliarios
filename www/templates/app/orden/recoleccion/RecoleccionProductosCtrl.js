@@ -15,7 +15,7 @@ var RecoleccionProductosCtrl = function($scope,
 	$scope.productos = ProductosFactory.productos;
 
 	$scope.verDetalle = function($index) {
-		return "app.recoleccion-producto({'indexProducto': "+ $index +" })";
+		$state.go("app.recoleccion-producto", {indexProducto: $index });
 	};
 
 	$scope.aumentarProducto = function(index) {
