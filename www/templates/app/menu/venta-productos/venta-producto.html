@@ -3,6 +3,8 @@
       <div ui-view="producto"></div>
   	</ion-content>
 
-  	<footer-carrito carrito="carrito"></footer-carrito>
+  	<div class="bar bar-footer">
+		<a ng-click="guardarPedidoProductos()" class="button button-calm button-full">ENVIAR PEDIDO</a>
+	</div>
 
 </ion-view>

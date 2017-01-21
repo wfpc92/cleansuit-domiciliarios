@@ -18,16 +18,6 @@ var RecoleccionProductosCtrl = function($scope,
 		$state.go("app.recoleccion-producto", {indexProducto: $index });
 	};
 
-	$scope.aumentarProducto = function(index) {
-		$scope.carrito.agregar(index, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
-	$scope.disminuirProducto = function(index) {
-		$scope.carrito.disminuir(index, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		if ($scope.productos.length > 0) {
 

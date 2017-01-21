@@ -4,6 +4,7 @@ var VentaProductosCtrl = function($scope,
 							//TutorialFactory,
 							$timeout,
 							$state,
+							$ionicHistory,
 							$ionicListDelegate,
 							$ionicPopup,
 							ModalCargaFactory) {
@@ -17,19 +18,9 @@ var VentaProductosCtrl = function($scope,
 		$state.go("app.venta-producto", {indexProducto: $index });
 	};
 
-	$scope.$on('$ionicView.afterEnter', function(event) {
+	$scope.$on('$ionicView.afterEnter', function() {
 		$scope.carrito.setVentaDirecta();
 	});
-
-	$scope.aumentarProducto = function(index) {
-		$scope.carrito.agregar(index, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
-	$scope.disminuirProducto = function(index) {
-		$scope.carrito.disminuir(index, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
 
 	$scope.$on("limpiarLista", function() {
 		$ionicListDelegate.closeOptionButtons();

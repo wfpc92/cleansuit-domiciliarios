@@ -121,10 +121,24 @@ var AppCtrl = function($scope,
 	});
 
 	$scope.irUltimoEstado = function() {
-		$ionicHistory.nextViewOptions({
-			disableBack:'true'
-		});
-		$state.go($scope.historial.ultimoEstado);
+		if($state.current.name != $scope.historial.ultimoEstado) {
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			});
+			$state.go($scope.historial.ultimoEstado);
+		}
+	};
+
+	$scope.irVentaDirecta = function() {
+		var estadoVentaProductos = 'app.venta-productos';
+
+		if($state.current.name != estadoVentaProductos) {
+			$scope.carrito.vaciar();
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			});
+			$state.go(estadoVentaProductos);	
+		}		
 	};
 
 	$scope.logout = function() {

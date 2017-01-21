@@ -62,13 +62,13 @@ var CarritoFactory = function(RecursosFactory,
 		setOrdenParaEntrega: function(infoOrden) {
 			this.init(infoOrden);
 			this.items = infoOrden.entrega.items || {};
+			console.log(infoOrden)
 			this.actualizarContadores();
 		},
 
 		setOrdenEntregada: function(infoOrden) {
 			this.init(infoOrden);
-			//this.items = infoOrden.entrega.items || {};
-			this.items = {};
+			this.items = infoOrden.entrega.items || {};
 			this.actualizarContadores();
 		},
 
@@ -127,6 +127,15 @@ var CarritoFactory = function(RecursosFactory,
 
 			this.actualizarContadores();
 			return true;
+		},
+
+		aumentarProducto: function(producto) {
+			console.log(producto)
+			this.agregar(producto, "PRODUCTO", 1);
+		},
+
+		disminuirProducto: function(producto) {
+			this.disminuir(producto, "PRODUCTO", 1);
 		},
 
 		eliminar : function(index, tipo) {

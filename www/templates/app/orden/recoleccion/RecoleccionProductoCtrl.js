@@ -14,20 +14,7 @@ var RecoleccionProductoCtrl = function($scope,
 	$scope.indexProducto = $stateParams.indexProducto;
 	$scope.producto = ProductosFactory.productos[$scope.indexProducto];
 	console.log($scope.indexProducto, $scope.indexOrden);
-	/*$scope.$on("$ionicView.beforeEnter", function() {
-
-	});	*/
-
-	$scope.aumentarProducto = function(){
-		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
-	$scope.disminuirProducto = function(){
-		$scope.carrito.disminuir($scope.producto, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
+	
 	$scope.regresarCatalogo = function() {
 		$ionicHistory.goBack();
 	};
