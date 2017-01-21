@@ -41,9 +41,9 @@ var OrdenEntregadaCtrl = function($scope,
 		},
 		valido: false,
 		productos: {
-			eliminar: {
-				hide: true
-			}
+			panel: false,
+			eliminar: false,
+			entregar: false
 		},
 		cancelar: {
 			hide: true

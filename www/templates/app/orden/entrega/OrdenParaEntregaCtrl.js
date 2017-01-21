@@ -9,26 +9,52 @@ var OrdenParaEntregaCtrl = function($scope,
 	$log.debug("OrdenParaEntregaCtrl");
 	
 	$scope.formulario = {
-		valido: true,
-		cancelar: {
-			hide: true
-		},
-		siguiente: {
-			texto: "ORDEN ENTREGADA"
-		}
-	};
+			recoleccion: {
+				direccion: {
+					hide: true
+				},
+				fecha: {
+					hide: true
+				},
+				hora: {
+					hide: true
+				}
+			},
+			entrega: {
+				direccion: {
+					disabled: true
+				},
+				fecha: {
+					disabled: true
+				},
+				hora: {
+					disabled: true
+				}
+			},
+			telefono: {
+				disabled: true
+			},
+			formaPago: {
+				disabled: true
+			},
+			cupon: {
+				hide: true,
+			},
+			valido: false,
+			productos: {
+				panel: false,
+				eliminar: false,
+				entregar: true
+			},
+			siguiente: {
+				texto: "ORDEN ENTREGADA"
+			}
+		};
 	
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.carrito.infoOrden.orden.recoleccion.fecha = new Date($scope.carrito.infoOrden.orden.recoleccion.fecha);
 		$scope.carrito.infoOrden.orden.entrega.fecha = new Date($scope.carrito.infoOrden.orden.entrega.fecha);
-	});
-
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		
-	});
-	
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
+		console.log($scope.carrito.items)
 	});
 
 	$scope.siguiente = function() {

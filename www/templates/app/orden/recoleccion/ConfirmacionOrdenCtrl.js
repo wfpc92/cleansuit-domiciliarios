@@ -44,7 +44,9 @@ var ConfirmacionOrdenCtrl = function($scope,
 			},
 			valido: false,
 			productos: {
-				eliminar: true
+				panel: false,
+				eliminar: true,
+				entregar: false
 			},
 			cancelar: {
 				texto: "Validación del cliente"

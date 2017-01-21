@@ -62,7 +62,7 @@ var CarritoFactory = function(RecursosFactory,
 		setOrdenParaEntrega: function(infoOrden) {
 			this.init(infoOrden);
 			this.items = infoOrden.entrega.items || {};
-			console.log(infoOrden)
+			console.log(this.items)
 			this.actualizarContadores();
 		},
 
@@ -130,7 +130,6 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		aumentarProducto: function(producto) {
-			console.log(producto)
 			this.agregar(producto, "PRODUCTO", 1);
 		},
 
@@ -139,15 +138,11 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		eliminar : function(index, tipo) {
-			console.log("CarritoFactory.eliminar", index, tipo, this.items);
 			if (tipo == 'PRODUCTO') {
-				console.log(this.items.productos[index])
 				delete this.items.productos[index];
 			} else {
-				console.log(this.items.prendas[index])
 				delete this.items.prendas[index];
 			}
-			console.log(this.items)
 			this.actualizarContadores();
 		},
 
@@ -172,8 +167,6 @@ var CarritoFactory = function(RecursosFactory,
 			this.contProductos = 0;
 			this.contPrendas = 0;
 
-			$log.debug("CarritoFactory.actualizarContadores()", this.items);
-			
 			for (var i in this.items.productos) {
 				this.contProductos += this.items.productos[i].cantidad;
 			}

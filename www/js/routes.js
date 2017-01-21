@@ -250,6 +250,9 @@ app.config(function($stateProvider,
 			'contenedor-entrega': {
 				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenParaEntregaCtrl'
+			},
+			"lista-carrito@app.entrega-detalle" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
