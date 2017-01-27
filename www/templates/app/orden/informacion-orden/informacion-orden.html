@@ -7,11 +7,11 @@
 
 		<form name="formInformacionOrden"> 
 			<ion-list>
-				<ion-item class="row">
+				<ion-item class="row" ng-hide="formulario.nombre.hide">
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input type="text" placeholder="Nombres y Apellidos" value="{{carrito.infoOrden.cliente_id.nombre}}" disabled style="color: #000 !important; opacity: 1.0 !important">
+							<input type="text" placeholder="Nombres y Apellidos" value="{{carrito.infoOrden.cliente_id.nombre}}" style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.nombre.disabled">
 						</label>
 					</div>
 				</ion-item>

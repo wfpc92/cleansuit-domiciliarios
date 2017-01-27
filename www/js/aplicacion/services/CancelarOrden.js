@@ -100,7 +100,7 @@ var CancelarOrdenFactory = function($ionicPopup,
 				    	{
 				    		text: 'Aceptar',
 					    	type: 'button-ligth',
-				    		onTap: self.cb.cancelar
+				    		onTap: self.cb.cancelar 
 				    	},
 				    ]
 			    });
@@ -118,12 +118,12 @@ var CancelarOrdenFactory = function($ionicPopup,
 		    	template: '',
 		    	buttons: [
 			    	{
-			    		text: 'El cliente esta deacuerdo con la orden',
+			    		text: 'El cliente esta de acuerdo con la orden',
 				    	type: 'button-calm',
 			    		onTap: self.cb.deacuerdo
 			    	},
 			      	{
-				    	text: '<b>El cliente esta deacuerdo con la orden</b>',
+				    	text: '<b>El cliente no esta de acuerdo con la orden</b>',
 				    	type: 'button-calm',
 			    		onTap: function(e) {
 							self.mostrarMotivos();

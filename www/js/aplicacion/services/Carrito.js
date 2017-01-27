@@ -2,6 +2,7 @@ var CarritoFactory = function(RecursosFactory,
 							PromocionesFactory, 
 							$log,
 							$state,
+							$ionicPopup,
 							ConfiguracionesFactory){
 	/**
 	 * [this.items ]
@@ -136,6 +137,52 @@ var CarritoFactory = function(RecursosFactory,
 		disminuirProducto: function(producto) {
 			this.disminuir(producto, "PRODUCTO", 1);
 		},
+
+		eliminarPrenda: function(index) {
+			var self = this;
+
+			$ionicPopup
+			.confirm({
+				title: 'Eliminar Servicio',
+				template: '¿Está seguro que desea eliminar este servicio?',
+				buttons: [
+					{
+						text: 'Si',
+						onTap: function(e) {
+							self.eliminar(index, 'PRENDA');
+						}
+					},
+					{
+						text: '<b>No</b>',
+						type: 'button-positive'
+					}
+				]
+			});
+		},
+
+		eliminarProducto: function(index) {
+			var self = this;
+
+			$ionicPopup
+			.confirm({
+		    	title: 'Eliminar Productos',
+		    	template: '¿Está seguro que desea eliminar este pedido?',
+		    	buttons: [
+			    	{
+			    		text: 'Si',
+			    		onTap: function(e) {
+			    			self.eliminar(index, 'PRODUCTO');
+			    		}
+			    	},
+			      	{
+				    	text: '<b>No</b>',
+				    	type: 'button-positive'
+			      	}
+			    ]
+		    });	    
+		},
+
+
 
 		eliminar : function(index, tipo) {
 			if (tipo == 'PRODUCTO') {

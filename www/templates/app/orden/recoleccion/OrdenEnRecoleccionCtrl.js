@@ -12,6 +12,9 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	$log.debug("OrdenEnRecoleccionCtrl");
 	
 	$scope.formulario = {
+		nombre: {
+			disabled: true,
+		},
 		totales: {
 			hide: true
 		},

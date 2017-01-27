@@ -8,6 +8,9 @@ var OrdenEntregadaCtrl = function($scope,
 	$log.debug("OrdenEntregadaCtrl");
 	
 	$scope.formulario = {
+		nombre: {
+			disabled: true
+		},
 		recoleccion: {
 			direccion: {
 				disabled: true

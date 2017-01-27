@@ -11,6 +11,9 @@ var ConfirmacionOrdenCtrl = function($scope,
 	
 	$scope.$on("$ionicView.beforeEnter", function() {		
 		$scope.formulario = {
+			nombre: {
+				disabled: true
+			},
 			recoleccion: {
 				direccion: {
 					hide: true
@@ -64,46 +67,6 @@ var ConfirmacionOrdenCtrl = function($scope,
 	$scope.$on("$ionicView.beforeLeave", function() {
 		
 	});
-
-	$scope.eliminarPrenda = function(index) {
-		$ionicPopup
-		.confirm({
-	    	title: 'Eliminar Servicio',
-	    	template: '¿Está seguro que desea eliminar este servicio?',
-	    	buttons: [
-		    	{
-		    		text: 'Si',
-		    		onTap: function(e) {
-		    			$scope.carrito.eliminar(index, 'PRENDA');
-		    		}
-		    	},
-		      	{
-			    	text: '<b>No</b>',
-			    	type: 'button-positive'
-		      	}
-		    ]
-	    });	    
-	};
-
-	$scope.eliminarProducto = function(index) {
-		$ionicPopup
-		.confirm({
-	    	title: 'Eliminar Productos',
-	    	template: '¿Está seguro que desea eliminar este pedido?',
-	    	buttons: [
-		    	{
-		    		text: 'Si',
-		    		onTap: function(e) {
-		    			$scope.carrito.eliminar(index, 'PRODUCTO');
-		    		}
-		    	},
-		      	{
-			    	text: '<b>No</b>',
-			    	type: 'button-positive'
-		      	}
-		    ]
-	    });	    
-	};
 
 	$scope.siguiente = function() {
 		if ($scope.formulario.valido) {
