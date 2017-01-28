@@ -1,8 +1,12 @@
 <ion-view title="Cleansuit">
 	<ion-content class="pdBoton orden">
 
-		<div class="titulo">
+		<div class="titulo" ng-if="!formulario.titulo.texto">
 			INFORMACIÓN DE ORDEN # {{carrito.infoOrden.codigo | numberFixedLen:4}}
+		</div> 
+		
+		<div class="titulo" ng-if="formulario.titulo.texto">
+			{{formulario.titulo.texto}}
 		</div> 
 
 		<form name="formInformacionOrden"> 

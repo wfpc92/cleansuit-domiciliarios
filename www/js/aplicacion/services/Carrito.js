@@ -74,8 +74,25 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		setVentaDirecta: function() {
+			var obtenerHora = function(hora) {
+				return "8:00"+hora.getDay();
+			}
+
 			if (!this.ventaDirecta) {
-				this.init({});
+				this.init({
+					cliente_id: {
+						nombre: null
+					},
+					orden: {
+						entrega: {
+							direccion: null,
+							fecha: new Date(),
+							hora: obtenerHora(new Date())
+						},
+						telefono: null,
+						abono: null,
+					},
+				});
 			} 
 
 			this.ventaDirecta = true;
