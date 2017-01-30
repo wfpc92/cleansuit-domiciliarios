@@ -6,7 +6,7 @@
 	
 	$log.debug("OrdenesEnRecoleccionCtrl")
 	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
-	
+
 	OrdenesFactory
 	.cargarAsignadas() 
 	.then(function() {
@@ -25,8 +25,10 @@
 		return false;
 	};
 
-	$scope.$on('$ionicView.beforeEnter', function(event) {
-		
+	$scope.$on('$ionicView.afterEnter', function(event) {
+		$scope.historial.recoleccion = true; 
+		$scope.historial.entrega = false; 
+		$scope.historial.ultimoEstado = $state.current.name; 
 	});
 
 	$scope.verInformacionOrden = function(index) {
@@ -36,8 +38,7 @@
 		//asignar los productos solicitados en app cliente al carrito.
 		$scope.carrito.setProductosRecoleccion(infoOrden);
 		$state.go("app.recoleccion-detalle", {indexOrden: index});
-	};
-	
+	};	
 };
 
 app.controller('OrdenesEnRecoleccionCtrl', OrdenesEnRecoleccionCtrl);

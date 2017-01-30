@@ -1,4 +1,4 @@
-var EnviarRecoleccionCtrl = function($scope, 
+var EnviarEntregaCtrl = function($scope, 
 							$stateParams,
 							$log,
 							$state,
@@ -21,23 +21,23 @@ var EnviarRecoleccionCtrl = function($scope,
 	});
 
 	$scope.enviar = function() {
-		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito.infoOrden);
+		console.log("EnviarEntregaCtrl.enviar", $scope.carrito.infoOrden);
 
 		
 		OrdenesFactory
-		.enviarRecolectada()
+		.enviarEntregada()
 		.then(function() {
 			$ionicPopup
 			.alert({
 		    	title: 'Orden enviada',
-		    	template: 'Revise en el Menú las ordenes enviadas.',
+		    	template: 'Revise en el Menú las ordenes entregadas.',
 		    })
 		    .then(function(){
 		    	$ionicHistory.clearHistory();
 				$ionicHistory.nextViewOptions({
 					disableBack:'true'
 				});
-		    	$state.go("app.recoleccion");
+		    	$state.go("app.entrega");
 		    });
 		});
 	};
@@ -48,4 +48,4 @@ var EnviarRecoleccionCtrl = function($scope,
 	};
 };
 
-app.controller("EnviarRecoleccionCtrl", EnviarRecoleccionCtrl);
+app.controller("EnviarEntregaCtrl", EnviarEntregaCtrl);

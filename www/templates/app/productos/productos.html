@@ -6,9 +6,7 @@
 
 <ion-list id="{{idLst}}" ng-if="hayProductos()" can-swipe="true">
 	<div class="productos lista">
-		<ion-item class="item-thumbnail-left item-icon-right item-text-wrap"
-			ng-repeat="producto in productos track by $index"
-			 ui-sref="{{verDetalle($index)}}">
+		<ion-item class="item-thumbnail-left item-icon-right item-text-wrap" ng-repeat="producto in productos track by $index" ng-click="verDetalle($index)">
 
 			<div class="imagen">
 			<!--{{producto.foto_url}}-->
@@ -23,7 +21,7 @@
 			<h3>{{producto.precio | currency : "$ " : 0}}</h3>
 			<i class="icon ico-flechader assertive"></i>
 
-			<ion-option-button class="light text-center mas" ng-click="aumentarProducto(producto)">
+			<ion-option-button class="light text-center mas" ng-click="carrito.aumentarProducto(producto)">
 				<i class="icon ico-mas"></i>
 			</ion-option-button>
 
@@ -33,7 +31,7 @@
 				</div>
 			</ion-option-button>
 
-			<ion-option-button class="light text-center menos" ng-click="disminuirProducto(producto)">
+			<ion-option-button class="light text-center menos" ng-click="carrito.disminuirProducto(producto)">
 				<i class="icon ico-menos"></i>
 			</ion-option-button>
 		</ion-item>

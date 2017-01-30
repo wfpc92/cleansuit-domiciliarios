@@ -2,6 +2,7 @@ var CarritoFactory = function(RecursosFactory,
 							PromocionesFactory, 
 							$log,
 							$state,
+							$ionicPopup,
 							ConfiguracionesFactory){
 	/**
 	 * [this.items ]
@@ -53,6 +54,34 @@ var CarritoFactory = function(RecursosFactory,
 			this.actualizarContadores();
 		},
 
+		setOrdenRecolectada: function(infoOrden) {
+			this.init(infoOrden);
+			this.items = infoOrden.recoleccion.items;
+			this.actualizarContadores();
+		},
+
+		setOrdenParaEntrega: function(infoOrden) {
+			this.init(infoOrden);
+			this.items = infoOrden.entrega.items || {};
+			console.log(this.items)
+			this.actualizarContadores();
+		},
+
+		setOrdenEntregada: function(infoOrden) {
+			this.init(infoOrden);
+			this.items = infoOrden.entrega.items || {};
+			this.actualizarContadores();
+		},
+
+		setVentaDirecta: function() {
+			if (!this.ventaDirecta) {
+				this.init({});
+			} 
+
+			this.ventaDirecta = true;
+			this.actualizarContadores();
+		},
+
 		/**
 		 * agregar un item a la lista de items del carrito
 		 * @param  {object} item item de producto o prenda
@@ -101,16 +130,66 @@ var CarritoFactory = function(RecursosFactory,
 			return true;
 		},
 
+		aumentarProducto: function(producto) {
+			this.agregar(producto, "PRODUCTO", 1);
+		},
+
+		disminuirProducto: function(producto) {
+			this.disminuir(producto, "PRODUCTO", 1);
+		},
+
+		eliminarPrenda: function(index) {
+			var self = this;
+
+			$ionicPopup
+			.confirm({
+				title: 'Eliminar Servicio',
+				template: '¿Está seguro que desea eliminar este servicio?',
+				buttons: [
+					{
+						text: 'Si',
+						onTap: function(e) {
+							self.eliminar(index, 'PRENDA');
+						}
+					},
+					{
+						text: '<b>No</b>',
+						type: 'button-positive'
+					}
+				]
+			});
+		},
+
+		eliminarProducto: function(index) {
+			var self = this;
+
+			$ionicPopup
+			.confirm({
+		    	title: 'Eliminar Productos',
+		    	template: '¿Está seguro que desea eliminar este pedido?',
+		    	buttons: [
+			    	{
+			    		text: 'Si',
+			    		onTap: function(e) {
+			    			self.eliminar(index, 'PRODUCTO');
+			    		}
+			    	},
+			      	{
+				    	text: '<b>No</b>',
+				    	type: 'button-positive'
+			      	}
+			    ]
+		    });	    
+		},
+
+
+
 		eliminar : function(index, tipo) {
-			console.log("CarritoFactory.eliminar", index, tipo, this.items);
 			if (tipo == 'PRODUCTO') {
-				console.log(this.items.productos[index])
 				delete this.items.productos[index];
 			} else {
-				console.log(this.items.prendas[index])
 				delete this.items.prendas[index];
 			}
-			console.log(this.items)
 			this.actualizarContadores();
 		},
 
@@ -135,8 +214,6 @@ var CarritoFactory = function(RecursosFactory,
 			this.contProductos = 0;
 			this.contPrendas = 0;
 
-			$log.debug("CarritoFactory.actualizarContadores()", this.items);
-			
 			for (var i in this.items.productos) {
 				this.contProductos += this.items.productos[i].cantidad;
 			}
@@ -225,6 +302,8 @@ var CarritoFactory = function(RecursosFactory,
 		 * @return {[type]} [description]
 		 */
 		vaciar: function() {
+			this.ventaDirecta = false;
+
 			for (var i in this.items.productos) {
 				delete this.items.productos[i];
 			}
@@ -233,6 +312,13 @@ var CarritoFactory = function(RecursosFactory,
 			}
 			
 			this.infoOrden = null;
+			this.actualizarContadores();
+		},
+
+		eliminarProductos: function() {
+			for (var i in this.items.productos) {
+				delete this.items.productos[i];
+			}
 			this.actualizarContadores();
 		},
 

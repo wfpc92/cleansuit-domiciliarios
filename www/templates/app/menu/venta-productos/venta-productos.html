@@ -3,8 +3,16 @@
 		<h1>Venta directa de productos</h1>
 		<h2 class="subtituloOrden">-Productos-</h2>
 		<div ui-view="productos"></div>
+
+		<elemento-centrado>
+			<a ng-click="cancelarVentaDirecta()" class="">Cancelar venta directa</a>
+		</elemento-centrado>
+
 	</ion-content>
 
-   <footer-carrito carrito="carrito"></footer-carrito>
+	<div class="bar bar-footer" ng-hide="formulario.siguiente.hide">
+		<a ng-click="guardarPedidoProductos()" class="button button-calm button-full">ENVIAR PEDIDO</a>
+	</div>
+
 
 </ion-view>

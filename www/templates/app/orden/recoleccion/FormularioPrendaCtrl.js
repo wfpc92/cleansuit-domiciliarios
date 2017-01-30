@@ -11,7 +11,15 @@ var FormularioPrendaCtrl = function($scope,
 
 	$log.debug("FormularioServicioCtrl");
 
-	$scope.formularioValido = false;
+	$scope.formulario = {
+		valido: false,
+		cancelar: {
+			texto: "Cancelar Prenda", 
+		},
+		siguiente: {
+			texto: "GUARDAR PRENDA",
+		}
+	};
 
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.servicios = ServiciosFactory.servicios;
@@ -34,11 +42,11 @@ var FormularioPrendaCtrl = function($scope,
 				'prenda.subservicio'
 			], function(newV, oldV) {
 			if (newV[0] && newV[1]) {
-				$scope.formularioValido = true;
+				$scope.formulario.valido = true;
 			} else {
-				$scope.formularioValido = false;
+				$scope.formulario.valido = false;
 			}
-			console.log("Watch$$$$$: ",newV, oldV, $scope.formularioValido);
+			console.log("Watch$$$$$: ",newV, oldV, $scope.formulario.valido);
 		});
 	});
 
@@ -117,10 +125,7 @@ var FormularioPrendaCtrl = function($scope,
 		    	{
 		    		text: 'Si',
 		    		onTap: function(e) {
-		    			$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$state.go("app.recoleccion-carrito", {indexOrden: $scope.indexOrden});
+		    			$ionicHistory.goBack();
 		    		}
 		    	},
 		      	{
@@ -144,16 +149,13 @@ var FormularioPrendaCtrl = function($scope,
 		//console.log($scope.prenda)
 	};
 
-	$scope.txt = {
-		cancelar: "Cancelar Prenda",
-		siguiente: "GUARDAR PRENDA"
-	};
+	
 
 	$scope.siguiente = function() {
 		var agregar = false;
 
-		console.log("FormularioServicioCtrl.siguiente", $scope.formularioValido)
-		if ($scope.formularioValido && (typeof $scope.prenda.subservicio !== 'undefined')) {
+		console.log("FormularioServicioCtrl.siguiente", $scope.formulario.valido)
+		if ($scope.formulario.valido && (typeof $scope.prenda.subservicio !== 'undefined')) {
 			
 			if (!$scope.esNueva) {
 				agregar = $scope.carrito.agregar($scope.prenda, 'PRENDA', 1);

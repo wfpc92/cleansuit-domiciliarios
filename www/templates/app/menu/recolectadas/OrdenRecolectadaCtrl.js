@@ -1,11 +1,11 @@
-var OrdenEntregadaCtrl = function($scope, 
+var OrdenRecolectadaCtrl = function($scope, 
 							$stateParams,
 							$log,
 							$ionicListDelegate,
 							OrdenesFactory, 
 							$timeout) {
 
-	$log.debug("OrdenEntregadaCtrl");
+	$log.debug("OrdenRecolectadaCtrl");
 	
 	$scope.formulario = {
 		nombre: {
@@ -68,8 +68,7 @@ var OrdenEntregadaCtrl = function($scope,
 	$scope.$on("$ionicView.beforeLeave", function() {
 		
 	});
-
 };
 
 
-app.controller("OrdenEntregadaCtrl", OrdenEntregadaCtrl);
+app.controller("OrdenRecolectadaCtrl", OrdenRecolectadaCtrl);

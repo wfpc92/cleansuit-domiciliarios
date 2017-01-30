@@ -1,10 +1,17 @@
 var CancelarOrdenFactory = function($ionicPopup,
 									$ionicHistory,
 									$state,
+									$rootScope,
 									OrdenesFactory) {
 	
 	return {
 		$scope: null, 
+
+		motivos: [
+    		{ texto: "Valor elevado", valor: "0" },
+    		{ texto: "Manifiesta mala atención", valor: "1" },
+    		{ texto: "Prefiere otra empresa", valor: "2" }
+    	],
 
 		cb: {
 			pendiente: function() {},
@@ -41,27 +48,19 @@ var CancelarOrdenFactory = function($ionicPopup,
 		},
 
 		mostrarMotivos: function() {
-			var self = this;
-
-			self.$scope.motivos = {
-				m1: "0",
-				m2: "1",
-				m3: "2",
-			};
-
-			self.$scope.motivo = self.$scope.motivos.m1;
+			var self = this;	    	
 			
-			var template =
-				'<ion-list >'+
-					'<ion-radio ng-model="motivo" ng-value="motivos.m1">Valor elevado</ion-radio>'+
-					'<ion-radio ng-model="motivo" ng-value="motivos.m2">Manifiesta mala atención</ion-radio>' +
-					'<ion-radio ng-model="motivo" ng-value="motivos.m3">Prefiere otra empresa</ion-radio>' +
-				'</ion-list>';
+			var scope = $rootScope.$new();
+			scope.motivos = self.motivos;
+	    	scope.motivo = {
+				valor: scope.motivos[0].valor
+			};
 
 			$ionicPopup
 			.confirm({
 		    	title: 'Causa por la cual el cliente cancela el pedido',
-		    	template: template,
+		    	templateUrl: "templates/app/orden/motivos-cancelacion-orden.html",
+		    	scope: scope,
 		    	buttons: [
 			    	{
 			    		text: 'Volver a información de orden',
@@ -73,19 +72,19 @@ var CancelarOrdenFactory = function($ionicPopup,
 				    	type: 'button-calm',
 			    		onTap: function(e) {
 			    			//enviar motivo de suspension de Pedido
-							self.mostrarEnviarCancelacion();
+							self.mostrarEnviarCancelacion(scope.motivo.valor);
 			    		}
 			      	}
 			    ]
 		    });
 		},
 
-		mostrarEnviarCancelacion: function() {
+		mostrarEnviarCancelacion: function(indexMotivo) {
 			var self = this;
 
-
+			console.log("CancelarOrdenFactory.mostrarEnviarCancelacion: indexMotivo: ", indexMotivo);
 			OrdenesFactory
-			.cancelarOrden(self.$scope.motivo)
+			.cancelarOrden(indexMotivo)
 			.then(function(res) {
 				var txt = "fue enviada.";
 				console.log(res)
@@ -101,7 +100,7 @@ var CancelarOrdenFactory = function($ionicPopup,
 				    	{
 				    		text: 'Aceptar',
 					    	type: 'button-ligth',
-				    		onTap: self.cb.cancelar
+				    		onTap: self.cb.cancelar 
 				    	},
 				    ]
 			    });
@@ -119,12 +118,12 @@ var CancelarOrdenFactory = function($ionicPopup,
 		    	template: '',
 		    	buttons: [
 			    	{
-			    		text: 'El cliente esta deacuerdo con la orden',
+			    		text: 'El cliente esta de acuerdo con la orden',
 				    	type: 'button-calm',
 			    		onTap: self.cb.deacuerdo
 			    	},
 			      	{
-				    	text: '<b>El cliente esta deacuerdo con la orden</b>',
+				    	text: '<b>El cliente no esta de acuerdo con la orden</b>',
 				    	type: 'button-calm',
 			    		onTap: function(e) {
 							self.mostrarMotivos();

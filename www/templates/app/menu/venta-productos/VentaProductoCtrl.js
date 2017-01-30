@@ -9,26 +9,11 @@ var VentaProductoCtrl = function($scope,
 
 	$scope.indexProducto = $stateParams.indexProducto;
 	$scope.producto = ProductosFactory.productos[$scope.indexProducto];
-	/*
 
-	$scope.aumentarProducto = function(){
-		$scope.carrito.agregar($scope.producto, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
+	$scope.guardarPedidoProductos = function() {
+		//aqui se guarda el pedido de productos en el carrito de la orden en recoleccion.
+		$state.go("app.venta-confirmar");
 	};
-
-	$scope.disminuirProducto = function(){
-		$scope.carrito.disminuir($scope.producto, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
-	$scope.regresarCatalogo = function() {
-		$state.go("app.productos");
-		$ionicHistory.clearHistory();
-		$ionicHistory.nextViewOptions({
-			disableBack:'true'
-		})
-	};*/
-
 };
 
 app.controller('VentaProductoCtrl', VentaProductoCtrl);

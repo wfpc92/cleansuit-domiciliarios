@@ -11,9 +11,10 @@ var OrdenEnRecoleccionCtrl = function($scope,
 
 	$log.debug("OrdenEnRecoleccionCtrl");
 	
-	$scope.formularioValido = true;
-
 	$scope.formulario = {
+		nombre: {
+			disabled: true,
+		},
 		totales: {
 			hide: true
 		},
@@ -23,12 +24,13 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		abono: {
 			hide: true
 		},
-		valido: true
-	};
-	
-	$scope.txt = {
-		cancelar: "Suspender pedido",
-		siguiente: "TOMAR PEDIDO"
+		valido: true,
+		cancelar: {
+			texto: "Suspender pedido", 
+		},
+		siguiente: {
+			texto: "TOMAR PEDIDO",
+		}
 	};
 
 	$scope.$on("$ionicView.beforeEnter", function() {
@@ -45,7 +47,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 	});
 
 	$scope.siguiente = function() {
-		if ($scope.formularioValido) {
+		if ($scope.formulario.valido) {
 			$state.go("app.recoleccion-carrito")
 		}
 		else {
@@ -55,6 +57,19 @@ var OrdenEnRecoleccionCtrl = function($scope,
 
 	//cancelar orden:
 	$scope.cancelar = function() {
+		
+		$scope.clientSideList = [
+    		{ text: "Valor elevado", value: "0" },
+    		{ text: "Manifiesta mala atención", value: "1" },
+    		{ text: "Prefiere otra empresa", value: "2" }
+    	];
+
+    	$scope.data = {
+			clientSide: '0'
+		};
+
+		$scope.$ionicPopup = $ionicPopup;
+
 		CancelarOrdenFactory.$scope = $scope;
 		CancelarOrdenFactory.cb = {
 			pendiente: 	function(e) {
@@ -71,6 +86,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 			},
 
 			enviar: function(e) {
+				console.log($scope.motivo)
 				$scope.carrito.vaciar();
 			},
 

@@ -38,16 +38,18 @@
 						<img ng-src="{{usuario.url_foto || 'img/perfil.png'}}">
 					</div>
 					<div class="nombre">
-						<h2>{{usuario.nombre | uppercase}} </h2>
+						<h2>
+							{{usuario.nombre | uppercase}}
+						</h2>
 					</div>
 				</ion-item>
 
-				<ion-item menu-close ui-sref="app.recoleccion" class="item-icon-left">
+				<ion-item menu-close ng-click="irUltimoEstado()" class="cerrar item-icon-left">
 					Inicio
 					<i class="icon ico-home"></i>
 				</ion-item>
 
-				<ion-item menu-close ui-sref="app.recogidas" class="item-icon-left">
+				<ion-item menu-close ui-sref="app.recolectadas" class="item-icon-left">
 					Órdenes recogidas
 					<i class="icon icons icons-ord_recogidas"></i>
 				</ion-item>
@@ -57,7 +59,7 @@
 					<i class="icon icons icons-ord_entregadas"></i>
 				</ion-item>
 
-				<ion-item menu-close ui-sref="app.venta-productos" class="item-icon-left">
+				<ion-item menu-close ng-click="irVentaDirecta()" class="cerrar item-icon-left">
 					Venta directa de producto
 					<i class="icon icons icons-venta_directa"></i>
 				</ion-item>

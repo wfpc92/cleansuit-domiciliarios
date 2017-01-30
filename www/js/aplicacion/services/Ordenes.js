@@ -168,8 +168,13 @@ var OrdenesFactory = function(UsuarioFactory,
 			infoOrden.recoleccion = infoOrden.recoleccion || {};
 		},
 
+		iniciarEntrega: function(infoOrden) {
+			infoOrden.entrega = infoOrden.entrega || {};
+		},
+
 		cancelarOrden: function(motivo) {
 			var self = this;
+			console.log("OrdenesFactory.cancelarOrden() motivo: ", motivo)
 			return RecursosFactory
 			.post('/ordenes/cancelar', {
 				orden_id: CarritoFactory.infoOrden._id, 
@@ -177,6 +182,44 @@ var OrdenesFactory = function(UsuarioFactory,
 			})
 			.then(function(respuesta) {
 				console.log("OrdenesFactory.cancelarOrden()", respuesta)
+				self.cargarAsignadas()
+				.then(function() {
+					
+				});
+				return respuesta;	
+			});
+		},
+
+		enviarRecolectada: function() {
+			var self = this;
+			CarritoFactory.infoOrden.recoleccion = {
+				items: CarritoFactory.items, 
+			};
+			CarritoFactory.infoOrden.estado = 'recolectada';
+
+			return RecursosFactory
+			.put('/ordenes/'+CarritoFactory.infoOrden._id, CarritoFactory.infoOrden)
+			.then(function(respuesta) {
+				console.log("OrdenesFactory.enviarRecolectada()", respuesta)
+				self.cargarAsignadas()
+				.then(function() {
+					
+				});
+				return respuesta;	
+			});
+		},
+
+		enviarEntregada: function() {
+			var self = this;
+			CarritoFactory.infoOrden.entrega = {
+				items: CarritoFactory.items, 
+			};
+			CarritoFactory.infoOrden.estado = 'entregada';
+
+			return RecursosFactory
+			.put('/ordenes/'+CarritoFactory.infoOrden._id, CarritoFactory.infoOrden)
+			.then(function(respuesta) {
+				console.log("OrdenesFactory.enviarEntregada()", respuesta)
 				self.cargarAsignadas()
 				.then(function() {
 					

@@ -15,17 +15,7 @@ var RecoleccionProductosCtrl = function($scope,
 	$scope.productos = ProductosFactory.productos;
 
 	$scope.verDetalle = function($index) {
-		return "app.recoleccion-producto({'indexProducto': "+ $index +" })";
-	};
-
-	$scope.aumentarProducto = function(index) {
-		$scope.carrito.agregar(index, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
-	};
-
-	$scope.disminuirProducto = function(index) {
-		$scope.carrito.disminuir(index, "PRODUCTO", 1);
-		$scope.carrito.limpiar();
+		$state.go("app.recoleccion-producto", {indexProducto: $index });
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
@@ -74,6 +64,7 @@ var RecoleccionProductosCtrl = function($scope,
 		    		text: 'Si',
 		    		onTap: function(e) {
 		    			//aqui se borra (limpiar) el pedido de productos del carrito.
+		    			$scope.carrito.eliminarProductos();
 		    			$ionicHistory.nextViewOptions({
 							disableBack:'true'
 						});

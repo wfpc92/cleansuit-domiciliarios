@@ -36,6 +36,9 @@ var RecursosFactory = function($log, $http, API_ENDPOINT, APP_EVENTS, $rootScope
 		},
 		post: function(recursos, params) {
 			return self.solicitud("POST", recursos, {}, params);	
+		},
+		put: function(recursos, params) {
+			return self.solicitud("PUT", recursos, {}, params);	
 		}
 	};
 };

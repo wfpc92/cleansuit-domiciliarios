@@ -8,9 +8,9 @@
 	<div class="contenedor">
 		<h3>{{producto.precio | currency : "$ " : 0}}</h3>
 		<div class="contador">
-			<i ng-click="aumentarProducto()" class="icon ico-mas"></i>
+			<i ng-click="carrito.aumentarProducto(producto)" class="icon ico-mas"></i>
 			<span>{{carrito.cantidad(producto._id)}}</span>
-			<i ng-click="disminuirProducto()" class="icon ico-menos"></i>
+			<i ng-click="carrito.disminuirProducto(producto)" class="icon ico-menos"></i>
 		</div>
 	</div>
 

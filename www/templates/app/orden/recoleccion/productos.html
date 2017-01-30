@@ -1,5 +1,5 @@
 <ion-view title="Cleansuit">
-	<ion-content>
+	<ion-content class="has-footer">
 
 		<div class="tituloOrden">
 			ORDEN # {{carrito.infoOrden.codigo | numberFixedLen:4}}
@@ -11,7 +11,9 @@
 
  		<div ui-view="productos"></div>
 
- 		<a class="cancelarPedido" ng-click="cancelarPedidoProductos()">Cancelar pedido productos</a>
+ 		<elemento-centrado>
+			<a ng-click="cancelarPedidoProductos()" class="cancelarPedido">Cancelar pedido productos</a>
+		</elemento-centrado>
 	</ion-content>
 
    <div class="bar bar-footer">

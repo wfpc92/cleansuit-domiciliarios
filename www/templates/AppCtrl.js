@@ -1,7 +1,9 @@
 var AppCtrl = function($scope,
 					$rootScope, 
-					$state, 
+					$state,
+					$ionicHistory, 
 					$log,
+					HistorialTabsFactory,
 					UsuarioFactory,
 					ControlDescargasFactory,
 					CarritoFactory,
@@ -14,11 +16,7 @@ var AppCtrl = function($scope,
 
 	$log.debug("AppCtrl");
 
-	$scope.banderas = {
-		swp:false,
-		sws:false
-	}; 
-
+	$scope.historial = HistorialTabsFactory;
 	$scope.carrito = CarritoFactory;
 	$scope.$state = $state;
 	
@@ -121,6 +119,27 @@ var AppCtrl = function($scope,
 			});
 		}
 	});
+
+	$scope.irUltimoEstado = function() {
+		if($state.current.name != $scope.historial.ultimoEstado) {
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			});
+			$state.go($scope.historial.ultimoEstado);
+		}
+	};
+
+	$scope.irVentaDirecta = function() {
+		var estadoVentaProductos = 'app.venta-productos';
+
+		if($state.current.name != estadoVentaProductos) {
+			$scope.carrito.vaciar();
+			$ionicHistory.nextViewOptions({
+				disableBack:'true'
+			});
+			$state.go(estadoVentaProductos);	
+		}		
+	};
 
 	$scope.logout = function() {
 		$log.debug("AppCtrl.logout():");	

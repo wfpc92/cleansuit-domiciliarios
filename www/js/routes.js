@@ -151,7 +151,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenEnRecoleccionCtrl'
 			}
 		}
@@ -212,7 +212,7 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'ConfirmacionOrdenCtrl'
 			},
 			"lista-carrito@app.recoleccion-confirmacion" : {
@@ -234,10 +234,6 @@ app.config(function($stateProvider,
 
 
 
-
-
-
-
 	.state('app.entrega', {
 		url: '/entrega/',
 		views: {
@@ -252,8 +248,21 @@ app.config(function($stateProvider,
 		cache: false,
 		views: {
 			'contenedor-entrega': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenParaEntregaCtrl'
+			},
+			"lista-carrito@app.entrega-detalle" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
+			}
+		}
+	})
+	.state('app.entrega-envio', {
+		url: '/entrega-envio',
+		cache: false,
+		views: {
+			'contenedor-entrega': {
+				templateUrl: 'templates/app/orden/envio-orden.html',
+				controller: 'EnviarEntregaCtrl'
 			}
 		}
 	})
@@ -261,22 +270,25 @@ app.config(function($stateProvider,
 
 
 	//Rutas de opciones de menu
-	.state('app.recogidas', {
-		url: '/menu-recogidas',
+	.state('app.recolectadas', {
+		url: '/menu-recolectadas',
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/menu/recogidas/recogidas.html',
-				controller: 'OrdenesRecogidasCtrl'
+				templateUrl: 'templates/app/menu/recolectadas/recolectadas.html',
+				controller: 'OrdenesRecolectadasCtrl'
 			}
 		}
 	})
-	.state('app.recogida', {
-		url: '/menu-recogida/:indexOrden',
+	.state('app.recolectada', {
+		url: '/menu-recolectada',
 		cache: false,
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
-				controller: 'OrdenRecogidaCtrl'
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
+				controller: 'OrdenRecolectadaCtrl'
+			},
+			"lista-carrito@app.recolectada" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
@@ -292,15 +304,21 @@ app.config(function($stateProvider,
 		}
 	})
 	.state('app.entregada', {
-		url: '/menu-entregada/:indexOrden',
+		url: '/menu-entregada',
 		cache: false,
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/orden/informacion-orden.html',
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
 				controller: 'OrdenEntregadaCtrl'
+			},
+			"lista-carrito@app.entregada" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
+
+
+	
 
 	/*
 	app.
@@ -315,8 +333,7 @@ app.config(function($stateProvider,
 				controller: 'VentaProductosCtrl'
 			},
 			"productos@app.venta-productos" : {
-				templateUrl: 'templates/app/productos/productos.html',
-				controller: 'VentaProductosCtrl'
+				templateUrl: 'templates/app/productos/productos.html'
 			}
 		}
 	})
@@ -329,8 +346,20 @@ app.config(function($stateProvider,
 				controller: 'VentaProductoCtrl'
 			},
 			"producto@app.venta-producto" : {
-				templateUrl: 'templates/app/productos/producto.html',
-				controller: 'VentaProductoCtrl'
+				templateUrl: 'templates/app/productos/producto.html'
+			}
+		}
+	})
+
+	.state('app.venta-confirmar', {
+		url: '/menu-venta-producto-confirmar/',
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/orden/informacion-orden/informacion-orden.html',
+				controller: 'VentaProductoConfirmarCtrl'
+			},
+			"lista-carrito@app.venta-confirmar" : {
+				templateUrl: 'templates/app/orden/lista-carrito.html'
 			}
 		}
 	})
