@@ -10,10 +10,13 @@ var VentaProductoConfirmarCtrl = function($scope,
 
 	$scope.formulario = {
 		titulo: {
-			texto: "VENTA DE PRODUCTOS"
+			texto: "Venta directa de productos"
 		},
 		cupon: {
 			hide: true,
+		},
+		abono: {
+			hide: true
 		},
 		valido: false,
 		productos: {

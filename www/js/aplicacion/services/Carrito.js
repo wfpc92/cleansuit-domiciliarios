@@ -90,7 +90,7 @@ var CarritoFactory = function(RecursosFactory,
 							hora: obtenerHora(new Date())
 						},
 						telefono: null,
-						abono: null,
+						formaPago: null,
 					},
 				});
 			} 
@@ -270,7 +270,8 @@ var CarritoFactory = function(RecursosFactory,
 			}
 			
 			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
-			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;	
+			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;
+			this.totales.domicilio = (this.ventaDirecta ? 0 : this.totales.domicilio);	
 			this.totales.subtotal = subtotal;
 			this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
 

@@ -15,7 +15,7 @@
 					<div class="col">
 						<label class="item-input item-stacked-label izq">
 							<span class="input-label">Nombres y Apellidos</span>
-							<input type="text" placeholder="Nombres y Apellidos" value="{{carrito.infoOrden.cliente_id.nombre}}" style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.nombre.disabled">
+							<input type="text" placeholder="Nombres y Apellidos" ng-model="carrito.infoOrden.cliente_id.nombre" style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.nombre.disabled">
 						</label>
 					</div>
 				</ion-item>
@@ -101,7 +101,7 @@
 					<div class="col col-75">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Cupón de Descuento</span>
-							<input type="text" placeholder="Cupón de descuento" ng-model="orden.cupon" ng-change="carrito.infoOrden.orden.cupon=carrito.infoOrden.orden.cupon.toUpperCase();" ng-disabled="formulario.cupon.disabled" >
+							<input type="text" placeholder="Cupón de descuento" ng-model="carrito.infoOrden.orden.cupon" ng-change="carrito.infoOrden.orden.cupon=carrito.infoOrden.orden.cupon.toUpperCase();" ng-disabled="formulario.cupon.disabled" >
 						</label>
 					</div>
 				</ion-item>
@@ -110,7 +110,7 @@
  					<div class="col">
  						<label class="item-input item-stacked-label item-floating-label">
  							<span class="input-label item-icon-right">Abono</span>
- 							<input type="tel" placeholder="Abono" ng-model="orden.abono" name="abono" maxlength="12" ng-minlength="0" ng-disabled="formulario.abono.disabled">
+ 							<input type="tel" placeholder="Abono" ng-model="carrito.infoOrden.orden.abono" name="abono" maxlength="12" ng-minlength="0" ng-disabled="formulario.abono.disabled">
  						</label>
  					</div>
  				</ion-item>
