@@ -12,6 +12,7 @@ var VentaProductoCtrl = function($scope,
 
 	$scope.guardarPedidoProductos = function() {
 		//aqui se guarda el pedido de productos en el carrito de la orden en recoleccion.
+		$scope.carrito.setVentaDirecta();
 		$state.go("app.venta-confirmar");
 	};
 };

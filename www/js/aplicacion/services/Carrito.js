@@ -74,8 +74,25 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		setVentaDirecta: function() {
+			var obtenerHora = function(hora) {
+				return "8:00"+hora.getDay();
+			}
+
 			if (!this.ventaDirecta) {
-				this.init({});
+				this.init({
+					cliente_id: {
+						nombre: null
+					},
+					orden: {
+						entrega: {
+							direccion: null,
+							fecha: new Date(),
+							hora: obtenerHora(new Date())
+						},
+						telefono: null,
+						formaPago: null,
+					},
+				});
 			} 
 
 			this.ventaDirecta = true;
@@ -253,7 +270,8 @@ var CarritoFactory = function(RecursosFactory,
 			}
 			
 			this.totales.descuento = descuento !== 0 ? descuento * -1 : null;
-			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;	
+			this.totales.domicilio = ConfiguracionesFactory.getConfiguraciones().domicilio || 0;
+			this.totales.domicilio = (this.ventaDirecta ? 0 : this.totales.domicilio);	
 			this.totales.subtotal = subtotal;
 			this.totales.total = (subtotal !== 0 ? subtotal + this.domicilio - descuento: 0);
 

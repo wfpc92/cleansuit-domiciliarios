@@ -1,5 +1,6 @@
 var VentaProductoConfirmarCtrl = function($scope,
 							$stateParams,
+							OrdenesFactory,
 							ProductosFactory,
 							$ionicHistory,
 							$state,
@@ -7,13 +8,15 @@ var VentaProductoConfirmarCtrl = function($scope,
 
 	$log.debug("VentaProductoConfirmarCtrl");
 
-
 	$scope.formulario = {
-		formaPago: {
-			disabled: true
+		titulo: {
+			texto: "Venta directa de productos"
 		},
 		cupon: {
 			hide: true,
+		},
+		abono: {
+			hide: true
 		},
 		valido: false,
 		productos: {
@@ -22,12 +25,18 @@ var VentaProductoConfirmarCtrl = function($scope,
 			entregar: false
 		},
 		cancelar: {
-			texto: "Validación del cliente"
+			hide: true
 		},
 		siguiente: {
 			texto: "REALIZAR ORDEN"
-		}
+		},
+		valido: true
 	};
+
+	$scope.siguiente = function() {
+		$state.go("app.venta-envio")
+	};
+	
 
 };
 

@@ -226,6 +226,23 @@ var OrdenesFactory = function(UsuarioFactory,
 				});
 				return respuesta;	
 			});
+		},
+
+		enviarVentaDirecta: function() {
+			var self = this;
+			$log.debug("OrdenFactory.enviarVentaDirecta(): ", CarritoFactory.infoOrden);	
+			
+			CarritoFactory.infoOrden.entrega = {
+				items: CarritoFactory.items, 
+			};
+			
+			return RecursosFactory
+			.post("/ordenes/venta-directa", CarritoFactory.infoOrden)
+			.then(function(response) {
+				console.log("OrdenesFactory.enviarVentaDirecta(): ", response);
+				self.limpiarOrden();
+				self.cargarAsignadas();
+			});
 		}
 	};
 
