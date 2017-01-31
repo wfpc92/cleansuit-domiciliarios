@@ -9970,7 +9970,7 @@ p {
   font-family: 'fira_sansregular'; }
 
 .lista {
-  padding-bottom: 60px;
+  padding-bottom: 0px;
   margin: 0px 10px 10px; }
   .lista .item {
     border: none;
@@ -10101,7 +10101,7 @@ p {
     text-align: center; }
   .vista .img {
     background-image: url("../img/sombra-producto.png");
-    background-size: 100% 200px;
+    background-size: 100% 225px;
     width: 100%;
     padding: 10px 0;
     text-align: center;
@@ -10145,7 +10145,8 @@ p {
     padding: 25px 25px 1px; }
     .vista .descripcion h3 {
       font-size: 100%;
-      margin-bottom: 3px; }
+      margin-bottom: 3px;
+      font-family: 'fira_sansmedium'; }
     .vista .descripcion p {
       text-align: left;
       margin-bottom: 22px; }
@@ -10203,7 +10204,7 @@ p {
   border: none;
   margin-bottom: 5px;
   padding-bottom: 8px;
-  padding-right: 120px;
+  padding-right: 50px;
   padding-top: 16px;
   font-family: 'fira_sansmedium';
   min-height: 100px;
@@ -10246,7 +10247,7 @@ p {
     .contcarro .carro .item .contador span {
       position: absolute;
       top: 7px;
-      left: 41px;
+      left: 0px;
       width: 26px;
       text-align: center; }
 
@@ -10885,23 +10886,50 @@ html input[disabled] {
   .entregadas .titulo p {
     max-width: 260px; }
 
-.ventaDirecta h1 {
+.enlace {
+  padding-bottom: 60px; }
+
+.ventaDirecta .tituloOrden, .addProductos .tituloOrden {
+  margin-bottom: 0; }
+
+.ventaDirecta h1, .addProductos h1 {
   text-align: center;
   font-family: "fira_sansmedium";
-  font-size: 1.6em;
+  font-size: 1.5em;
   background-color: #E5E5E5;
   color: #333333;
   padding: 16px 0;
   margin: 10px 10px 0; }
 
-.ventaDirecta h2.subtitulo {
-  background-color: #44A01A;
-  color: #FFFFFF;
-  text-align: center;
-  font-family: "fira_sansmedium";
-  font-size: 1.6em;
-  margin: 20px;
-  padding: 12px 0; }
+.ventaDirecta .contenedor, .addProductos .contenedor {
+  background-color: #FFFFFF;
+  margin: 0 10px;
+  padding-top: 10px; }
+  .ventaDirecta .contenedor .subtituloOrden, .addProductos .contenedor .subtituloOrden {
+    margin-top: 0; }
+  .ventaDirecta .contenedor h2.subtitulo, .addProductos .contenedor h2.subtitulo {
+    background-color: #44A01A;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: "fira_sansmedium";
+    font-size: 1.6em;
+    margin: 20px;
+    padding: 12px 0; }
+  .ventaDirecta .contenedor .lista, .addProductos .contenedor .lista {
+    margin: 1px margin-bottom-1px; }
+    .ventaDirecta .contenedor .lista .item, .addProductos .contenedor .lista .item {
+      margin-bottom: 0px; }
+    .ventaDirecta .contenedor .lista .item-content, .addProductos .contenedor .lista .item-content {
+      border-top: 1px solid #EDEDED;
+      border-bottom: 1px solid #F1F1F1;
+      font-family: 'fira_sansmedium'; }
+      .ventaDirecta .contenedor .lista .item-content h2, .addProductos .contenedor .lista .item-content h2 {
+        color: #333;
+        font-family: 'fira_sansmedium'; }
+      .ventaDirecta .contenedor .lista .item-content h3, .addProductos .contenedor .lista .item-content h3 {
+        font-family: 'fira_sansmedium';
+        color: #76A900;
+        font-size: 1.1em; }
 
 .producto.directa .orden {
   display: block;
@@ -10985,6 +11013,28 @@ html input[disabled] {
   padding: 0 10px 1px;
   margin-top: -20px; }
 
+.contcarro .cont {
+  background-color: #FFFFFF;
+  margin: 0 10px;
+  height: 85%; }
+  .contcarro .cont .arriba {
+    padding: 15% 0; }
+  .contcarro .cont p {
+    font-family: 'fira_sansmedium';
+    color: #686868;
+    font-size: 1.25em;
+    margin: 20px 0 30px; }
+  .contcarro .cont .enviar {
+    display: inline-block;
+    background-color: #44A01A;
+    border: 1px solid #A1CF8C;
+    color: #FFFFFF;
+    height: 65px;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1.25em;
+    font-family: 'fira_sansmedium'; }
+
 .tituloOrden {
   font-family: 'fira_sansmedium';
   font-size: 1.3em;
@@ -11032,7 +11082,7 @@ html input[disabled] {
           top: 50%;
           left: 50%;
           color: #3DA0EB;
-          margin-left: -14px;
+          margin-left: -13px;
           margin-top: -13px; }
   .serviadd form .list {
     padding: 10px 15px 0; }
@@ -11072,13 +11122,19 @@ html input[disabled] {
   background-color: #FFFFFF;
   padding: 0 10px 1px;
   margin-bottom: -1px; }
+  .carro .contenedor .servicio .img {
+    overflow: hidden; }
+    .carro .contenedor .servicio .img img {
+      display: block;
+      height: 100%;
+      margin: 0 auto; }
 
 .carro .item {
   position: relative;
   border: none;
   margin-bottom: 5px;
   padding-bottom: 8px;
-  padding-right: 120px;
+  padding-right: 50px;
   padding-top: 16px;
   font-family: 'fira_sansmedium';
   min-height: 110px;
@@ -11110,9 +11166,10 @@ html input[disabled] {
     position: absolute;
     top: 50%;
     right: 10px;
-    height: 35px;
+    height: 30px;
     font-size: 1.5em;
-    margin-top: -17.5px; }
+    margin-top: -15px;
+    width: 30px; }
     .carro .item .contador .icon {
       display: inline-block;
       font-size: 35px;
@@ -11121,12 +11178,47 @@ html input[disabled] {
       margin-right: 30px; }
     .carro .item .contador span {
       position: absolute;
-      top: 7px;
-      left: 41px;
-      width: 26px;
+      font-size: 0.75em;
+      line-height: 30px;
+      left: 0px;
+      width: 30px;
+      height: 30px;
       text-align: center;
-      color: #3DA0EB; }
+      color: #333333;
+      background-color: #E9E9E9;
+      font-family: 'fira_sansregular'; }
 
 .bar-positive .button.button-icon {
   color: #FFFFFF;
   opacity: 1; }
+
+.ion-ios-close-outline {
+  position: absolute;
+  height: 35px;
+  margin-top: -17.5px;
+  top: 50%;
+  right: 10px; }
+
+.ion-ios-close-outline:before {
+  color: #3DA0EB;
+  font-size: 35px; }
+
+.titulo.enviar {
+  background-color: #1376E5;
+  color: #FFFFFF;
+  margin-bottom: 0; }
+
+.list {
+  padding-bottom: 0px; }
+
+.prenda select {
+  border: none;
+  display: block;
+  width: 95%;
+  font-size: 1em;
+  height: auto;
+  color: #000 !important;
+  opacity: 1.0 !important;
+  font-family: 'fira_sansregular';
+  -webkit-appearance: none;
+  padding-right: 30px; }

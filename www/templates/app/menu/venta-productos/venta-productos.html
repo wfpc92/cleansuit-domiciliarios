@@ -1,11 +1,13 @@
 <ion-view title="Cleansuit">
 	<ion-content class="ventaDirecta">
 		<h1>Venta directa de productos</h1>
-		<h2 class="subtituloOrden">-Productos-</h2>
-		<div ui-view="productos"></div>
+		<div class="contenedor">
+			<h2 class="subtituloOrden">-Productos-</h2>
+			<div ui-view="productos"></div>
+		</div>	
 
 		<elemento-centrado>
-			<a ng-click="cancelarVentaDirecta()" class="">Cancelar venta directa</a>
+			<a ng-click="cancelarVentaDirecta()" class="enlace cancelar">Cancelar venta directa</a>
 		</elemento-centrado>
 
 	</ion-content>

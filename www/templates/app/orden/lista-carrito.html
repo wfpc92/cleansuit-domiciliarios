@@ -5,7 +5,7 @@
 	</elemento-centrado>
 
 	<ion-item ng-repeat="(index, item) in carrito.items.prendas track by $index" ng-class="{ 'item-thumbnail-left': item.fotos.length > 0 }" >
-		<div ng-click="editarPrenda(index)">
+		<div class="servicio" ng-click="editarPrenda(index)">
 			<div class="img" ng-if="item.fotos.length > 0">
 				<img ng-src="{{item.fotos[0].src}}"/>
 			</div>
