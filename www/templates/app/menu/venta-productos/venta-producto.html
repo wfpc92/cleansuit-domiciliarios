@@ -4,7 +4,7 @@
   	</ion-content>
 
   	<div class="bar bar-footer">
-		<a ng-click="guardarPedidoProductos()" class="button button-calm button-full">ENVIAR PEDIDO</a>
+		<a ng-click="guardarPedidoProductos()" class="button button-calm button-full" ng-disabled="carrito.contProductos == 0">ENVIAR PEDIDO</a>
 	</div>
 
 </ion-view>

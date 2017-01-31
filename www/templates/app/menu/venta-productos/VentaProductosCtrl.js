@@ -18,7 +18,8 @@ var VentaProductosCtrl = function($scope,
 		$state.go("app.venta-producto", {indexProducto: $index });
 	};
 
-	$scope.$on('$ionicView.afterEnter', function() {
+	$scope.$on('$ionicView.afterEnter', function(e, v) {
+		//lograr que este comando se ejcute una sola vez cuando se entra a este controlador.
 		$scope.carrito.setVentaDirecta();
 	});
 

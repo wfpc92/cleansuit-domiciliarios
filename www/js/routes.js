@@ -363,6 +363,18 @@ app.config(function($stateProvider,
 			}
 		}
 	})
+	.state('app.venta-envio', {
+		url: '/venta-envio',
+		cache: false,
+		views: {
+			'contenedor-menu': {
+				templateUrl: 'templates/app/orden/envio-orden.html',
+				controller: 'VentaProductoEnviarCtrl'
+			}
+		}
+	})
+
+
 
 	.state('app.acerca', {
 		url: '/acerca',
