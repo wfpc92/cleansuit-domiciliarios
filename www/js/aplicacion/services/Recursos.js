@@ -49,7 +49,11 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 					return RequestManual
 					.codificarArchivos()
 					.then(function(formData) {
-						console.log("codificarArchivos.formData", formData);
+						console.log("codificarArchivos.formData");
+						
+						for(var pair of formData.entries()) {
+						   console.log(pair[0], pair[1]); 
+						}
 
 						return self.solicitud(recursos, {
 							method: "PUT",

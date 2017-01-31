@@ -196,6 +196,7 @@ var OrdenesFactory = function(UsuarioFactory,
 			
 			(function caso1() {
 				CarritoFactory.setProductosRecoleccion({
+					_id: "587dcbb9e4ddf8af198eca74",
 					codigo: 9,
 					recoleccion: {
 						items: {}
