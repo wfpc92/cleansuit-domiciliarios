@@ -35,14 +35,15 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 				if (esFormData) {
 					//data tipo FormData()
 					//archivos se deben almacenar en tipo FormData() y los parametros POST tambien
-					headers['Content-Type'] = 'multipart/form-data';
+					//headers['Content-Type'] = 'multipart/form-data';
+					headers['Content-Type'] = undefined;
 					RequestManual.init();
 					RequestManual.setPostParams(postParams);
 					
 					// por cada elemento del array de imagenes se codifican los archivos a formato BLOB con RequestManual
 					var imgs = data.imagenes; // [{ campo: nombreCampo, url: urlImagen (o arreglo de urls) }]
 					for (var key in imgs) {
-						RequestManual.agregarArchivo("FOTOPRENDA-" + key, imgs[key]);
+						RequestManual.agregarArchivo("fotoprenda-" + key, imgs[key]);
 					}
 
 					//se convierten imagenes a formato Blob y se retorna el objeto tipo FormData()
@@ -51,9 +52,9 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 					.then(function(formData) {
 						console.log("codificarArchivos.formData");
 						
-						for(var pair of formData.entries()) {
+						/*for(var pair of formData.entries()) {
 						   console.log(pair[0], pair[1]); 
-						}
+						}*/
 
 						return self.solicitud(recursos, {
 							method: "PUT",
