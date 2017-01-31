@@ -1,7 +1,7 @@
 // Permite armar manualmente una request tipo multipart/form-data
 // Permite enviar varios archivos en una misma solicitud
 // Se basa en el objeto FormData
-app.factory('RequestManual', function() {
+app.factory('RequestManual', function($q) {
 	var _request = new XMLHttpRequest();
 	var _formData = new FormData();
 	var _headers = []; // [{ campo: numbreCampo, valor: elValor }]
@@ -211,6 +211,16 @@ app.factory('RequestManual', function() {
 				_anexarHeaders();
 				_request.send(_formData);
 			}, 0);
+		},
+
+		//codificar y retornar formulario codificado.
+		codificarArchivos: function() {
+			return $q(function(resolve, reject) {
+				_codificarArchivos(function() {
+					return resolve(_formData);
+				}, 0);
+			});
+			
 		}
 	};
 });

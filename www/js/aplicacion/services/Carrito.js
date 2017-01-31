@@ -107,7 +107,7 @@ var CarritoFactory = function(RecursosFactory,
 		 * @return {void}
 		 */
 		agregar : function(item, tipo, cantidad){
-			$log.debug("CarritoFactory.agregar()", item, tipo, cantidad);
+			$log.debug("CarritoFactory.agregar()", tipo, cantidad);
 			
 			if(!item){ return; }
 
@@ -344,8 +344,7 @@ var CarritoFactory = function(RecursosFactory,
 			//$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
 			this.actualizarContadores();
-		}
-
+		},
 	};
 };
 

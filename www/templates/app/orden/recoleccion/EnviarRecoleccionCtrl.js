@@ -21,8 +21,7 @@ var EnviarRecoleccionCtrl = function($scope,
 	});
 
 	$scope.enviar = function() {
-		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito.infoOrden);
-
+		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito);
 		
 		OrdenesFactory
 		.enviarRecolectada()
@@ -38,7 +37,7 @@ var EnviarRecoleccionCtrl = function($scope,
 					disableBack:'true'
 				});
 		    	$state.go("app.recoleccion");
-		    });
+		    })
 		});
 	};
 
