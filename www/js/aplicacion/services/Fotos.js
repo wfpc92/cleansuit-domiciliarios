@@ -3,32 +3,6 @@ var FotosFactory = function($cordovaCamera,
 						$q,
 						$log) {
 	
-	var seleccionarFoto = function() {
-		var opciones = {};
-
-		if(typeof Camera !== 'undefined') {
-			opciones = {
-				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-				quality: 75,
-				targetWidth: 310,
-				targetHeight: 310,
-				allowEdit: true,
-				encodingType: Camera.EncodingType.JPEG,
-				destinationType: Camera.DestinationType.DATA_URL,
-				saveToPhotoAlbum: !0
-			};
-		}
-
-		return $cordovaCamera
-		.getPicture(opciones)
-		.then(function(imageData) {
-			return imageData
-		}, function(err) {
-			$log.debug("FotosFactory.obtenerFoto(), err", err)
-			return err;
-		});
-	};
-
 	var tomarFoto = function() {
 		var opciones = {};
 
@@ -36,9 +10,8 @@ var FotosFactory = function($cordovaCamera,
 			opciones = {
 				sourceType: Camera.PictureSourceType.CAMERA,
 				quality: 75,
-				targetWidth: 310,
-				targetHeight: 310,
-				allowEdit: true,
+				targetWidth: 800,
+				targetHeight: 600,
 				encodingType: Camera.EncodingType.JPEG,
 				destinationType: Camera.DestinationType.DATA_URL,
 				saveToPhotoAlbum: !0
@@ -66,7 +39,6 @@ var FotosFactory = function($cordovaCamera,
 	}
 
 	return {
-		seleccionarFoto: seleccionarFoto,
 		tomarFoto: tomarFoto,
 		escanearCodigo: escanearCodigo
 	};

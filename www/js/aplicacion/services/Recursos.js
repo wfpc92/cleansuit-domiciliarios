@@ -20,7 +20,6 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 				method: "GET",
 				params: params
 			});
-			//	data: postParams};, recursos, params, {});	
 		},
 		post: function(recursos, postData) {
 			return self.solicitud(recursos, {
@@ -29,49 +28,47 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 			});	
 		},
 		put: function(recursos, postParams, data) {
-			return $q(function(resolve, reject) {
-				var headers = {};
-				var esFormData = (typeof data != 'undefined');
+			//var promise = $q.defer();
+			var headers = {};
+			var esFormData = (typeof data != 'undefined');
 
-				if (esFormData) {
-					//archivos se deben almacenar en tipo FormData() y los parametros POST tambien
-					//headers['Content-Type'] = 'multipart/form-data';
-					headers['Content-Type'] = undefined;
-					RequestManual.init();
-					RequestManual.setPostParams(postParams);
+			if (esFormData) {
+				//archivos se deben almacenar en tipo FormData() y los parametros POST tambien
+				//headers['Content-Type'] = 'multipart/form-data';
+				headers['Content-Type'] = undefined;
+				RequestManual.init();
+				RequestManual.setPostParams(postParams);
+				
+				// por cada elemento del array de imagenes se codifican los archivos a formato BLOB con RequestManual
+				var imgs = data.imagenes; // [{ campo: nombreCampo, url: urlImagen (o arreglo de urls) }]
+				for (var key in imgs) {
+					console.log("agregarArchivo", key)
+					RequestManual.agregarArchivo("fotoprenda-" + key, imgs[key]);
+				}
+
+				//se convierten imagenes a formato Blob y se retorna el objeto tipo FormData()
+				return RequestManual
+				.codificarArchivos()
+				.then(function(formData) {
+					console.log("codificarArchivos.formData");
 					
-					// por cada elemento del array de imagenes se codifican los archivos a formato BLOB con RequestManual
-					var imgs = data.imagenes; // [{ campo: nombreCampo, url: urlImagen (o arreglo de urls) }]
-					for (var key in imgs) {
-						console.log("agregarArchivo", key)
-						RequestManual.agregarArchivo("fotoprenda-" + key, imgs[key]);
+					for (var pair of formData.entries()) {
+					   console.log(pair[0], pair[1]); 
 					}
 
-					//se convierten imagenes a formato Blob y se retorna el objeto tipo FormData()
-					return RequestManual
-					.codificarArchivos()
-					.then(function(formData) {
-						console.log("codificarArchivos.formData");
-						
-						for (var pair of formData.entries()) {
-						   console.log(pair[0], pair[1]); 
-						}
-
-						return self.solicitud(recursos, {
-							method: "PUT",
-							data: formData,
-							headers: headers
-						});	
-					}); 
-
-				} else {
 					return self.solicitud(recursos, {
 						method: "PUT",
-						data: data,
+						data: formData,
 						headers: headers
-					});
-				}
-			});
+					});	
+				}); 
+
+			} else {
+				return self.solicitud(recursos, {
+					method: "PUT",
+					data: data
+				});
+			};
 		}
 	};
 };
