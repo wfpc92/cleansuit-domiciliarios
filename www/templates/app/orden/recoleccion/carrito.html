@@ -15,17 +15,6 @@
 
 		<resumen-totales totales="carrito.totales" ng-if="carrito.hayProductos() || carrito.contProductos + carrito.contPrendas > 0"></resumen-totales>
 
-
-		<div class="contagregar">
-			<button class="addservicios " ng-click="agregarPrenda()">
-			<i class="icon icons icons-servicios"></i>
-			</button>
-			<button class="addproductos" ng-click="agregarProductos()">
-				<i class="icon icons icons-productos"></i>
-			</button>
-		</div>
-		
-
 		<elemento-centrado>
 			<a ng-click="cancelarOrden()" class="cancelar"> Cancelar Orden</a>
 		</elemento-centrado>

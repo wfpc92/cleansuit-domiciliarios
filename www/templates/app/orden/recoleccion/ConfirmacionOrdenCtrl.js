@@ -104,6 +104,46 @@ var ConfirmacionOrdenCtrl = function($scope,
 
 		CancelarOrdenFactory.mostrarValidacionCliente();
 	};
+
+	$scope.eliminarPrenda = function(index) {
+		$ionicPopup
+		.confirm({
+			title: 'Eliminar Servicio',
+			template: '¿Está seguro que desea eliminar este servicio?',
+			buttons: [
+				{
+					text: 'Si',
+					onTap: function(e) {
+						$scope.carrito.eliminar(index, 'PRENDA');
+					}
+				},
+				{
+					text: '<b>No</b>',
+					type: 'button-positive'
+				}
+			]
+		});	    
+	};
+
+	$scope.eliminarProducto = function(index) {
+		$ionicPopup
+		.confirm({
+			title: 'Eliminar Productos',
+			template: '¿Está seguro que desea eliminar este pedido?',
+			buttons: [
+				{
+					text: 'Si',
+					onTap: function(e) {
+						$scope.carrito.eliminar(index, 'PRODUCTO');
+					}
+				},
+				{
+					text: '<b>No</b>',
+					type: 'button-positive'
+				}
+			]
+		});	    
+	};
 };
 
 app.controller("ConfirmacionOrdenCtrl", ConfirmacionOrdenCtrl);
