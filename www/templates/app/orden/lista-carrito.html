@@ -22,7 +22,7 @@
 		<a class="cancelar assertive" ng-if="carrito.hayProductos() || carrito.contProductos > 0">-Productos-</a>
 	</elemento-centrado>
 
-	<ion-item ng-repeat="(index, item) in carrito.items.productos track by $index" class="item-thumbnail-left">
+	<ion-item ng-repeat="(index, item) in carrito.items.productos track by $index" class="item-thumbnail-left producto">
 		<div class="img">
 			<img ng-src="{{item.url_imagen}}"/>
 		</div>

@@ -587,8 +587,8 @@ p {
 				.ico-menos {  }
 				span {
 					position: absolute;
-					top: 7px;
-					left: 0px;
+					top: 2px;
+					left: 40px;
 					width: 26px;
 					text-align: center;
 				}
@@ -1465,20 +1465,15 @@ html input[disabled] {
 }
 .contagregar {
 	position: relative;
-	height: 100%;
+	height: 60px;
 	width: 100%;
-	background-color: rgba(0,71,154,0.9);
-	.btncerrar {
-		bottom: 25px;
-		right: 30px;
-	}
 	.addproductos {
-		bottom: 140px;
-		right: 35px;
+		bottom: 0px;
+		left: 85px;
 	}
 	.addservicios {
-		bottom: 30px;
-		right: 145px;
+		bottom: 0px;
+		left: 10px;
 	}
 }
 .adds {
@@ -1642,7 +1637,7 @@ html input[disabled] {
 	.item {
 		position: relative;
 		border: none;
-		margin-bottom: 5px;
+		margin-bottom: 7px;
 		padding-bottom: 8px;
 		padding-right:  50px;
 		padding-top: 16px;
@@ -1683,7 +1678,7 @@ html input[disabled] {
 			height: 30px;
 			font-size: 1.5em;
 			margin-top: -15px;
-			width: 30px;
+			width: 106px;
 			.icon { 
 				display: inline-block;
 				font-size: 35px;
@@ -1695,13 +1690,32 @@ html input[disabled] {
 				position: absolute;
 			    font-size: 0.75em;
 			    line-height: 30px;
-				left: 0px;
+				left: 30px;
+				top: 2px;
 				width: 30px;
 				height: 30px;
 				text-align: center;
 				color: #333333;
 				background-color: #E9E9E9;
 				font-family: 'fira_sansregular';
+			}
+			.ion-ios-close-outline {
+				right: 0;
+			}
+			.item-checkbox {
+				display: block;
+				width: 20px !important;
+				height: 20px !important;
+				margin: 0;
+				.checkbox {
+					position: absolute;
+					top: 50%;
+					right: 8px;
+					left: 8px;
+					z-index: 3;
+					margin-top: -21px;
+					width: 30px;
+				}
 			}
 		}
 	}
@@ -1743,24 +1757,9 @@ html input[disabled] {
 		padding-right: 30px;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.carro .item.producto {
+	padding-right: 120px;
+}
 
 
 
@@ -1802,7 +1801,7 @@ body {
   background-size: 100%;
 }
 
-$fab-menu-padding: 20px;
+$fab-menu-padding: 0px;
 
 .fab-menu {
 
@@ -1837,6 +1836,15 @@ $fab-menu-padding: 20px;
     bottom: $fab-menu-padding;
     left: $fab-menu-padding;
     z-index: 101;
+    width: 60px;
+	height: 60px;
+	background-color: $calm;
+	border: none;
+	border-radius: 35px;
+	color: $light;
+	padding: 0;
+	font-size: 30px;
+	box-shadow: 0px 0px 15px rgba(51, 50, 49, 0.55);
   }
 }
 
@@ -1884,7 +1892,7 @@ $fab-menu-padding: 20px;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0,71,154,0.9);
   width: 100%;
   height: 100%;
   z-index: 98;
@@ -1892,4 +1900,15 @@ $fab-menu-padding: 20px;
   &.active {
     display: block;
   }
+}
+.fab-menu-button-item {
+	width: 60px;
+	height: 60px;
+	background-color: $calm;
+	border: none;
+	border-radius: 35px;
+	color: $light;
+	padding: 0;
+	font-size: 30px;
+	box-shadow: 0px 0px 15px rgba(51, 50, 49, 0.55);
 }

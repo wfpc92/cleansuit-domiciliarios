@@ -115,7 +115,7 @@ app.directive('elementoCentrado', function(){
 
     var options = {
         baseAngle: 270,
-        rotationAngle: 30,
+        rotationAngle: 88,
         distance: 112,
         animateInOut: 'all', // can be slide, rotate, all
       },
@@ -125,7 +125,7 @@ app.directive('elementoCentrado', function(){
       lastDragTime = 0,
       currentX = 0,
       currentY = 0,
-      previousSpeed     = 15,
+      previousSpeed     = 0,
 
       init = function() {
 
