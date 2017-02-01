@@ -8,6 +8,12 @@ var CarritoRecoleccionCtrl = function($scope,
 	
 	$log.debug("CarritoRecoleccionCtrl");
 
+	$scope.formulario = {
+		productos: {
+			panel: true
+		}
+	};
+
 	$scope.$on("$ionicView.beforeEnter", function () {
 	});
 
