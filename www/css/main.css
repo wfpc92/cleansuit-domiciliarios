@@ -1,24 +1,14 @@
 @charset "UTF-8";
 /*!
-
   Ionicons, v2.0.1
-
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
-
   https://twitter.com/benjsperry  https://twitter.com/ionicframework
-
   MIT License: https://github.com/driftyco/ionicons
 
-
-
   Android-style icons originally built by Google’s
-
   Material Design Icons: https://github.com/google/material-design-icons
-
   used under CC BY http://creativecommons.org/licenses/by/4.0/
-
   Modified icons to fit ionicon’s grid from original.
-
 */
 @font-face {
   font-family: "Ionicons";
@@ -2977,29 +2967,17 @@
 /* verde biche*/
 /* azul claro*/
 /**
-
  * Resets
-
  * --------------------------------------------------
-
  * Adapted from normalize.css and some reset.css. We don't care even one
-
  * bit about old IE, so we don't need any hacks for that in here.
-
  *
-
  * There are probably other things we could remove here, as well.
-
  *
-
  * normalize.css v2.1.2 | MIT License | git.io/normalize
 
-
-
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
-
  * http://cssreset.com
-
  */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -3033,20 +3011,15 @@ q:before, q:after {
   content: none; }
 
 /**
-
  * Prevent modern browsers from displaying `audio` without controls.
-
  * Remove excess height in iOS 5 devices.
-
  */
 audio:not([controls]) {
   display: none;
   height: 0; }
 
 /**
-
  * Hide the `template` element in IE, Safari, and Firefox < 22.
-
  */
 [hidden],
 template {
@@ -3056,18 +3029,12 @@ script {
   display: none !important; }
 
 /* ==========================================================================
-
    Base
-
    ========================================================================== */
 /**
-
  * 1. Set default font family to sans-serif.
-
  * 2. Prevent iOS text size adjust after orientation change, without disabling
-
  *  user zoom.
-
  */
 html {
   -webkit-user-select: none;
@@ -3083,18 +3050,14 @@ html {
   /* 2 */ }
 
 /**
-
  * Remove default margin.
-
  */
 body {
   margin: 0;
   line-height: 1; }
 
 /**
-
  * Remove default outlines.
-
  */
 a,
 button,
@@ -3106,9 +3069,7 @@ a:hover {
   outline: 0; }
 
 /* *
-
  * Remove tap highlight color
-
  */
 a {
   -webkit-user-drag: none;
@@ -3118,31 +3079,23 @@ a {
     cursor: pointer; }
 
 /* ==========================================================================
-
    Typography
-
    ========================================================================== */
 /**
-
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
-
  */
 b,
 strong {
   font-weight: bold; }
 
 /**
-
  * Address styling not present in Safari 5 and Chrome.
-
  */
 dfn {
   font-style: italic; }
 
 /**
-
  * Address differences between Firefox and other browsers.
-
  */
 hr {
   -moz-box-sizing: content-box;
@@ -3150,9 +3103,7 @@ hr {
   height: 0; }
 
 /**
-
  * Correct font family set oddly in Safari 5 and Chrome.
-
  */
 code,
 kbd,
@@ -3162,33 +3113,25 @@ samp {
   font-family: monospace, serif; }
 
 /**
-
  * Improve readability of pre-formatted text in all browsers.
-
  */
 pre {
   white-space: pre-wrap; }
 
 /**
-
  * Set consistent quote types.
-
  */
 q {
   quotes: "\201C" "\201D" "\2018" "\2019"; }
 
 /**
-
  * Address inconsistent and variable font size in all browsers.
-
  */
 small {
   font-size: 80%; }
 
 /**
-
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
-
  */
 sub,
 sup {
@@ -3204,9 +3147,7 @@ sub {
   bottom: -0.25em; }
 
 /**
-
  * Define consistent border, margin, and padding.
-
  */
 fieldset {
   margin: 0 2px;
@@ -3214,11 +3155,8 @@ fieldset {
   border: 1px solid #c0c0c0; }
 
 /**
-
  * 1. Correct `color` not being inherited in IE 8/9.
-
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
-
  */
 legend {
   padding: 0;
@@ -3227,19 +3165,12 @@ legend {
   /* 1 */ }
 
 /**
-
  * 1. Correct font family not being inherited in all browsers.
-
  * 2. Correct font size not being inherited in all browsers.
-
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
-
  * 4. Remove any default :focus styles
-
  * 5. Make sure webkit font smoothing is being inherited
-
  * 6. Remove default gradient in Android Firefox / FirefoxOS
-
  */
 button,
 input,
@@ -3263,43 +3194,29 @@ textarea {
   /* 6 */ }
 
 /**
-
  * Address Firefox 4+ setting `line-height` on `input` using `importnt` in
-
  * the UA stylesheet.
-
  */
 button,
 input {
   line-height: normal; }
 
 /**
-
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
-
  * All other form control elements do not inherit `text-transform` values.
-
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
-
  * Correct `select` style inheritance in Firefox 4+ and Opera.
-
  */
 button,
 select {
   text-transform: none; }
 
 /**
-
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
-
  *  and `video` controls.
-
  * 2. Correct inability to style clickable `input` types in iOS.
-
  * 3. Improve usability and consistency of cursor style between image-type
-
  *  `input` and others.
-
  */
 button,
 html input[type="button"],
@@ -3311,22 +3228,16 @@ input[type="submit"] {
   /* 2 */ }
 
 /**
-
  * Re-set default cursor for disabled elements.
-
  */
 button[disabled],
 html input[disabled] {
   cursor: default; }
 
 /**
-
  * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
-
  * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
-
  *  (include `-moz` to future-proof).
-
  */
 input[type="search"] {
   -webkit-box-sizing: content-box;
@@ -3337,20 +3248,15 @@ input[type="search"] {
   /* 1 */ }
 
 /**
-
  * Remove inner padding and search cancel button in Safari 5 and Chrome
-
  * on OS X.
-
  */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /**
-
  * Remove inner padding and border in Firefox 4+.
-
  */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -3358,11 +3264,8 @@ input::-moz-focus-inner {
   border: 0; }
 
 /**
-
  * 1. Remove default vertical scrollbar in IE 8/9.
-
  * 2. Improve readability and alignment in all browsers.
-
  */
 textarea {
   overflow: auto;
@@ -3374,25 +3277,18 @@ img {
   -webkit-user-drag: none; }
 
 /* ==========================================================================
-
    Tables
-
    ========================================================================== */
 /**
-
  * Remove most spacing between table cells.
-
  */
 table {
   border-spacing: 0;
   border-collapse: collapse; }
 
 /**
-
  * Scaffolding
-
  * --------------------------------------------------
-
  */
 *,
 *:before,
@@ -3479,11 +3375,8 @@ body.grade-c {
     overflow-y: scroll; }
 
 /**
-
  * Scroll is the scroll view component available for complex and custom
-
  * scroll view functionality.
-
  */
 .scroll {
   -webkit-user-select: none;
@@ -3498,11 +3391,8 @@ body.grade-c {
   transform-origin: left top; }
 
 /**
-
  * Set ms-viewport to prevent MS "page squish" and allow fluid scrolling
-
  * https://msdn.microsoft.com/en-us/library/ie/hh869615(v=vs.85).aspx
-
  */
 @-ms-viewport {
   width: device-width; }
@@ -3670,11 +3560,8 @@ ion-infinite-scroll {
   height: 100%; }
 
 /**
-
  * Typography
-
  * --------------------------------------------------
-
  */
 p {
   margin: 0 0 10px; }
@@ -3822,11 +3709,8 @@ a.subdued {
     padding-right: 0; }
 
 /**
-
  * Action Sheets
-
  * --------------------------------------------------
-
  */
 .action-sheet-backdrop {
   -webkit-transition: background-color 150ms ease-in-out;
@@ -3966,11 +3850,8 @@ a.subdued {
     opacity: 1; }
 
 /**
-
  * Bar (Headers and Footers)
-
  * --------------------------------------------------
-
  */
 .bar {
   display: -webkit-box;
@@ -4425,13 +4306,9 @@ a.subdued {
   background-image: none; }
 
 /**
-
  * Tabs
-
  * --------------------------------------------------
-
  * A navigation bar with any number of tab items supported.
-
  */
 .tabs {
   display: -webkit-box;
@@ -5322,13 +5199,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
   top: 49px; }
 
 /**
-
  * Menus
-
  * --------------------------------------------------
-
  * Side panel structure
-
  */
 .menu {
   position: absolute;
@@ -5385,13 +5258,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
   transition: transform 200ms ease; }
 
 /**
-
  * Modals
-
  * --------------------------------------------------
-
  * Modals are independent windows that slide in from off-screen.
-
  */
 .modal-backdrop,
 .modal-backdrop-bg {
@@ -5459,13 +5328,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
     pointer-events: none; }
 
 /**
-
  * Popovers
-
  * --------------------------------------------------
-
  * Popovers are independent views which float over content
-
  */
 .popover-backdrop {
   position: fixed;
@@ -5589,11 +5454,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
     margin-left: -180px; } }
 
 /**
-
  * Popups
-
  * --------------------------------------------------
-
  */
 .popup-container {
   position: absolute;
@@ -5720,11 +5582,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
     pointer-events: auto; }
 
 /**
-
  * Loading
-
  * --------------------------------------------------
-
  */
 .loading-container {
   position: absolute;
@@ -5772,11 +5631,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
       color: #fff; }
 
 /**
-
  * Items
-
  * --------------------------------------------------
-
  */
 .item {
   border-color: #ddd;
@@ -6062,21 +5918,13 @@ a.item {
     text-decoration: none; }
 
 /**
-
  * Complex Items
-
  * --------------------------------------------------
-
  * Adding .item-complex allows the .item to be slidable and
-
  * have options underneath the button, but also requires an
-
  * additional .item-content element inside .item.
-
  * Basically .item-complex removes any default settings which
-
  * .item added, so that .item-content looks them as just .item.
-
  */
 .item-complex,
 a.item.item-complex,
@@ -6228,11 +6076,8 @@ a.item-content {
       background-color: #262626; }
 
 /**
-
  * Item Icons
-
  * --------------------------------------------------
-
  */
 .item-icon-left .icon,
 .item-icon-right .icon {
@@ -6301,13 +6146,9 @@ a.item-content {
   right: 3px; }
 
 /**
-
  * Item Button
-
  * --------------------------------------------------
-
  * An item button is a child button inside an .item (not the entire .item)
-
  */
 .item-button-left {
   padding-left: 72px; }
@@ -6670,11 +6511,8 @@ button.item.item-button-right {
   opacity: 0.7; }
 
 /**
-
  * The hidden right-side buttons that can be exposed under a list item
-
  * with dragging.
-
  */
 .item-options {
   position: absolute;
@@ -6700,11 +6538,8 @@ button.item.item-button-right {
       margin: 0 auto; }
 
 /**
-
  * Lists
-
  * --------------------------------------------------
-
  */
 .list {
   position: relative;
@@ -6719,11 +6554,8 @@ button.item.item-button-right {
     margin-bottom: 40px; }
 
 /**
-
  * List Header
-
  * --------------------------------------------------
-
  */
 .list-header {
   margin-top: 20px;
@@ -6737,13 +6569,9 @@ button.item.item-button-right {
   padding-left: 1px; }
 
 /**
-
  * Cards and Inset Lists
-
  * --------------------------------------------------
-
  * A card and list-inset are close to the same thing, except a card as a box shadow.
-
  */
 .card,
 .list-inset {
@@ -6813,11 +6641,8 @@ button.item.item-button-right {
   margin-right: 0; }
 
 /**
-
  * Badges
-
  * --------------------------------------------------
-
  */
 .badge {
   background-color: transparent;
@@ -6886,11 +6711,8 @@ button.item.item-button-right {
   top: -1px; }
 
 /**
-
  * Slide Box
-
  * --------------------------------------------------
-
  */
 .slider {
   position: relative;
@@ -6944,31 +6766,18 @@ button.item.item-button-right {
   animation: none 0s; }
 
 /**
-
  * Swiper 3.2.7
-
  * Most modern mobile touch slider and framework with hardware accelerated transitions
-
  *
-
  * http://www.idangero.us/swiper/
-
  *
-
  * Copyright 2015, Vladimir Kharlampidi
-
  * The iDangero.us
-
  * http://www.idangero.us/
-
  *
-
  * Licensed under MIT
-
  *
-
  * Released on: December 7, 2015
-
  */
 .swiper-container {
   margin: 0 auto;
@@ -7562,11 +7371,8 @@ ion-slides {
     transform: translate3d(0, 0, 0) rotate(0); } }
 
 /**
-
  * Spinners
-
  * --------------------------------------------------
-
  */
 .spinner {
   stroke: #444;
@@ -7644,11 +7450,8 @@ ion-slides {
   stop-color: #444; }
 
 /**
-
  * Forms
-
  * --------------------------------------------------
-
  */
 form {
   margin: 0 0 1.42857; }
@@ -7974,11 +7777,8 @@ input[type="checkbox"][readonly] {
   background-color: transparent; }
 
 /**
-
  * Checkbox
-
  * --------------------------------------------------
-
  */
 .checkbox {
   position: relative;
@@ -8192,11 +7992,8 @@ input:checked + .checkbox-icon:after {
   float: right; }
 
 /**
-
  * Toggle
-
  * --------------------------------------------------
-
  */
 .item-toggle {
   pointer-events: none; }
@@ -8402,11 +8199,8 @@ input:checked + .checkbox-icon:after {
   background-color: #444; }
 
 /**
-
  * Radio Button Inputs
-
  * --------------------------------------------------
-
  */
 .item-radio {
   padding: 0; }
@@ -8440,11 +8234,8 @@ input:checked + .checkbox-icon:after {
     visibility: visible; }
 
 /**
-
  * Range
-
  * --------------------------------------------------
-
  */
 .range input {
   display: inline-block;
@@ -8463,51 +8254,28 @@ input:checked + .checkbox-icon:after {
   background-repeat: no-repeat;
   -webkit-appearance: none;
   /*
-
    &::-ms-track{
-
      background: transparent;
-
      border-color: transparent;
-
      border-width: 11px 0 16px;
-
      color:transparent;
-
      margin-top:20px;
-
    }
-
    &::-ms-thumb {
-
      width: $range-slider-width;
-
      height: $range-slider-height;
-
      border-radius: $range-slider-border-radius;
-
      background-color: $toggle-handle-off-bg-color;
-
      border-color:$toggle-handle-off-bg-color;
-
      box-shadow: $range-slider-box-shadow;
-
      margin-left:1px;
-
      margin-right:1px;
-
      outline:none;
-
    }
-
    &::-ms-fill-upper {
-
      height: $range-track-height;
-
      background:$range-default-track-bg;
-
    }
-
    */ }
   .range input::-moz-focus-outer {
     /* hide the focus outline in Firefox */
@@ -8636,11 +8404,8 @@ input:checked + .checkbox-icon:after {
   height: auto; }
 
 /**
-
  * Select
-
  * --------------------------------------------------
-
  */
 .item-select {
   position: relative; }
@@ -8728,11 +8493,8 @@ select[multiple], select[size] {
   height: auto; }
 
 /**
-
  * Progress
-
  * --------------------------------------------------
-
  */
 progress {
   display: block;
@@ -8740,11 +8502,8 @@ progress {
   width: 100%; }
 
 /**
-
  * Buttons
-
  * --------------------------------------------------
-
  */
 .button {
   border-color: transparent;
@@ -9130,11 +8889,8 @@ a.button {
   pointer-events: none; }
 
 /**
-
  * Button Bar
-
  * --------------------------------------------------
-
  */
 .button-bar {
   display: -webkit-box;
@@ -9197,21 +8953,13 @@ a.button {
   line-height: 28px; }
 
 /**
-
  * Grid
-
  * --------------------------------------------------
-
  * Using flexbox for the grid, inspired by Philip Walton:
-
  * http://philipwalton.github.io/solved-by-flexbox/demos/grids/
-
  * By default each .col within a .row will evenly take up
-
  * available width, and the height of each .col with take
-
  * up the height of the tallest .col in the same .row.
-
  */
 .row {
   display: -webkit-box;
@@ -9505,11 +9253,8 @@ a.button {
       width: 100%; } }
 
 /**
-
  * Utility Classes
-
  * --------------------------------------------------
-
  */
 .hide {
   display: none; }
@@ -9601,11 +9346,8 @@ a.button {
     clear: both; }
 
 /**
-
  * Content Padding
-
  * --------------------------------------------------
-
  */
 .padding {
   padding: 10px; }
@@ -9627,11 +9369,8 @@ a.button {
   padding-left: 10px; }
 
 /**
-
  * Scrollable iFrames
-
  * --------------------------------------------------
-
  */
 .iframe-wrapper {
   position: fixed;
@@ -9642,27 +9381,18 @@ a.button {
     width: 100%; }
 
 /**
-
  * Rounded
-
  * --------------------------------------------------
-
  */
 .rounded {
   border-radius: 4px; }
 
 /**
-
  * Utility Colors
-
  * --------------------------------------------------
-
  * Utility colors are added to help set a naming convention. You'll
-
  * notice we purposely do not use words like "red" or "blue", but
-
  * instead have colors which represent an emotion or generic theme.
-
  */
 .light, a.light {
   color: #fff; }
@@ -9768,13 +9498,9 @@ a.button {
   display: none !important; }
 
 /**
-
  * Platform
-
  * --------------------------------------------------
-
  * Platform specific tweaks
-
  */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
   height: 64px; }
@@ -11190,8 +10916,7 @@ html input[disabled] {
     margin: 20px;
     padding: 12px 0; }
   .ventaDirecta .contenedor .lista, .addProductos .contenedor .lista {
-    margin: 1px
- margin-bottom-1px; }
+    margin: 1px margin-bottom-1px; }
     .ventaDirecta .contenedor .lista .item, .addProductos .contenedor .lista .item {
       margin-bottom: 0px; }
     .ventaDirecta .contenedor .lista .item-content, .addProductos .contenedor .lista .item-content {
@@ -11497,3 +11222,87 @@ html input[disabled] {
   font-family: 'fira_sansregular';
   -webkit-appearance: none;
   padding-right: 30px; }
+
+/*
+* Mixins
+*/
+body {
+  background: url(http://rats-funnybone.com/wp-content/uploads/2013/08/aura-background-large-1.jpg) no-repeat;
+  background-size: 100%; }
+
+.fab-menu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: scale(2);
+  transform: scale(2);
+  position: absolute;
+  top: auto;
+  right: auto;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+  padding: 20px; }
+  .fab-menu.fab-menu-left {
+    top: auto;
+    right: auto;
+    left: 0;
+    bottom: 0; }
+  .fab-menu.fab-menu-right {
+    top: auto;
+    right: 0;
+    left: auto;
+    bottom: 0; }
+  .fab-menu .fab-menu-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 101; }
+
+.fab-menu-items {
+  /**
+   * @see http://hugogiraudel.com/2013/04/02/items-on-circle/
+   */
+  z-index: 99;
+  position: absolute;
+  width: 168px;
+  height: 168px;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  list-style: none; }
+  .fab-menu.active .fab-menu-items {
+    display: block; }
+  .fab-menu-items > li {
+    -webkit-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    display: block;
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    left: 20px; }
+
+.fab-menu-overlay {
+  -webkit-transition: all 0.2s ease 0.2s;
+  transition: all 0.2s ease 0.2s;
+  position: fixed;
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: 98; }
+  .fab-menu-overlay.active {
+    display: block; }
