@@ -155,7 +155,8 @@ app.factory('RequestManual', function($q) {
 		setPostParams: function(params) {
 			var key = "";
 			for (key in params) {
-				_formData.append(key, params[key]);
+				var jsonParams = JSON.stringify(params[key]);
+				_formData.append(key, jsonParams);
 			}
 		},
 

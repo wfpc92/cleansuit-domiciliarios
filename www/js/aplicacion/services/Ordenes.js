@@ -16,7 +16,7 @@ var OrdenesFactory = function(UsuarioFactory,
 	var setOrdenes = function(ordenesLocales, ordenesNuevas) {
 		init();
 
-		ordenesLocales.splice(0,ordenesLocales.length);
+		ordenesLocales.splice(0, ordenesLocales.length);
 		//ordenesLocales = [];
 
 		for (var i in ordenesNuevas) {
@@ -140,14 +140,12 @@ var OrdenesFactory = function(UsuarioFactory,
 				imagenes = [];
 			
 			//casoPrueba();
-
-
+			
 			CarritoFactory.infoOrden.recoleccion = {
 				items: JSON.parse(JSON.stringify(CarritoFactory.items)), 
 			};
-
 			
-			CarritoFactory.infoOrden.estado = 'recolectada';
+			CarritoFactory.infoOrden.estado = 2; // "recolectada"
 			
 			for (var index  in CarritoFactory.items.prendas) {
 				// por cada prenda se sacan el contenidod e las fotos en formato base/64
