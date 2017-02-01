@@ -116,10 +116,6 @@ var CarritoRecoleccionCtrl = function($scope,
 	    });
 	};
 
-	$scope.agregarPrenda = function() {
-		$state.go("app.recoleccion-prenda");
-	};
-
 	$scope.editarPrenda = function(index) {
 		console.log("Editar Prenda ", $scope.carrito.items, index)
 		$state.go("app.recoleccion-prenda", {indexPrenda: index});	
@@ -144,11 +140,7 @@ var CarritoRecoleccionCtrl = function($scope,
 		    ]
 	    });	    
 	};
-
-	$scope.agregarProductos = function() {
-		$state.go("app.recoleccion-productos");
-	};
-
+	
 	$scope.siguiente = function() {
 		$state.go("app.recoleccion-confirmacion");
 	};
