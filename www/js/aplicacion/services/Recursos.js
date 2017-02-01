@@ -31,9 +31,9 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 		put: function(recursos, postParams, data) {
 			return $q(function(resolve, reject) {
 				var headers = {};
-				var esFormData = typeof data != 'undefined'; 
+				var esFormData = (typeof data != 'undefined');
+
 				if (esFormData) {
-					//data tipo FormData()
 					//archivos se deben almacenar en tipo FormData() y los parametros POST tambien
 					//headers['Content-Type'] = 'multipart/form-data';
 					headers['Content-Type'] = undefined;
@@ -52,9 +52,9 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 					.then(function(formData) {
 						console.log("codificarArchivos.formData");
 						
-						/*for(var pair of formData.entries()) {
+						for (var pair of formData.entries()) {
 						   console.log(pair[0], pair[1]); 
-						}*/
+						}
 
 						return self.solicitud(recursos, {
 							method: "PUT",

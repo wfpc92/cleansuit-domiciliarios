@@ -157,6 +157,11 @@ var FormularioPrendaCtrl = function($scope,
 		console.log("FormularioServicioCtrl.siguiente", $scope.formulario.valido)
 		if ($scope.formulario.valido && (typeof $scope.prenda.subservicio !== 'undefined')) {
 			
+			// asignar nombre a cada fotografia basado en codigo y fecha actual.
+			for (var i in $scope.prenda.fotos) {
+				$scope.prenda.fotos[i].nombre = "prenda#" + $scope.prenda.codigo + "#" + (new Date()) + ".jpg";
+			}
+
 			if (!$scope.esNueva) {
 				agregar = $scope.carrito.agregar($scope.prenda, 'PRENDA', 1);
 			}
@@ -193,112 +198,6 @@ var FormularioPrendaCtrl = function($scope,
 	    	template: 'El codigo que se asignó a esta prenda ya existe.',
 	    });
 	};
-
-	
-	
-
-	/*
-	//cancelar orden:
-	$scope.cancelar = function() {
-		$ionicPopup
-		.confirm({
-	    	title: 'Suspender Pedido',
-	    	template: '',
-	    	buttons: [
-		    	{
-		    		text: 'Pedido Pendiente',
-			    	type: 'button-positive',
-		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$state.go("app.recoleccion");
-		    		}
-		    	},
-		      	{
-			    	text: '<b>Cancelar Pedido</b>',
-			    	type: 'button-positive',
-		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$scope.causaCancelacion();
-		    		}
-		      	}
-		    ]
-	    });
-	};
-
-	$scope.causaCancelacion = function() {
-		$scope.data = "";
-		var template =
-			'<ion-list>'+
-				'<ion-radio ng-model="data" ng-value="1">Valor elevado</ion-radio>'+
-				'<ion-radio ng-model="data" ng-value="2">Manifiesta mala atención</ion-radio>' +
-				'<ion-radio ng-model="data" ng-value="3">Prefiere otra empresa</ion-radio>' +
-			'</ion-list>';
-
-		$ionicPopup
-		.confirm({
-	    	title: 'Causa por la cual el cliente cancela el pedido',
-	    	template: template,
-	    	buttons: [
-		    	{
-		    		text: 'Volver a información de orden',
-			    	type: 'button-ligth',
-		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$state.go("app.recoleccion-detalle", {indexOrden: $scope.indexOrden});
-		    		}
-		    	},
-		      	{
-			    	text: '<b>Enviar</b>',
-			    	type: 'button-positive',
-		    		onTap: function(e) {
-		    			//enviar motivo de suspension de Pedido
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$scope.mensajeConfirmacion();
-		    		}
-		      	}
-		    ]
-	    });
-	};
-
-	$scope.mensajeConfirmacion = function() {
-		console.log("Seleccion de motivo: ", $scope.data);
-
-		$ionicPopup
-		.confirm({
-	    	title: 'La causa por la cual el cliente cancela el pedido fue enviada.',
-	    	template: '',
-	    	buttons: [
-		    	{
-		    		text: 'Aceptar',
-			    	type: 'button-ligth',
-		    		onTap: function(e) {
-		    			OrdenesFactory.limpiarOrden();
-						$ionicHistory.clearHistory();
-						$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$state.go("app.recoleccion");
-		    		}
-		    	},
-		    ]
-	    });
-	};*/
 };
 
 

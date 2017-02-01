@@ -58,8 +58,8 @@ app.factory('RequestManual', function($q) {
 				_codificarRecursivo(campo, urls, i + 1, callback);
 			}
 			else {
-				_getBlobFromFile(urls[i], function (blob) {
-					_formData.append(campo, blob, _nombreImagen());
+				_getBlobFromFile(urls[i].src, function (blob) {
+					_formData.append(campo, blob, urls[i].nombre);
 					_codificarRecursivo(campo, urls, i + 1, callback);
 				});
 			}
@@ -71,7 +71,7 @@ app.factory('RequestManual', function($q) {
 	// Invoca "callback" al terminar
 	function _codificarCampo(archActual, callback) {
 		var campo = archActual.campo;
-		var urls = archActual.urls;
+		var urls = archActual.archivo;
 
 		if (Array.isArray(urls)) {
 			// Si son varios archivos, codificamos recursivamente y agregamos hasta terminar
@@ -217,6 +217,7 @@ app.factory('RequestManual', function($q) {
 		codificarArchivos: function() {
 			return $q(function(resolve, reject) {
 				_codificarArchivos(function() {
+					//retornar el objeto fitpo FormData al terminar de codificar los archivos.
 					return resolve(_formData);
 				}, 0);
 			});
