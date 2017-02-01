@@ -49,11 +49,13 @@ app.factory('RequestManual', function($q) {
 	// Función recursiva que codifica todas las urls (arreglo) como BLOBs, y los anexa a formData en "campo"
 	// Invoca el callback al terminar
 	function _codificarRecursivo(campo, urls, i, callback) {
+		console.log(i, urls.length)
 		if (i == urls.length) {
 			callback();
 		}
 		else {
-			var url = (urls[i]).trim();
+			console.log(urls[i])
+			var url = (urls[i].src).trim();
 			if (url == "") {
 				_codificarRecursivo(campo, urls, i + 1, callback);
 			}
@@ -71,7 +73,8 @@ app.factory('RequestManual', function($q) {
 	// Invoca "callback" al terminar
 	function _codificarCampo(archActual, callback) {
 		var campo = archActual.campo;
-		var urls = archActual.archivo;
+		var urls = archActual.urls;
+		console.log("_codificarCampo",archActual)
 
 		if (Array.isArray(urls)) {
 			// Si son varios archivos, codificamos recursivamente y agregamos hasta terminar

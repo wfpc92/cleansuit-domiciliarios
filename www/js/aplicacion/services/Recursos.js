@@ -43,6 +43,7 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 					// por cada elemento del array de imagenes se codifican los archivos a formato BLOB con RequestManual
 					var imgs = data.imagenes; // [{ campo: nombreCampo, url: urlImagen (o arreglo de urls) }]
 					for (var key in imgs) {
+						console.log("agregarArchivo", key)
 						RequestManual.agregarArchivo("fotoprenda-" + key, imgs[key]);
 					}
 
