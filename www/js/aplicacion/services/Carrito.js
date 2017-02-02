@@ -86,6 +86,11 @@ var CarritoFactory = function(RecursosFactory,
 						nombre: null
 					},
 					orden: {
+						recoleccion: {
+							direccion: null,
+							fecha: new Date(),
+							hora: obtenerHora(new Date())
+						},
 						entrega: {
 							direccion: null,
 							fecha: new Date(),
