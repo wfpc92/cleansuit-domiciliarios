@@ -66,7 +66,7 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 			} else {
 				return self.solicitud(recursos, {
 					method: "PUT",
-					data: data
+					data: postParams
 				});
 			};
 		}
