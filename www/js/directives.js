@@ -146,6 +146,10 @@ app.directive('elementoCentrado', function(){
       animateButtonsIn = function() {
         for (var i = 0; i < buttonContainers.length; i++) {
 
+          var agregar = document.getElementById('btnFlotante');
+          agregar.classList.remove('icons-desplegar');
+          agregar.classList.add("icons-ocultar");
+
           var button = buttonContainers.item(i);
           var angle = button.getAttribute('angle');
           button.style.transform = "rotate(" + angle + "deg) translate(" + options.distance + "px) rotate(-" + angle + "deg) scale(1)";
@@ -155,6 +159,10 @@ app.directive('elementoCentrado', function(){
       animateButtonsOut = function() {
         for (var i = 0; i < buttonContainers.length; i++) {
 
+          var agregar = document.getElementById('btnFlotante');
+          agregar.classList.remove('icons-ocultar');
+          agregar.classList.add("icons-desplegar");
+          
           var button = buttonContainers.item(i);
           var angle = (options.baseAngle + (options.rotationAngle * i));
           button.setAttribute('angle', '' + angle);
