@@ -114,9 +114,9 @@ app.directive('elementoCentrado', function(){
 .directive('fabMenu', function($timeout, $ionicGesture) {
 
     var options = {
-        baseAngle: 270,
-        rotationAngle: 88,
-        distance: 112,
+        baseAngle: 182,
+        rotationAngle: 60,
+        distance: 130,
         animateInOut: 'all', // can be slide, rotate, all
       },
       buttons = [],
@@ -125,7 +125,7 @@ app.directive('elementoCentrado', function(){
       lastDragTime = 0,
       currentX = 0,
       currentY = 0,
-      previousSpeed     = 0,
+      previousSpeed     = 15,
 
       init = function() {
 
@@ -170,7 +170,7 @@ app.directive('elementoCentrado', function(){
 
         // max speed value is 25 // can change this :)
         // used previousSpeed to reduce the speed diff on each tick
-        speed = (speed > 15) ? 15 : speed;
+        /*speed = (speed > 15) ? 15 : speed;
         speed = (speed + previousSpeed) / 2;
         previousSpeed = speed; 
         
@@ -194,12 +194,12 @@ app.directive('elementoCentrado', function(){
 
           button.style.transform = "rotate(" + angle + "deg) translate(" + options.distance + "px) rotate(-" + angle + "deg) scale(1)";
           button.style.WebkitTransform = "rotate(" + angle + "deg) translate(" + options.distance + "px) rotate(-" + angle + "deg) scale(1)";
-        }
+        }*/
       },
 
       endRotateButtons = function() {
 
-        for (var i = 0; i < buttonContainers.length; i++) {
+        /*for (var i = 0; i < buttonContainers.length; i++) {
 
           var button = buttonContainers.item(i),
             angle = parseInt(button.getAttribute('angle')),
@@ -211,7 +211,7 @@ app.directive('elementoCentrado', function(){
 
           button.style.transform = "rotate(" + angle + "deg) translate(" + options.distance + "px) rotate(-" + angle + "deg) scale(1)";
           button.style.WebkitTransform = "rotate(" + angle + "deg) translate(" + options.distance + "px) rotate(-" + angle + "deg) scale(1)";
-        }
+        }*/
       };
 
     return {
