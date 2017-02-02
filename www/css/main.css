@@ -10344,7 +10344,7 @@ p {
     margin: -5px 0;
     border-right: none;
     border-left: none;
-    height: 80px; }
+    height: auto; }
     .orden .item .item-input {
       padding: 6px 14px 5px 14px; }
     .orden .item .der {

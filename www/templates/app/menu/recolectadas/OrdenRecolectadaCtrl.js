@@ -43,6 +43,9 @@ var OrdenRecolectadaCtrl = function($scope,
 			hide: true,
 		},
 		valido: false,
+		prendas: {
+			eliminar: false
+		},
 		productos: {
 			panel: false,
 			eliminar: false,

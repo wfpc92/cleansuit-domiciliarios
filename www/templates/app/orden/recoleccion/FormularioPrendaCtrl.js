@@ -159,7 +159,7 @@ var FormularioPrendaCtrl = function($scope,
 			
 			// asignar nombre a cada fotografia basado en codigo y fecha actual.
 			for (var i in $scope.prenda.fotos) {
-				$scope.prenda.fotos[i].nombre = "prenda#" + $scope.prenda.codigo + "#" + (new Date()).getTime() + ".jpg";
+				$scope.prenda.fotos[i].nombre = "prenda-" + $scope.prenda.codigo + "-" + (new Date()).getTime() + ".jpg";
 			}
 
 			if (!$scope.esNueva) {

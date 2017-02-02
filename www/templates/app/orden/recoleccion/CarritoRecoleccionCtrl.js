@@ -9,6 +9,9 @@ var CarritoRecoleccionCtrl = function($scope,
 	$log.debug("CarritoRecoleccionCtrl");
 
 	$scope.formulario = {
+		prendas: {
+			eliminar: true
+		},
 		productos: {
 			panel: true
 		}

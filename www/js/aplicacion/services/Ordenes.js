@@ -138,13 +138,10 @@ var OrdenesFactory = function(UsuarioFactory,
 		enviarRecolectada: function(cbkInicio, cbkExito, cbkFracaso, cbkProgreso) {
 			var self = this, 
 				imagenes = [];
-			
-			//casoPrueba();
-			
+			//casoPrueba();			
 			CarritoFactory.infoOrden.recoleccion = {
 				items: JSON.parse(JSON.stringify(CarritoFactory.items)), 
 			};
-			
 			CarritoFactory.infoOrden.estado = 2; // "recolectada"
 			
 			for (var index  in CarritoFactory.items.prendas) {
@@ -156,13 +153,10 @@ var OrdenesFactory = function(UsuarioFactory,
 				for (var j in prenda.fotos) {
 					var fotos = prenda.fotos[j];
 					imagenes[prenda.codigo].push(fotos); //{nombre: string, src: string}
-					
-					//se eliminan las fotos de la informacion de orden, sino se eliminan la peticion web devuelve error
-					//por longitud de la peticion.				
+					//se eliminan las fotos de la informacion de orden, sino se eliminan la peticion web devuelve error por longitud de la peticion.				
 					CarritoFactory.infoOrden.recoleccion.items.prendas[index].fotos[j].src = null;
 					delete CarritoFactory.infoOrden.recoleccion.items.prendas[index].fotos[j].src;
 				}
-
 			}
 
 			return RecursosFactory
@@ -171,6 +165,11 @@ var OrdenesFactory = function(UsuarioFactory,
 			})
 			.then(function(res) {
 				console.log("OrdenesFactory.enviarRecolectada", res)
+				self.limpiarOrden();
+				self.cargarAsignadas()
+				.then(function() {
+					
+				});
 				return res;
 			}, function(err) {
 				console.log("OrdenesFactory.enviarRecolectada")
@@ -182,12 +181,13 @@ var OrdenesFactory = function(UsuarioFactory,
 			CarritoFactory.infoOrden.entrega = {
 				items: CarritoFactory.items, 
 			};
-			CarritoFactory.infoOrden.estado = 'entregada';
+			CarritoFactory.infoOrden.estado = 5;
 
 			return RecursosFactory
 			.put('/ordenes/'+CarritoFactory.infoOrden._id, CarritoFactory.infoOrden)
 			.then(function(respuesta) {
 				console.log("OrdenesFactory.enviarEntregada()", respuesta)
+				self.limpiarOrden();
 				self.cargarAsignadas()
 				.then(function() {
 					
@@ -203,11 +203,12 @@ var OrdenesFactory = function(UsuarioFactory,
 			CarritoFactory.infoOrden.entrega = {
 				items: CarritoFactory.items, 
 			};
-			
+			CarritoFactory.infoOrden.estado = 5;
+
 			return RecursosFactory
 			.post("/ordenes/venta-directa", CarritoFactory.infoOrden)
 			.then(function(response) {
-				console.log("OrdenesFactory.enviarVentaDirecta(): ", response);
+				console.log("OrdenesFactory.enviarVentaDirecta(): ", response, self);
 				self.limpiarOrden();
 				self.cargarAsignadas();
 			});

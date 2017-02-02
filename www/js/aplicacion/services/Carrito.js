@@ -3,7 +3,9 @@ var CarritoFactory = function(RecursosFactory,
 							$log,
 							$state,
 							$ionicPopup,
-							ConfiguracionesFactory){
+							ConfiguracionesFactory,
+							API_ENDPOINT,
+							$location){
 	/**
 	 * [this.items ]
 	 * @type [{Object id:String producto o servicio
@@ -295,7 +297,7 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 
-		soloHayProductos : function(items){
+		soloHayProductos : function(){
 			return this.contPrendas == 0 && this.contProductos >= 1;
 		},
 
@@ -344,6 +346,15 @@ var CarritoFactory = function(RecursosFactory,
 			//$log.debug("CarritoFactory.aplicarPromocion", promocion);
 			this.totales.promocion = promocion;
 			this.actualizarContadores();
+		},
+
+		getSrcFoto: function(prenda) {
+			if (API_ENDPOINT.url == '/api') {
+				src = "http://localhost:20987";
+			} else {
+				src = API_ENDPOINT.url
+			}
+			return src += "/updates/"+ prenda.fotos[0].nombre;
 		},
 	};
 };

@@ -23,9 +23,9 @@ var EnviarRecoleccionCtrl = function($scope,
 	$scope.enviar = function() {
 		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito);
 		
-		OrdenesFactory
-		.enviarRecolectada()
-		.then(function() {
+		var qEnvio = $scope.carrito.soloHayProductos() ? OrdenesFactory.enviarVentaDirecta() : OrdenesFactory.enviarRecolectada();
+
+		qEnvio.then(function() {
 			$ionicPopup
 			.alert({
 		    	title: 'Orden enviada',

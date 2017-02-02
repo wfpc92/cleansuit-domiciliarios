@@ -12,52 +12,56 @@ var OrdenParaEntregaCtrl = function($scope,
 		nombre: {
 			disabled: true
 		},
-			recoleccion: {
-				direccion: {
-					hide: true
-				},
-				fecha: {
-					hide: true
-				},
-				hora: {
-					hide: true
-				}
+		recoleccion: {
+			direccion: {
+				hide: true
 			},
-			entrega: {
-				direccion: {
-					disabled: true
-				},
-				fecha: {
-					disabled: true
-				},
-				hora: {
-					disabled: true
-				}
+			fecha: {
+				hide: true
 			},
-			telefono: {
-				disabled: true
-			},
-			formaPago: {
-				disabled: true
-			},
-			cupon: {
-				hide: true,
-			},
-			valido: false,
-			productos: {
-				panel: false,
-				eliminar: false,
-				entregar: true
-			},
-			siguiente: {
-				texto: "ORDEN ENTREGADA"
+			hora: {
+				hide: true
 			}
-		};
+		},
+		entrega: {
+			direccion: {
+				disabled: true
+			},
+			fecha: {
+				disabled: true
+			},
+			hora: {
+				disabled: true
+			}
+		},
+		telefono: {
+			disabled: true
+		},
+		formaPago: {
+			disabled: true
+		},
+		cupon: {
+			hide: true,
+		},
+		valido: false,
+		prendas: {
+			eliminar: false,
+			entregar: true
+		},
+		productos: {
+			panel: false,
+			eliminar: false,
+			entregar: true
+		},
+		siguiente: {
+			texto: "ORDEN ENTREGADA"
+		}
+	};
 	
 	$scope.$on("$ionicView.beforeEnter", function() {
+		console.log($scope.carrito.infoOrden);
 		$scope.carrito.infoOrden.orden.recoleccion.fecha = new Date($scope.carrito.infoOrden.orden.recoleccion.fecha);
 		$scope.carrito.infoOrden.orden.entrega.fecha = new Date($scope.carrito.infoOrden.orden.entrega.fecha);
-		console.log($scope.carrito.items)
 	});
 
 	$scope.siguiente = function() {
@@ -116,6 +120,20 @@ var OrdenParaEntregaCtrl = function($scope,
 		CancelarOrdenFactory.mostrarOrdenPendiente();
 	};
 
+	$scope.verificarEntrega = function() {
+		var verificar = function(items) {
+			for (var i in items) {
+				console.log(items[i], items[i].entregado);
+				if (!items[i].entregado) {
+					console.log("2, ", items[i].entregado);
+					return false;
+				}
+			}
+			return true;
+		};
+
+		$scope.formulario.valido = verificar($scope.carrito.items.prendas) && verificar($scope.carrito.items.productos);
+	}
 };
 
 

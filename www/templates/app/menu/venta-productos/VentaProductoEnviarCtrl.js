@@ -23,7 +23,6 @@ var VentaProductoEnviarCtrl = function($scope,
 	$scope.enviar = function() {
 		console.log("VentaProductoEnviarCtrl.enviar", $scope.carrito.infoOrden);
 
-		
 		OrdenesFactory
 		.enviarVentaDirecta()
 		.then(function() {
