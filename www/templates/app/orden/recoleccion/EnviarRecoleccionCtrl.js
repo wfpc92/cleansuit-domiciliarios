@@ -8,17 +8,8 @@ var EnviarRecoleccionCtrl = function($scope,
 							OrdenesFactory, 
 							$timeout) {
 	
-	$scope.$on("$ionicView.beforeEnter", function() {
-				
-	});
-
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		
-	});
 	
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
-	});
+	$log.debug("VentaProductosCtrl", $scope.$id);
 
 	$scope.enviar = function() {
 		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito);
@@ -42,7 +33,6 @@ var EnviarRecoleccionCtrl = function($scope,
 	};
 
 	$scope.regresar = function() {
-		console.log("regresar")
 		$ionicHistory.goBack(-2);
 	};
 };

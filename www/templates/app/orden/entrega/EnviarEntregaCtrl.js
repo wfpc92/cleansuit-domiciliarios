@@ -8,18 +8,8 @@ var EnviarEntregaCtrl = function($scope,
 							OrdenesFactory, 
 							$timeout) {
 	
-	$scope.$on("$ionicView.beforeEnter", function() {
-				
-	});
-
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		
-	});
+	$log.debug("VentaProductosCtrl", $scope.$id);
 	
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
-	});
-
 	$scope.enviar = function() {
 		console.log("EnviarEntregaCtrl.enviar", $scope.carrito.infoOrden);
 
@@ -43,7 +33,7 @@ var EnviarEntregaCtrl = function($scope,
 
 	$scope.regresar = function() {
 		console.log("regresar")
-		$ionicHistory.goBack(-2);
+		$ionicHistory.goBack();
 	};
 };
 

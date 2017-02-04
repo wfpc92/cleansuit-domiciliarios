@@ -10,15 +10,17 @@ var AppCtrl = function($scope,
 					OrdenesFactory,
 					PopupFactory,
 					AuthService,
+					FormularioFactory,
 					AUTH_EVENTS,
 					APP_EVENTS,
 					USER_ROLES) {
 
-	$log.debug("AppCtrl");
+	$log.debug("AppCtrl", $scope.$id);
 
 	$scope.historial = HistorialTabsFactory;
 	$scope.carrito = CarritoFactory;
 	$scope.$state = $state;
+	$scope.formulario = FormularioFactory;
 	
 	//verificar si esta autenticado y autorizado.
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

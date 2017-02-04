@@ -12,6 +12,8 @@ s<ion-view title="CleanSuit">
 			</div>
 		</div>
 
+		<ion-refresher on-refresh="refrescar()"></ion-refresher>
+		
 		<ion-list ng-if="hayOrdenes()">
 			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
 					ng-click="verInformacionOrden($index)">

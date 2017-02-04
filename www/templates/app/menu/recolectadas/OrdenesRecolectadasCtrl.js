@@ -3,7 +3,7 @@ var OrdenesRecolectadasCtrl =  function ($scope,
 									$state,
 									OrdenesFactory) {
 	
-	$log.debug("OrdenesRecolectadasCtrl")
+	$log.debug("OrdenesRecolectadasCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesRecolectadas;
 	
 	$scope.hayOrdenes = function() {

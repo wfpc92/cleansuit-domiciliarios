@@ -5,7 +5,7 @@ var VentaProductoCtrl = function($scope,
 							$state,
 							$log) {
 
-	$log.debug("VentaProductoCtrl");
+	$log.debug("VentaProductoCtrl", $scope.$id);
 
 	$scope.indexProducto = $stateParams.indexProducto;
 	$scope.producto = ProductosFactory.productos[$scope.indexProducto];

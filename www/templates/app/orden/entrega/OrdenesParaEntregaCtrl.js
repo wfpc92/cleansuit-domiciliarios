@@ -4,14 +4,19 @@ var OrdenesParaEntregaCtrl =  function ($scope,
 										$log,
 										OrdenesFactory) {
 	
-	$log.debug("OrdenesParaEntregaCtrl")
+	$log.debug("OrdenesParaEntregaCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesEntrega;
 	
-	OrdenesFactory
-	.cargarAsignadas() 
-	.then(function() {
-		$scope.ordenes = OrdenesFactory.ordenesEntrega;
-	});
+	$scope.refrescar = function() {
+		OrdenesFactory
+		.cargarAsignadas() 
+		.then(function() {
+			$scope.ordenes = OrdenesFactory.ordenesEntrega;
+		})
+		.finally(function() {
+			$scope.$broadcast('scroll.refreshComplete');
+		});
+	};
 
 	$scope.hayOrdenes = function() {
 		if(!$scope.ordenes) {

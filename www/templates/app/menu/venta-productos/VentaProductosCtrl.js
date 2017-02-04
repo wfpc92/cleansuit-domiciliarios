@@ -9,7 +9,7 @@ var VentaProductosCtrl = function($scope,
 							$ionicPopup,
 							ModalCargaFactory) {
 
-	$log.debug("VentaProductosCtrl");
+	$log.debug("VentaProductosCtrl", $scope.$id);
 
 	$scope.indexOrden = -1;
 	$scope.productos = ProductosFactory.productos;

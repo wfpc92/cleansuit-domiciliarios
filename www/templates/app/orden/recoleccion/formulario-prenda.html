@@ -14,12 +14,12 @@
 					<div class="col fotos">
 						<h3>Fotos de la prenda</h3>
 						<ul class="listfotos">
-							<li ng-repeat="foto in prenda.fotos track by $index">
+							<li ng-repeat="foto in prenda.fotos track by $index" ng-click="eliminarFoto($index)">
 								<img ng-src="{{foto.src}}" alt="">
-								<i class="icon icons icons-eliminar_foto" ng-click="eliminarFoto($index)"></i>
+								<i class="icon icons icons-eliminar_foto" ></i>
 							</li>
-							<li>
-								<i class="icon icons icons-subir_foto" ng-click="tomarFoto()"></i>
+							<li ng-click="tomarFoto()">
+								<i class="icon icons icons-subir_foto"></i>
 							</li>
 						</ul>
 					</div>
@@ -31,9 +31,9 @@
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Código de identificación de la prenda</span>
-							<input type="text" placeholder="Ingrese un código" ng-model="prenda.codigo" ng-minlength="3" ng-maxlength="100" required>
+							<input type="text" placeholder="Ingrese un código" ng-model="prenda.codigo" ng-minlength="3" ng-maxlength="100" ng-disabled="!esNueva" required>
 						</label>
-						<i class="icon icons-activar_cam" ng-click="escanearCodigo()"></i>
+						<i class="icon icons-activar_cam" ng-click="escanearCodigo()" ng-hide="!esNueva"></i>
 					</div>
 				</ion-item>
 

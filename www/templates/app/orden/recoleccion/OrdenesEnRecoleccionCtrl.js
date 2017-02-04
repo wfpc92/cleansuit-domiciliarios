@@ -4,14 +4,19 @@
 										$log,
 										OrdenesFactory) {
 	
-	$log.debug("OrdenesEnRecoleccionCtrl")
+	$log.debug("OrdenesEnRecoleccionCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
 
-	OrdenesFactory
-	.cargarAsignadas() 
-	.then(function() {
-		$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
-	});
+	$scope.refrescar = function() {
+		OrdenesFactory
+		.cargarAsignadas() 
+		.then(function() {
+			$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
+		})
+		.finally(function() {
+			$scope.$broadcast('scroll.refreshComplete');
+		});	
+	};
 
 	$scope.hayOrdenes = function() {
 		if(!$scope.ordenes) {

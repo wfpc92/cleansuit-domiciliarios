@@ -9,41 +9,25 @@ var OrdenEnRecoleccionCtrl = function($scope,
 							OrdenesFactory,
 							CancelarOrdenFactory) {
 
-	$log.debug("OrdenEnRecoleccionCtrl");
+	$log.debug("OrdenEnRecoleccionCtrl", $scope.$id);
 	
-	$scope.formulario = {
-		nombre: {
-			disabled: true,
-		},
-		totales: {
-			hide: true
-		},
-		cupon: {
-			hide: true
-		},
-		abono: {
-			hide: true
-		},
-		valido: true,
-		cancelar: {
-			texto: "Suspender pedido", 
-		},
-		siguiente: {
-			texto: "TOMAR PEDIDO",
-		}
-	};
-
 	$scope.$on("$ionicView.beforeEnter", function() {
-		$scope.carrito.infoOrden.orden.recoleccion.fecha = new Date($scope.carrito.infoOrden.orden.recoleccion.fecha);
-		$scope.carrito.infoOrden.orden.entrega.fecha = new Date($scope.carrito.infoOrden.orden.entrega.fecha);
-	});
-
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		
-	});
-	
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
+		$scope.formulario.init();
+		$scope.formulario.nombre.disabled = true;
+		$scope.formulario.recoleccion.direccion.disabled = true;
+		$scope.formulario.recoleccion.fecha.disabled = true;
+		$scope.formulario.recoleccion.hora.disabled = true;
+		$scope.formulario.entrega.direccion.disabled = true;
+		$scope.formulario.entrega.fecha.disabled = true;
+		$scope.formulario.entrega.hora.disabled = true;
+		$scope.formulario.telefono.disabled = true;
+		$scope.formulario.formaPago.hide = true;
+		$scope.formulario.cupon.disabled = true;
+		$scope.formulario.abono.hide = true;
+		$scope.formulario.totales.hide = true;
+		$scope.formulario.cancelar.texto = "Suspender pedido";
+		$scope.formulario.siguiente.texto = "TOMAR PEDIDO";
+		$scope.formulario.valido = true;
 	});
 
 	$scope.siguiente = function() {
@@ -71,6 +55,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		$scope.$ionicPopup = $ionicPopup;
 
 		CancelarOrdenFactory.$scope = $scope;
+		CancelarOrdenFactory.textos.volverInfoOrden = "Volver a información de orden";
 		CancelarOrdenFactory.cb = {
 			pendiente: 	function(e) {
 				$scope.carrito.vaciar();

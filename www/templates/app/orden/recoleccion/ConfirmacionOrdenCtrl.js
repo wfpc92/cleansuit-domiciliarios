@@ -9,67 +9,34 @@ var ConfirmacionOrdenCtrl = function($scope,
 							CancelarOrdenFactory, 
 							$timeout) {
 	
-	$scope.$on("$ionicView.beforeEnter", function() {		
-		$scope.formulario = {
-			nombre: {
-				disabled: true
-			},
-			recoleccion: {
-				direccion: {
-					hide: true
-				},
-				fecha: {
-					hide: true
-				},
-				hora: {
-					hide: true
-				}
-			},
-			entrega: {
-				direccion: {
-					disabled: true
-				},
-				fecha: {
-					disabled: true
-				},
-				hora: {
-					disabled: true
-				}
-			},
-			telefono: {
-				disabled: true
-			},
-			formaPago: {
-				disabled: true
-			},
-			cupon: {
-				hide: true,
-			},
-			valido: false,
-			prendas: {
-				eliminar: true
-			},
-			productos: {
-				panel: false,
-				eliminar: true,
-				entregar: false
-			},
-			cancelar: {
-				texto: "Validación del cliente"
-			},
-			siguiente: {
-				texto: "REALIZAR ORDEN"
-			}
-		};
-	});
+	$log.debug("VentaProductosCtrl", $scope.$id);
+	
+	$scope.$on('$ionicView.beforeEnter', function(event) {
+		$scope.formulario.init();
+		$scope.formulario.nombre.disabled = true;
+		$scope.formulario.recoleccion.direccion.disabled = true;
+		$scope.formulario.recoleccion.fecha.disabled = true;
+		$scope.formulario.recoleccion.hora.disabled = true;
+		$scope.formulario.entrega.direccion.disabled = true;
+		$scope.formulario.entrega.fecha.disabled = true;
+		$scope.formulario.entrega.hora.disabled = true;
+		$scope.formulario.telefono.disabled = true;
+		$scope.formulario.cupon.disabled = true;
+		$scope.formulario.prendas.eliminar = true;
+		$scope.formulario.productos.eliminar = true;
+		$scope.formulario.cancelar.texto = "Validación del cliente";
+		$scope.formulario.siguiente.texto = "REALIZAR ORDEN";
+		$scope.formulario.valido = false;
 
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		
+		$scope.validoCliente =  false;
+		$scope.validoCampos = false;
+
 	});
 	
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
-	});
+	$scope.validar = function() {
+		$scope.validoCampos = $scope.carrito.contProductos + $scope.carrito.contPrendas > 0;
+		$scope.formulario.valido = $scope.validoCliente && $scope.validoCampos;
+	};
 
 	$scope.siguiente = function() {
 		if ($scope.formulario.valido) {
@@ -80,12 +47,13 @@ var ConfirmacionOrdenCtrl = function($scope,
 		}
 	};
 
-	//cancelar orden:
 	$scope.cancelar = function() {
 		CancelarOrdenFactory.$scope = $scope;
+		CancelarOrdenFactory.textos.volverInfoOrden = "Volver a información de orden";
 		CancelarOrdenFactory.cb = {
 			deacuerdo: function() {
-				$scope.formulario.valido = true;
+				$scope.validoCliente = true;
+		    	$scope.validar();
 			},
 			
 			volverInfoOrden: function(e) {

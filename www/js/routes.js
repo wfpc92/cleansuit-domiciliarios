@@ -166,7 +166,7 @@ app.config(function($stateProvider,
 				controller: 'CarritoRecoleccionCtrl'
 			},
 			"lista-carrito@app.recoleccion-carrito" : {
-				templateUrl: 'templates/app/orden/lista-carrito.html'
+				templateUrl: 'templates/app/orden/lista-carrito.html',
 			}
 		}
 	})
@@ -196,8 +196,8 @@ app.config(function($stateProvider,
 			}
 		}
 	})
-	.state('app.recoleccion-prenda', {
-		url: '/recoleccion-prenda/:indexPrenda',
+	.state('app.recoleccion-formulario-prenda', {
+		url: '/recoleccion-formulario-prenda/:indexPrenda',
 		cache: false,
 		views: {
 			'contenedor-recoleccion': {

@@ -7,6 +7,10 @@ var CancelarOrdenFactory = function($ionicPopup,
 	return {
 		$scope: null, 
 
+		textos: {
+			volverInfoOrden: "Volver a información de orden"
+		},
+
 		motivos: [
     		{ texto: "Valor elevado", valor: "0" },
     		{ texto: "Manifiesta mala atención", valor: "1" },
@@ -63,7 +67,7 @@ var CancelarOrdenFactory = function($ionicPopup,
 		    	scope: scope,
 		    	buttons: [
 			    	{
-			    		text: 'Volver a información de orden',
+			    		text: self.textos.volverInfoOrden,
 				    	type: 'button-ligth',
 			    		onTap: self.cb.volverInfoOrden
 			    	},

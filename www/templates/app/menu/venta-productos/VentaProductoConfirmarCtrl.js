@@ -2,13 +2,12 @@ var VentaProductoConfirmarCtrl = function($scope,
 							$stateParams,
 							OrdenesFactory,
 							ProductosFactory,
-							CancelarOrdenFactory,
 							$ionicHistory,
 							$state,
 							$ionicPopup,
 							$log) {
 
-	$log.debug("VentaProductoConfirmarCtrl");
+	$log.debug("VentaProductoConfirmarCtrl", $scope.$id);
 
 	$scope.formulario = {
 		titulo: {
@@ -38,8 +37,8 @@ var VentaProductoConfirmarCtrl = function($scope,
 	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.formulario.validoCliente =  false,
-		$scope.formulario.validoCampos = false,
+		$scope.formulario.validoCliente =  false;
+		$scope.formulario.validoCampos = false;
 
 		$scope.$watchGroup([
 				'carrito.infoOrden.cliente_id.nombre',

@@ -5,7 +5,7 @@ var OrdenRecolectadaCtrl = function($scope,
 							OrdenesFactory, 
 							$timeout) {
 
-	$log.debug("OrdenRecolectadaCtrl");
+	$log.debug("OrdenRecolectadaCtrl", $scope.$id);
 	
 	$scope.formulario = {
 		nombre: {

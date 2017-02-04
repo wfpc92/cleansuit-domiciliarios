@@ -5,7 +5,7 @@ var IngresarCtrl = function($scope,
 								$log,
 								AUTH_EVENTS) {
 
-	$log.debug("IngresarCtrl");
+	$log.debug("IngresarCtrl", $scope.$id);
 	
 	$scope.error = "";
 	$scope.formValido = [];

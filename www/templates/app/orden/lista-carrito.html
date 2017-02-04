@@ -5,7 +5,7 @@
 	</elemento-centrado>
 
 	<ion-item ng-repeat="(index, item) in carrito.items.prendas track by $index" ng-class="{ 'item-thumbnail-left': item.fotos.length > 0 }" >
-		<div class="servicio" ng-click="editarPrenda(index)">
+		<div class="servicio" ng-click="carrito.editarPrenda(index)">
 			<div class="img" ng-if="item.fotos.length > 0">
 				<img ng-src="{{item.fotos[0].src || carrito.getSrcFoto(item)}}"/>
 			</div>
@@ -14,10 +14,9 @@
 			<p>ID: {{item.codigo}}</p>
 			<h3>{{carrito.calcularPrecioPrenda(item) || 0  | currency : "$ " : 0 }}</h3>
 		</div>
-		<i  class="icon ion-ios-close-outline" ng-click="carrito.eliminarPrenda(index)" ng-if="formulario.prendas.eliminar"></i>
-		<ion-checkbox ng-model="item.entregado" ng-checked="item.entregado" ng-if="formulario.prendas.entregar" ng-change="verificarEntrega()"></ion-checkbox>
+		<i  class="icon ion-ios-close-outline" ng-click="carrito.eliminarPrenda(index, validar)" ng-if="formulario.prendas.eliminar"></i>
+		<ion-checkbox ng-model="item.entregado" ng-checked="item.entregado" ng-if="formulario.prendas.entregar" ng-change="formulario.verificarEntrega(carrito.items)"></ion-checkbox>
 	</ion-item>
-
 
 	<elemento-centrado>
 		<a class="cancelar assertive" ng-if="carrito.hayProductos() || carrito.contProductos > 0">-Productos-</a>
@@ -31,11 +30,11 @@
 		<h3>{{item.precio || 0  | currency : "$ " : 0 }}</h3>				
 			
 		<div class="contador">
-			<i ng-click="aumentar(item, 'PRODUCTO')" class="icon ico-mas" ng-if="formulario.productos.panel"></i>
+			<i ng-click="carrito.aumentarProducto(item)" class="icon ico-mas" ng-if="formulario.productos.panel"></i>
 			<span>{{item.cantidad || 0}}</span>
 			<i ng-click="disminuir(item, 'PRODUCTO')" class="icon ico-menos" ng-if="formulario.productos.panel"></i>
-			<i  class="icon ion-ios-close-outline" ng-click="carrito.eliminarProducto(index)" ng-if="formulario.productos.eliminar"></i>
-			<ion-checkbox ng-model="item.entregado" ng-checked="item.entregado" ng-if="formulario.productos.entregar" ng-change="verificarEntrega()"></ion-checkbox>
+			<i  class="icon ion-ios-close-outline" ng-click="carrito.eliminarProducto(index, validar)" ng-if="formulario.productos.eliminar"></i>
+			<ion-checkbox ng-model="item.entregado" ng-checked="item.entregado" ng-if="formulario.productos.entregar" ng-change="formulario.verificarEntrega(carrito.items)"></ion-checkbox>
 		</div>
 	</ion-item>
 	</div>

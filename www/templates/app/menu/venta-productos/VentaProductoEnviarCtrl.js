@@ -8,6 +8,8 @@ var VentaProductoEnviarCtrl = function($scope,
 							OrdenesFactory, 
 							$timeout) {
 	
+	$log.debug("VentaProductoEnviarCtrl", $scope.$id);
+	
 	$scope.$on("$ionicView.beforeEnter", function() {
 				
 	});

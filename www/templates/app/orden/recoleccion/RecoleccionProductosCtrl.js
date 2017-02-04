@@ -10,23 +10,12 @@ var RecoleccionProductosCtrl = function($scope,
 							OrdenesFactory,
 							ModalCargaFactory) {
 
-	$log.debug("RecoleccionProductosCtrl");
-
+	$log.debug("RecoleccionProductosCtrl", $scope.$id);
 	$scope.productos = ProductosFactory.productos;
 
 	$scope.verDetalle = function($index) {
 		$state.go("app.recoleccion-producto", {indexProducto: $index });
 	};
-
-	$scope.$on('$ionicView.afterEnter', function(event) {
-		if ($scope.productos.length > 0) {
-
-		}
-	});
-
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
-	});
 
 	$scope.$on("limpiarLista", function() {
 		$ionicListDelegate.closeOptionButtons();
@@ -57,18 +46,13 @@ var RecoleccionProductosCtrl = function($scope,
 	$scope.cancelarPedidoProductos = function() {
 		$ionicPopup
 		.confirm({
-	    	title: '¿Desea cancelar el pedido?',
+	    	title: '¿Desea cancelar el pedido de productos?',
 	    	template: '',
 	    	buttons: [
 		    	{
 		    		text: 'Si',
 		    		onTap: function(e) {
-		    			//aqui se borra (limpiar) el pedido de productos del carrito.
-		    			$scope.carrito.eliminarProductos();
-		    			$ionicHistory.nextViewOptions({
-							disableBack:'true'
-						});
-						$state.go("app.recoleccion-carrito");
+		    			$ionicHistory.goBack();
 		    		}
 		    	},
 		      	{

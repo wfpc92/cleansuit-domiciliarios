@@ -36,6 +36,8 @@ var CarritoFactory = function(RecursosFactory,
 
 			delete this.infoOrden;
 			this.infoOrden = infoOrden;
+			this.infoOrden.orden.recoleccion.fecha = this.infoOrden.orden.recoleccion.fecha ? new Date(this.infoOrden.orden.recoleccion.fecha) : new Date();
+			this.infoOrden.orden.entrega.fecha = this.infoOrden.orden.entrega.fecha ? new Date(this.infoOrden.orden.entrega.fecha) : new Date();
 		},
 
 		setProductosRecoleccion: function(infoOrden) {
@@ -162,10 +164,13 @@ var CarritoFactory = function(RecursosFactory,
 			this.disminuir(producto, "PRODUCTO", 1);
 		},
 
-		eliminarPrenda: function(index) {
-			var self = this;
+		editarPrenda: function(index) {
+			$state.go("app.recoleccion-formulario-prenda", {indexPrenda: index});	
+		},
 
-			$ionicPopup
+		eliminarPrenda: function(index, cb) {
+			var self = this;
+			return $ionicPopup
 			.confirm({
 				title: 'Eliminar Servicio',
 				template: '¿Está seguro que desea eliminar este servicio?',
@@ -174,6 +179,9 @@ var CarritoFactory = function(RecursosFactory,
 						text: 'Si',
 						onTap: function(e) {
 							self.eliminar(index, 'PRENDA');
+							if (cb) {
+								cb();
+							}
 						}
 					},
 					{
@@ -184,7 +192,7 @@ var CarritoFactory = function(RecursosFactory,
 			});
 		},
 
-		eliminarProducto: function(index) {
+		eliminarProducto: function(index, cb) {
 			var self = this;
 
 			$ionicPopup
@@ -196,6 +204,9 @@ var CarritoFactory = function(RecursosFactory,
 			    		text: 'Si',
 			    		onTap: function(e) {
 			    			self.eliminar(index, 'PRODUCTO');
+			    			if (cb) {
+			    				cb();
+			    			}
 			    		}
 			    	},
 			      	{
@@ -206,9 +217,8 @@ var CarritoFactory = function(RecursosFactory,
 		    });	    
 		},
 
-
-
 		eliminar : function(index, tipo) {
+			console.log("eliminar", index, tipo, this.items)
 			if (tipo == 'PRODUCTO') {
 				delete this.items.productos[index];
 			} else {
