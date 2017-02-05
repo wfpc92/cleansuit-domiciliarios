@@ -1,5 +1,5 @@
 var CarritoFactory = function(RecursosFactory, 
-							PromocionesFactory, 
+							PromocionesFactory,
 							$log,
 							$state,
 							$ionicPopup,
@@ -78,10 +78,6 @@ var CarritoFactory = function(RecursosFactory,
 		},
 
 		setVentaDirecta: function() {
-			var obtenerHora = function(hora) {
-				return "8:00"+hora.getDay();
-			}
-
 			if (!this.ventaDirecta) {
 				this.init({
 					cliente_id: {
@@ -91,12 +87,12 @@ var CarritoFactory = function(RecursosFactory,
 						recoleccion: {
 							direccion: null,
 							fecha: new Date(),
-							hora: obtenerHora(new Date())
+							hora: ""
 						},
 						entrega: {
 							direccion: null,
 							fecha: new Date(),
-							hora: obtenerHora(new Date())
+							hora: ""
 						},
 						telefono: null,
 						formaPago: null,

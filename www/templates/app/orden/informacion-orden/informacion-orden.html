@@ -93,11 +93,11 @@
 							<span class="input-label item-icon-right">Forma de pago</span>
 							<input type="text" placeholder="Forma de pago" ng-model="carrito.infoOrden.orden.formaPago" ng-disabled="formulario.formaPago.disabled" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
-						<i class="icon ico-flechaabajo" ng-click="formulario.construirPopover('FORMAPAGO',$event)" ng-if="!formulario.formaPago.disabled"></i>
+						<i class="icon ico-flechaabajo" ng-click="formulario.construirPopover('FORMAPAGO',$event)" ng-if="formulario.formaPago.editable"></i>
 					</div>
 				</ion-item>
 
-				<ion-item class="row" ng-hide="formulario.cupon.hide">
+				<ion-item class="row" ng-hide="formulario.cupon.hide || carrito.infoOrden.orden.cupon.length == 0">
 					<div class="col col-75">
 						<label class="item-input item-stacked-label item-floating-label">
 							<span class="input-label item-icon-right">Cupón de Descuento</span>

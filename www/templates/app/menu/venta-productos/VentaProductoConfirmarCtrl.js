@@ -17,12 +17,16 @@ var VentaProductoConfirmarCtrl = function($scope,
 		$scope.formulario.recoleccion.direccion.hide = true;
 		$scope.formulario.recoleccion.fecha.hide = true;
 		$scope.formulario.recoleccion.hora.hide = true;
+		$scope.formulario.formaPago.disabled = true;
+		$scope.formulario.formaPago.editable = true;
+		$scope.formulario.cupon.hide = true;
+		$scope.formulario.cupon.abono = true;
 		$scope.formulario.prendas.eliminar = true;
 		$scope.formulario.productos.eliminar = true;
 		$scope.formulario.cancelar.texto = "Validación del cliente";
 		$scope.formulario.siguiente.texto = "REALIZAR ORDEN";
 		$scope.formulario.valido = false;
-
+		$scope.formulario.setHoraActual();
 		$scope.validoCliente =  false;
 		$scope.validoCampos = false;
 

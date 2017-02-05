@@ -45,6 +45,33 @@ var FormularioFactory = function(CarritoFactory,
 		return true;
 	};
 
+	var _horasDelDia = [
+		"12:00 A.M. a 12:59 A.M.",
+		"1:00 A.M. a 1:59 A.M.",
+		"2:00 A.M. a 2:59 A.M.",
+		"3:00 A.M. a 3:59 A.M.",
+		"4:00 A.M. a 4:59 A.M.",
+		"5:00 A.M. a 5:59 A.M.",
+		"6:00 A.M. a 6:59 A.M.",
+		"7:00 A.M. a 7:59 A.M.",
+		"8:00 A.M. a 8:59 A.M.",
+		"9:00 A.M. a 9:59 A.M.",
+		"10:00 A.M. a 10:59 A.M.",
+		"11:00 A.M. a 11:59 A.M.",
+		"12:00 P.M. a 12:59 P.M.",
+		"1:00 P.M. a 1:59 P.M.",
+		"2:00 P.M. a 2:59 P.M.",
+		"3:00 P.M. a 3:59 P.M.",
+		"4:00 P.M. a 4:59 P.M.",
+		"5:00 P.M. a 5:59 P.M.",
+		"6:00 P.M. a 6:59 P.M.",
+		"7:00 P.M. a 7:59 P.M.",
+		"8:00 P.M. a 8:59 P.M.",
+		"9:00 P.M. a 9:59 P.M.",
+		"10:00 P.M. a 10:59 P.M.",
+		"11:00 P.M. a 11:59 P.M.",
+	];
+
 	return {
 		init: function() {
 			this.titulo= {
@@ -85,6 +112,7 @@ var FormularioFactory = function(CarritoFactory,
 			};
 			this.formaPago = {
 				hide: false,
+				editable: false,
 				disabled: false
 			};
 			this.cupon = {
@@ -118,6 +146,8 @@ var FormularioFactory = function(CarritoFactory,
 			};
 			this.valido = false;
 		},
+
+		horasDelDia: _horasDelDia,
 
 		verificarEntrega: function(items) {
 			this.valido = verificar(items.prendas) && verificar(items.productos);
@@ -293,6 +323,13 @@ var FormularioFactory = function(CarritoFactory,
 				});
 			}
 		},
+
+		setHoraActual: function() {
+			var d = new Date();
+			var h = d.getHours();
+			CarritoFactory.infoOrden.orden.recoleccion.hora = _horasDelDia[h];				
+			CarritoFactory.infoOrden.orden.entrega.hora = _horasDelDia[h];				
+		}
 	};
 };
 
