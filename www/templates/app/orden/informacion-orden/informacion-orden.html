@@ -23,10 +23,10 @@
 				<ion-item class="row" ng-hide="carrito.soloHayProductos() || formulario.recoleccion.direccion.hide">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Dirección de recolección </span>
+							<span class="input-label item-icon-right">Dirección de recolección</span>
 							<input type="text" placeholder="Dirección de recolección " ng-model="carrito.infoOrden.orden.recoleccion.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100" ng-disabled="formulario.recoleccion.direccion.disabled">
 						</label>
-						<i class="icon ion-location" ng-click="openModal('DIRECCIONRECOLECCION')"></i>
+						<i class="icon ion-location" ng-click="formulario.verMapa('DIRECCIONRECOLECCION')" ng-if="formulario.verificarPosicion(carrito.infoOrden.orden.recoleccion.posicion)"></i>
 					</div>
 				</ion-item>
 
@@ -55,7 +55,7 @@
 							<span class="input-label item-icon-right">Dirección de entrega</span>
 							<input type="text" placeholder="Dirección de entrega" ng-model="carrito.infoOrden.orden.entrega.direccion" maxlength="100" ng-minlength="3" ng-maxlength="100" ng-disabled="formulario.entrega.direccion.disabled" />
 						</label>
-						<i class="icon ion-location" ng-click="openModal('DIRECCIONENTREGA')"></i>
+						<i class="icon ion-location" ng-click="formulario.verMapa('DIRECCIONENTREGA')" ng-if="formulario.verificarPosicion(carrito.infoOrden.orden.entrega.posicion)"></i>
 					</div>
 				</ion-item>
 
@@ -93,7 +93,7 @@
 							<span class="input-label item-icon-right">Forma de pago</span>
 							<input type="text" placeholder="Forma de pago" ng-model="carrito.infoOrden.orden.formaPago" ng-disabled="formulario.formaPago.disabled" required style="color: #000 !important; opacity: 1.0 !important">
 						</label>
-						<i class="icon ico-flechaabajo" ng-click="openPopover('FORMAPAGO',$event)"></i>
+						<i class="icon ico-flechaabajo" ng-click="formulario.construirPopover('FORMAPAGO',$event)" ng-if="!formulario.formaPago.disabled"></i>
 					</div>
 				</ion-item>
 

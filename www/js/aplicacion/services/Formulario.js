@@ -1,5 +1,41 @@
 
-var FormularioFactory = function(){
+var FormularioFactory = function(CarritoFactory,
+								MapasFactory, 
+								ModalCargaFactory,
+								$rootScope,
+								$ionicModal,
+								$ionicPopover){
+
+	var scopeModal = $rootScope.$new(),
+		modalMapa = null,
+		mapa;
+
+	scopeModal.finalizaUbicacion = function(tipo) {
+		modalMapa.hide();
+	};
+
+	$ionicModal
+	.fromTemplateUrl("templates/app/orden/informacion-orden/modal-mapa.html", {
+		scope: scopeModal,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		modalMapa = modal;
+		
+		MapasFactory
+		.getMapa()
+		.then(function(googleMap) {
+			mapa = googleMap;
+			//$log.debug("mapa obtenido: ", $scope.mapa)
+			modalMapa
+				.modalEl //ion-modal
+				.children[1] //ion-content
+				.children[0] //scroll
+				.children[0] //#contenedor-mapa
+				.appendChild(mapa.mapaDOM);
+		});
+	});
+
+
 	var verificar = function(items) {
 		for (var i in items) {
 			if (!items[i].entregado) {
@@ -85,7 +121,178 @@ var FormularioFactory = function(){
 
 		verificarEntrega: function(items) {
 			this.valido = verificar(items.prendas) && verificar(items.productos);
-		}
+		},
+
+		verificarPosicion: function(posicion) {
+			return (typeof posicion == 'object');
+		},
+
+		verMapa: function(tipo) {
+			var self = this,
+				$scope = self.$scope,
+				posicion = null;
+
+			switch(tipo) {
+				case "DIRECCIONRECOLECCION":
+					//ubicar la posicion en el mapa almacenada
+					if(CarritoFactory.infoOrden.orden.recoleccion.posicion) {
+						posicion = CarritoFactory.infoOrden.orden.recoleccion.posicion;
+					} 
+
+					//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
+					scopeModal.titulo = "Punto de recolección.";
+					scopeModal.tipo = tipo;
+					break;
+
+				case "DIRECCIONENTREGA":
+					//ubicar la posicion en el mapa almacenada
+					if(CarritoFactory.infoOrden.orden.entrega.posicion) {
+						posicion = CarritoFactory.infoOrden.orden.entrega.posicion;
+					} 
+
+					//mostrar la ventana modal con el mapa configurado en la posicion almacenada.
+					scopeModal.titulo = "Punto de entrega.";
+					scopeModal.tipo = tipo;
+					break;
+			}
+
+			if(posicion) {
+				mapa.setPosicion(posicion);
+
+			}
+
+			ModalCargaFactory.mostrar("Ubicando punto en mapa...", null);
+			modalMapa
+			.show()
+			.then(function() {
+				ModalCargaFactory.ocultar();
+			});
+		},
+
+		construirPopover: function(tipo, $event) {
+			var self = this,
+				scopePopover = $rootScope.$new(),
+				tmpURL = null;
+
+			scopePopover.formaPago = function(formaPago){
+				CarritoFactory.infoOrden.orden.formaPago = formaPago;
+				scopePopover.popover.hide();
+			};
+
+
+			switch(tipo) {
+				/*case "FECHARECOLECCION":
+					
+					//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
+					if(typeof datePicker == 'undefined'){
+						document.getElementById("inputFechaRecoleccion").readOnly = false;
+						break;
+					}
+
+					var minDate = new Date();
+					var unaHoraDespues = new Date(minDate.getTime() + (60 * 60 * 1000));
+
+					if(unaHoraDespues.getHours() >= 22) {
+						//como se pasa de las 10 de la noche la fecha de recoleccion debe ser un dia despues.
+						minDate =  new Date(minDate.getTime() + (24 * 3600 * 1000));
+					}
+
+					datePicker.show({
+						date: $scope.orden.recoleccion.fecha,
+						mode: 'date',
+						minDate: minDate.getTime(),
+						clearButton: true,
+						windowTitle: '',
+						doneButtonLabel: "Establecer",
+						cancelButtonLabel: "Cancelar",
+						clearButtonLabel: "Eliminar"
+					}, function(fecha){
+						if(fecha !== 'CANCEL') {
+							$scope.orden.recoleccion.fecha = fecha;
+							$scope.$digest();
+						}
+					}, function(error) {
+						//self.$log.debug("datepicker, error", JSON.stringify(error))
+						//en caso que no funcione la aplicacion con el plkgin se envia una señal
+						//para que se active la seleccion de la fecha por defecto.
+						document.getElementById("inputFechaRecoleccion").readOnly = false;
+					});
+					break;
+
+				case "FECHAENTREGA":
+					//datePicker, fuente:https://www.npmjs.com/package/cordova-okaybmd-date-picker-plugin
+
+					if(typeof datePicker == 'undefined'){
+						document.getElementById("inputFechaEntrega").readOnly = false;
+						break;
+					}
+
+					datePicker.show({
+						date: $scope.orden.entrega.fecha,
+						mode: 'date',
+						minDate: $scope.orden.recoleccion.fecha.getTime(),
+						clearButton: true,
+						windowTitle: '',
+						doneButtonLabel: "Establecer",
+						cancelButtonLabel: "Cancelar",
+						clearButtonLabel: "Eliminar",
+						androidTheme: "THEME_HOLO_LIGHT"
+					}, function(fecha){
+						//self.$log.debug("construirPopover.FECHAENTREGA: ", $scope.orden.entrega.fecha, fecha);
+						if(fecha !== 'CANCEL') {
+							$scope.orden.entrega.fecha = fecha;
+							$scope.$digest();
+						}
+					}, function(error) {
+						//self.$log.debug("datepicker, error", JSON.stringify(error))
+						//en caso que no funcione la aplicacion con el plkgin se envia una señal
+						//para que se active la seleccion de la fecha por defecto.
+						document.getElementById("inputFechaEntrega").readOnly = false;
+					});
+					break;
+
+				case "HORARECOLECCION":
+					tmpURL = 'templates/app/orden/popover-hora.html';
+					$scope.idPopover = "ppHoraRecoleccion";
+					//seleccionar las horas validas segun la fecha que seleccione.
+					$scope.horas = this.horasRecoleccion();
+
+					$scope.setHora = function($index){
+						$scope.orden.recoleccion.hora = $scope.horas[$index];
+						$scope.closePopover();
+					};
+					break;
+				case "HORAENTREGA":
+					tmpURL = 'templates/app/orden/informacion-orden/popover-hora.html';
+					$scope.idPopover = "ppHoraEntrega";
+					//seleccionar las horas validas segun la fecha que seleccione.
+					$scope.horas = this.horasEntrega();
+
+					$scope.setHora = function($index){
+						$scope.orden.entrega.hora = $scope.horas[$index];
+						$scope.closePopover();
+					};
+					break;
+				*/
+				case "FORMAPAGO":
+					tmpURL = 'templates/app/orden/informacion-orden/popover-forma-pago.html';
+					scopePopover.idPopover = "ppFormaPago";
+					break;
+
+				default:
+					return;
+			}
+
+			if(tmpURL){
+				$ionicPopover
+				.fromTemplateUrl(tmpURL, {
+					scope: scopePopover,
+				}).then(function(popover) {
+					scopePopover.popover = popover;
+					scopePopover.popover.show($event);
+				});
+			}
+		},
 	};
 };
 

@@ -173,7 +173,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 		});
 		
 		centerControlDiv.index = 1;
-		mapa.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
+		//mapa.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
 		
 		//crear pin que se ubica en el centro de la pantalla
 		elemMarker = document.createElement("div");
@@ -295,7 +295,7 @@ var MapasFactory = function($q, $cordovaGeolocation, CargarScriptsFactory, $ioni
 				return new google.maps.LatLng(mapa.getCenter().lat(), mapa.getCenter().lng());
 			},
 			setPosicion: function(posicion) {
-				$log.debug("SetPosicion: ", posicion.lat(), posicion.lng());
+				$log.debug("SetPosicion: ", posicion.lat, posicion.lng);
 				marker.setPosition(posicion);
 				mapa.setCenter(posicion);
 				return this;
