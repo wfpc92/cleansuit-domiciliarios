@@ -6,6 +6,24 @@ var OrdenesEntregadasCtrl =  function ($scope,
 	$log.debug("OrdenesEntregadasCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesEntregadas;
 	
+	$scope.$on("$ionicView.beforeEnter", function() {
+		$scope.formulario.init();
+		$scope.formulario.orden.titulo = "Órdenes entregadas";
+		$scope.formulario.orden.descripcion = "Estas son las ordenes que ha entregado";
+		$scope.formulario.orden.noHayOrdenes = "No hay órdenes entregadas aún.";		
+	});
+
+	$scope.refrescar = function() {
+		OrdenesFactory
+		.cargarAsignadas() 
+		.then(function() {
+			$scope.ordenes = OrdenesFactory.ordenesEntregadas;
+		})
+		.finally(function() {
+			$scope.$broadcast('scroll.refreshComplete');
+		});
+	};
+
 	$scope.hayOrdenes = function() {
 		if(!$scope.ordenes) {
 			return false;

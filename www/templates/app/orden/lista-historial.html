@@ -2,25 +2,25 @@
 	<ion-content class="ord-en-proceso recogidas">
 
 		<div class="titulo">
-			<h3>Ordenes recogidas</h3>
-			<p>Estas son las ordenes que ha recogido</p>
+			<h3>{{formulario.orden.titulo}}</h3>
+			<p>{{formulario.orden.descripcion}}</p>
 		</div>
 		
 		<div clas="card" ng-if="!hayOrdenes()">
 			<div class="item item-text-wrap">
-				No hay órdenes recogidas aún.
+				{{formulario.orden.noHayOrdenes}}
 			</div>
 		</div>
 
 		<ion-refresher on-refresh="refrescar()"></ion-refresher>
 		
 		<ion-list ng-if="hayOrdenes()">
-			<ion-item class="item-icon-right" ng-repeat="orden in ordenes track by $index" 
+			<ion-item class="item-icon-right" ng-repeat="infoOrden in ordenes track by $index" 
 					ng-click="verInformacionOrden($index)">
 
-				<h3>Orden de servicio</h3>
-				<h4>20 de abril de 2016</h4>
-				<span># de orden: {{orden.codigo | numberFixedLen:4}}</span>
+				<h3>{{carrito.getTipoVenta(infoOrden)}}</h3>
+				<h4>{{infoOrden.orden.entrega.fecha | date : "dd 'de' MMMM 'de' yyyy"}}</h4>
+				<span># de orden: {{infoOrden.codigo | numberFixedLen:4}}</span>
 				<i class="icon ico-flechader assertive"></i>
 			</ion-item>
 		</ion-list>	

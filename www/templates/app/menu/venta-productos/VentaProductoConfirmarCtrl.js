@@ -9,44 +9,30 @@ var VentaProductoConfirmarCtrl = function($scope,
 
 	$log.debug("VentaProductoConfirmarCtrl", $scope.$id);
 
-	$scope.formulario = {
-		titulo: {
-			texto: "Venta directa de productos"
-		},
-		cupon: {
-			hide: true,
-		},
-		abono: {
-			hide: true
-		},
-		valido: false,
-		validoCliente: false,
-		validoCampos: false,
-		productos: {
-			panel: false,
-			eliminar: true,
-			entregar: false
-		},
-		cancelar: {
-			texto: "Validación del cliente"			
-		},
-		siguiente: {
-			texto: "REALIZAR ORDEN"
-		},
-		valido: false
-	};
+	
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
-		$scope.formulario.validoCliente =  false;
-		$scope.formulario.validoCampos = false;
+		$scope.formulario.init();
+		$scope.formulario.titulo.texto = "Venta directa de productos";
+		$scope.formulario.recoleccion.direccion.hide = true;
+		$scope.formulario.recoleccion.fecha.hide = true;
+		$scope.formulario.recoleccion.hora.hide = true;
+		$scope.formulario.prendas.eliminar = true;
+		$scope.formulario.productos.eliminar = true;
+		$scope.formulario.cancelar.texto = "Validación del cliente";
+		$scope.formulario.siguiente.texto = "REALIZAR ORDEN";
+		$scope.formulario.valido = false;
+
+		$scope.validoCliente =  false;
+		$scope.validoCampos = false;
 
 		$scope.$watchGroup([
 				'carrito.infoOrden.cliente_id.nombre',
 			], function(newV, oldV) {
 				if (newV[0]) {
-					$scope.formulario.validoCampos = true;
+					$scope.validoCampos = true;
 				} else {
-					$scope.formulario.validoCampos = false;
+					$scope.validoCampos = false;
 				}
 				$scope.validar();
 				console.log("Watch$$$$$: ",newV, oldV, $scope.valido);
@@ -54,7 +40,7 @@ var VentaProductoConfirmarCtrl = function($scope,
 	});
 
 	$scope.validar = function() {
-		$scope.formulario.valido = $scope.formulario.validoCliente && $scope.formulario.validoCampos;
+		$scope.formulario.valido = $scope.validoCliente && $scope.validoCampos && ($scope.carrito.contProductos > 0);
 	}
 	//cancelar orden:
 	$scope.cancelar = function() {
@@ -67,7 +53,7 @@ var VentaProductoConfirmarCtrl = function($scope,
 		    		text: 'El cliente esta de acuerdo con la orden',
 			    	type: 'button-calm',
 		    		onTap: function() {
-		    			$scope.formulario.validoCliente = true;
+		    			$scope.validoCliente = true;
 		    			$scope.validar();
 		    		}
 		    	},

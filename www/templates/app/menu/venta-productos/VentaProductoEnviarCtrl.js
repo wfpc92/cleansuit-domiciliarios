@@ -9,19 +9,7 @@ var VentaProductoEnviarCtrl = function($scope,
 							$timeout) {
 	
 	$log.debug("VentaProductoEnviarCtrl", $scope.$id);
-	
-	$scope.$on("$ionicView.beforeEnter", function() {
-				
-	});
-
-	$scope.$on('$ionicView.afterEnter', function(event) {
 		
-	});
-	
-	$scope.$on("$ionicView.beforeLeave", function() {
-		
-	});
-
 	$scope.enviar = function() {
 		console.log("VentaProductoEnviarCtrl.enviar", $scope.carrito.infoOrden);
 

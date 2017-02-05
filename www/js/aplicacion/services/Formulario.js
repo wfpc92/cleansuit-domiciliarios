@@ -14,6 +14,11 @@ var FormularioFactory = function(){
 			this.titulo= {
 				texto: false
 			};
+			this.orden = {
+				titulo: "",
+				descripcion: "",
+				noHayOrdenes: ""
+			};
 			this.nombre= {
 				disabled: false
 			};

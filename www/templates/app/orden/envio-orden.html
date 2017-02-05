@@ -2,7 +2,7 @@
 	<ion-content class="pdBoton contcarro">
 
 		<div class="titulo enviar">
-			ENVIAR ORDEN # {{carrito.infoOrden.codigo | numberFixedLen:4}}
+			ENVIAR ORDEN {{ carrito.infoOrden.codigo ? '#' : ''}} {{carrito.infoOrden.codigo | numberFixedLen:4}}
 		</div> 
 
 		
@@ -10,7 +10,7 @@
 			<elemento-centrado class="arriba">
 				<!--<i class="ion-paper-airplane"></i>-->
 				<img ng-src="img/enviar.png">
-				<p>¿Desea enviar la orden # {{carrito.infoOrden.codigo | numberFixedLen:4}}?</p>
+				<p>¿Desea enviar la orden{{ carrito.infoOrden.codigo ? ' #' : ''}}{{carrito.infoOrden.codigo | numberFixedLen:4}}?</p>
 				<button class="enviar" ng-click="enviar()">
 					Enviar
 				</button>

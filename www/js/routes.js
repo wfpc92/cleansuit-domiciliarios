@@ -274,7 +274,7 @@ app.config(function($stateProvider,
 		url: '/menu-recolectadas',
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/menu/recolectadas/recolectadas.html',
+				templateUrl: 'templates/app/orden/lista-historial.html',
 				controller: 'OrdenesRecolectadasCtrl'
 			}
 		}
@@ -298,7 +298,7 @@ app.config(function($stateProvider,
 		url: '/menu-entregadas',
 		views: {
 			'contenedor-menu': {
-				templateUrl: 'templates/app/menu/entregadas/entregadas.html',
+				templateUrl: 'templates/app/orden/lista-historial.html',
 				controller: 'OrdenesEntregadasCtrl'
 			}
 		}
@@ -318,12 +318,6 @@ app.config(function($stateProvider,
 	})
 
 
-	
-
-	/*
-	app.
-	app.sobre-empresa
-	*/
 
 	.state('app.venta-productos', {
 		url: '/menu-venta-productos',
