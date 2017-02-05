@@ -371,6 +371,40 @@ var CarritoFactory = function(RecursosFactory,
 			}
 			return src += "/updates/"+ prenda.fotos[0].nombre;
 		},
+
+		getTipoVenta: function(infoOrden, estado) {
+			var tipo = "", items = {}, contProductos = 0, contPrendas = 0;
+			if (estado == "RECOLECCION") {
+				if (infoOrden.recoleccion) {
+					items = infoOrden.recoleccion.items;
+				}
+			} else {
+				if (infoOrden.entrega) {
+					items = infoOrden.entrega.items;
+				}
+			}
+
+			for (var index in items.productos) {
+				contProductos++;
+			}
+
+			for (var index in items.prendas) {
+				contPrendas++;
+			}
+
+			if (contPrendas != 0 && contProductos != 0) {
+				tipo = "Órden de venta directa de producto"
+			}
+
+			if (contPrendas != 0 && contProductos != 0) {
+				tipo = "Órden de servicio y producto"
+			}
+
+			if (contPrendas != 0 && contProductos == 0) {
+				tipo = "Órden de servicio";
+			}
+			return tipo;
+		}
 	};
 };
 

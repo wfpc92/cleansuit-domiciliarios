@@ -11,6 +11,7 @@ var OrdenesEntregadasCtrl =  function ($scope,
 		$scope.formulario.orden.titulo = "Órdenes entregadas";
 		$scope.formulario.orden.descripcion = "Estas son las ordenes que ha entregado";
 		$scope.formulario.orden.noHayOrdenes = "No hay órdenes entregadas aún.";		
+		$scope.estado = "ENTREGA"
 	});
 
 	$scope.refrescar = function() {

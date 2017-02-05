@@ -11,6 +11,7 @@ var OrdenesRecolectadasCtrl =  function ($scope,
 		$scope.formulario.orden.titulo = "Órdenes recogidas";
 		$scope.formulario.orden.descripcion = "Estas son las ordenes que ha recogido";
 		$scope.formulario.orden.noHayOrdenes = "No hay órdenes recogidas aún";		
+		$scope.estado = "RECOLECCION";
 	});
 
 	$scope.refrescar = function() {
