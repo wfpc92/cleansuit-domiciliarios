@@ -45,6 +45,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		CancelarOrdenFactory.textos.volverInfoOrden = "Volver a información de orden";
 		CancelarOrdenFactory.cb = {
 			pendiente: 	function(e) {
+				OrdenesFactory.setPedidoPendiente($scope.carrito.infoOrden);
 				$scope.carrito.vaciar();
 				$ionicHistory.clearHistory();
 				$ionicHistory.nextViewOptions({

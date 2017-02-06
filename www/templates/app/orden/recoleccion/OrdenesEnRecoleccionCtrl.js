@@ -6,6 +6,7 @@
 	
 	$log.debug("OrdenesEnRecoleccionCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesRecoleccion;
+	$scope.pendientes = OrdenesFactory.ordenesPendientes;
 
 	$scope.refrescar = function() {
 		OrdenesFactory

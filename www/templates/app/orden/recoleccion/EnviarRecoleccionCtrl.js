@@ -13,6 +13,7 @@ var EnviarRecoleccionCtrl = function($scope,
 
 	$scope.enviar = function() {
 		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito);
+		var codigoOrden = $scope.carrito.infoOrden.codigo;
 		var qEnvio = $scope.carrito.soloHayProductos() ? OrdenesFactory.enviarVentaDirecta() : OrdenesFactory.enviarRecolectada();
 		
 		qEnvio
@@ -23,12 +24,13 @@ var EnviarRecoleccionCtrl = function($scope,
 		    	template: 'Revise en el Menú las ordenes enviadas.',
 		    })
 		    .then(function(){
+		    	OrdenesFactory.eliminarOrdenPendiente(codigoOrden);
 		    	$ionicHistory.clearHistory();
 				$ionicHistory.nextViewOptions({
 					disableBack:'true'
 				});
 		    	$state.go("app.recoleccion");
-		    })
+		    }) 
 		});
 	};
 

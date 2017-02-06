@@ -11,6 +11,7 @@ var OrdenesFactory = function(UsuarioFactory,
 		$localStorage.ordenesEntrega = $localStorage.ordenesEntrega || [];
 		$localStorage.ordenesRecolectadas = $localStorage.ordenesRecolectadas || [];
 		$localStorage.ordenesEntregadas = $localStorage.ordenesEntregadas || [];	
+		$localStorage.ordenesPendientes = $localStorage.ordenesPendientes || {};	
 	};
 	
 	var setOrdenes = function(ordenesLocales, ordenesNuevas) {
@@ -73,6 +74,8 @@ var OrdenesFactory = function(UsuarioFactory,
 		ordenesRecolectadas: $localStorage.ordenesRecolectadas,
 
 		ordenesEntregadas: $localStorage.ordenesEntregadas,
+		
+		ordenesPendientes: $localStorage.ordenesPendientes,
 
 		//cargar ordenes asignadas de recoelccion y entrega.
 		cargarAsignadas: function() {
@@ -107,6 +110,17 @@ var OrdenesFactory = function(UsuarioFactory,
 		limpiarOrden: function() {
 			_orden = null;
 			CarritoFactory.vaciar();
+		},
+
+		setPedidoPendiente: function(infoOrden) {
+			$localStorage.ordenesPendientes[infoOrden.codigo] = true;
+		},
+
+		eliminarOrdenPendiente: function(codigo) {
+			console.log("eliminarOrdenPendiente", codigo, $localStorage.ordenesPendientes[codigo]);
+			$localStorage.ordenesPendientes[codigo] = false;
+			delete $localStorage.ordenesPendientes[codigo];
+			console.log("eliminarOrdenPendiente", codigo, $localStorage.ordenesPendientes);
 		},
 
 		iniciarRecoleccion: function(infoOrden) {
