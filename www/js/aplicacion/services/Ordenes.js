@@ -22,6 +22,21 @@ var OrdenesFactory = function(UsuarioFactory,
 
 		for (var i in ordenesNuevas) {
 			ordenesLocales[i] = ordenesNuevas[i];
+
+			// las fechas se convierte a objeto para poder ordenarlas
+			if (ordenesLocales[i].orden) {
+				if (ordenesLocales[i].orden.recoleccion) {
+					if (typeof ordenesLocales[i].orden.recoleccion.fecha != 'undefined') {
+						ordenesLocales[i].orden.recoleccion.fecha = new Date(ordenesLocales[i].orden.recoleccion.fecha);
+					}
+				}
+				
+				if (ordenesLocales[i].orden.entrega) {
+					if (typeof ordenesLocales[i].orden.entrega.fecha != 'undefined') {
+						ordenesLocales[i].orden.entrega.fecha = new Date(ordenesLocales[i].orden.entrega.fecha);
+					}
+				}
+			}
 		}
 	};
 

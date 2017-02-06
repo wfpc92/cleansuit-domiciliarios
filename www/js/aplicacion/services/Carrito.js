@@ -36,8 +36,14 @@ var CarritoFactory = function(RecursosFactory,
 
 			delete this.infoOrden;
 			this.infoOrden = infoOrden;
-			this.infoOrden.orden.recoleccion.fecha = this.infoOrden.orden.recoleccion.fecha ? new Date(this.infoOrden.orden.recoleccion.fecha) : new Date();
-			this.infoOrden.orden.entrega.fecha = this.infoOrden.orden.entrega.fecha ? new Date(this.infoOrden.orden.entrega.fecha) : new Date();
+			//se convierte en tipo Date en caso que este en formato string
+			if (typeof this.infoOrden.orden.recoleccion.fecha == 'string') { 
+				this.infoOrden.orden.recoleccion.fecha = new Date(this.infoOrden.orden.recoleccion.fecha);
+			}
+
+			if (typeof this.infoOrden.orden.entrega.fecha == 'string') { 
+				this.infoOrden.orden.entrega.fecha = new Date(this.infoOrden.orden.entrega.fecha);
+			}
 		},
 
 		setProductosRecoleccion: function(infoOrden) {

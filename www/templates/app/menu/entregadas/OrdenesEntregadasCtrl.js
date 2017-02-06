@@ -5,7 +5,8 @@ var OrdenesEntregadasCtrl =  function ($scope,
 	
 	$log.debug("OrdenesEntregadasCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesEntregadas;
-	
+	$scope.historial = "entregadas";
+
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.formulario.init();
 		$scope.formulario.orden.titulo = "Órdenes entregadas";
@@ -37,8 +38,8 @@ var OrdenesEntregadasCtrl =  function ($scope,
 		return false;
 	};
 
-	$scope.verInformacionOrden = function(index) {
-		$scope.carrito.setOrdenEntregada($scope.ordenes[index])
+	$scope.verInformacionOrden = function(infoOrden) {
+		$scope.carrito.setOrdenEntregada(infoOrden)
 		$state.go("app.entregada");
 	}
 	

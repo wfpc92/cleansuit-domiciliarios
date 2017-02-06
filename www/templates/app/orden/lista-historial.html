@@ -15,8 +15,7 @@
 		<ion-refresher on-refresh="refrescar()"></ion-refresher>
 		
 		<ion-list ng-if="hayOrdenes()">
-			<ion-item class="item-icon-right" ng-repeat="infoOrden in ordenes track by $index" 
-					ng-click="verInformacionOrden($index)">
+			<ion-item class="item-icon-right" ng-repeat="(index, infoOrden) in ordenes | orderBy:(historial == 'recolectadas' ? 'orden.recoleccion.fecha' : 'orden.entrega.fecha'):true track by $index">
 
 				<h3>{{carrito.getTipoVenta(infoOrden, estado)}}</h3>
 				<h4>{{infoOrden.orden.entrega.fecha | date : "dd 'de' MMMM 'de' yyyy"}}</h4>

@@ -17,8 +17,8 @@
 		<ion-refresher on-refresh="refrescar()"></ion-refresher>
 		
 		<ion-list ng-if="hayOrdenes()">
-			<ion-item class="item-icon-right orden" ng-repeat="infoOrden in ordenes track by $index" 
-					ng-click="verInformacionOrden($index)">
+			<ion-item class="item-icon-right orden" ng-repeat="(index, infoOrden) in ordenes | orderBy:'orden.entrega.fecha':false track by $index" 
+					ng-click="verInformacionOrden(infoOrden)">
 
 				<!--<h3>orden {{$index}}</h3>-->
 				<h3>{{infoOrden.orden.recoleccion.direccion}}</h3>

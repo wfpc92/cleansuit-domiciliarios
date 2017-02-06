@@ -36,8 +36,7 @@ var OrdenesParaEntregaCtrl =  function ($scope,
 		$scope.historial.ultimoEstado = $state.current.name; 		
 	});
 
-	$scope.verInformacionOrden = function(index) {
-		var infoOrden = $scope.ordenes[index];
+	$scope.verInformacionOrden = function(infoOrden) {
 		//iniciar orden de recoleccion.
 		OrdenesFactory.iniciarEntrega(infoOrden);
 		//asignar los productos solicitados en app cliente al carrito.

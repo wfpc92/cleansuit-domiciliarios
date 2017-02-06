@@ -5,6 +5,7 @@ var OrdenesRecolectadasCtrl =  function ($scope,
 	
 	$log.debug("OrdenesRecolectadasCtrl", $scope.$id);
 	$scope.ordenes = OrdenesFactory.ordenesRecolectadas;
+	$scope.historial = "recolectadas";
 	
 	$scope.$on("$ionicView.beforeEnter", function() {
 		$scope.formulario.init();
@@ -37,8 +38,8 @@ var OrdenesRecolectadasCtrl =  function ($scope,
 		return false;
 	};
 
-	$scope.verInformacionOrden = function(index) {
-		$scope.carrito.setOrdenRecolectada($scope.ordenes[index])
+	$scope.verInformacionOrden = function(infoOrden) {
+		$scope.carrito.setOrdenRecolectada(infoOrden)
 		$state.go("app.recolectada")
 	}	
 };

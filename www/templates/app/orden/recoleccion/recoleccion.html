@@ -17,15 +17,12 @@
 		<ion-refresher on-refresh="refrescar()"></ion-refresher>
 		
 		<ion-list ng-if="hayOrdenes()">
-			<ion-item class="item-icon-right orden" ng-repeat="infoOrden in ordenes track by $index" 
-					ng-click="verInformacionOrden($index)" ng-class="{'orden-pendiente': pendientes[infoOrden.codigo]}">
-
-				<!--<h3>orden {{$index}}</h3>-->
+			<ion-item class="item-icon-right orden" ng-repeat="(index, infoOrden) in ordenes | orderBy:'orden.recoleccion.fecha':false track by $index" ng-click="verInformacionOrden(infoOrden)" ng-class="{'orden-pendiente': pendientes[infoOrden.codigo]}">
+				<!--<h3>orden {{index}} {{$index}}</h3>-->
 				<h3>{{infoOrden.orden.recoleccion.direccion}}</h3>
 				<h4>{{infoOrden.cliente_id.nombre}}</h4>
 				<span>orden # {{infoOrden.codigo | numberFixedLen:4}}<span>
 				<i class="icon ico-flechader assertive"></i>
-
 			</ion-item>
 		</ion-list>		
 	</ion-content>

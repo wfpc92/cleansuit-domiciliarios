@@ -2,6 +2,7 @@
 										$rootScope,
 										$state,
 										$log,
+										orderByFilter, 
 										OrdenesFactory) {
 	
 	$log.debug("OrdenesEnRecoleccionCtrl", $scope.$id);
@@ -30,6 +31,9 @@
 		
 		return false;
 	};
+	$scope.getfecha = function(fecha) {
+		return (typeof fecha) + "";
+	};
 
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.historial.recoleccion = true; 
@@ -37,13 +41,12 @@
 		$scope.historial.ultimoEstado = $state.current.name; 
 	});
 
-	$scope.verInformacionOrden = function(index) {
-		var infoOrden = $scope.ordenes[index];
+	$scope.verInformacionOrden = function(infoOrden) {
 		//iniciar orden de recoleccion.
 		OrdenesFactory.iniciarRecoleccion(infoOrden);
 		//asignar los productos solicitados en app cliente al carrito.
 		$scope.carrito.setProductosRecoleccion(infoOrden);
-		$state.go("app.recoleccion-detalle", {indexOrden: index});
+		$state.go("app.recoleccion-detalle");
 	};	
 };
 
