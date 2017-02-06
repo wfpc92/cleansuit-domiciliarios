@@ -109,19 +109,6 @@ var AppCtrl = function($scope,
 		});
 	});
 
-	$scope.$on('$ionicView.afterEnter', function(event, $rootScope) {
-		$scope.usuario = UsuarioFactory.getUsuario();
-
-		if($scope.usuario) {
-	    	ControlDescargasFactory
-			.cargarVersiones()
-			.then(function() {
-				$log.debug("AppCtrl.event:$ionicView.afterEnter, contOrdenesEnProceso", $scope.contOrdenesEnProceso)
-				//$scope.contOrdenesEnProceso = OrdenesFactory.ordenesEnProceso.length;
-			});
-		}
-	});
-
 	$scope.irUltimoEstado = function() {
 		if($state.current.name != $scope.historial.ultimoEstado) {
 			$ionicHistory.nextViewOptions({
@@ -149,7 +136,13 @@ var AppCtrl = function($scope,
 		CarritoFactory.vaciar();
 		$rootScope.$broadcast("limpiarLista");
 		$state.go('autenticacion.ingresar');
-	};		
+	};
+
+	ControlDescargasFactory
+	.cargaInicial()
+	.finally(function() {
+		$log.debug("Carga inicial finalizada.");
+	});
 };
 
 app.controller('AppCtrl', AppCtrl);

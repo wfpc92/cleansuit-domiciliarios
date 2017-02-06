@@ -13,10 +13,10 @@ var EnviarRecoleccionCtrl = function($scope,
 
 	$scope.enviar = function() {
 		console.log("EnviarRecoleccionCtrl.enviar", $scope.carrito);
-		
 		var qEnvio = $scope.carrito.soloHayProductos() ? OrdenesFactory.enviarVentaDirecta() : OrdenesFactory.enviarRecolectada();
-
-		qEnvio.then(function() {
+		
+		qEnvio
+		.then(function() {
 			$ionicPopup
 			.alert({
 		    	title: 'Orden enviada',

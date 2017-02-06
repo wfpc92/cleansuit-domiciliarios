@@ -41,19 +41,6 @@ var OrdenEnRecoleccionCtrl = function($scope,
 
 	//cancelar orden:
 	$scope.cancelar = function() {
-		
-		$scope.clientSideList = [
-    		{ text: "Valor elevado", value: "0" },
-    		{ text: "Manifiesta mala atención", value: "1" },
-    		{ text: "Prefiere otra empresa", value: "2" }
-    	];
-
-    	$scope.data = {
-			clientSide: '0'
-		};
-
-		$scope.$ionicPopup = $ionicPopup;
-
 		CancelarOrdenFactory.$scope = $scope;
 		CancelarOrdenFactory.textos.volverInfoOrden = "Volver a información de orden";
 		CancelarOrdenFactory.cb = {

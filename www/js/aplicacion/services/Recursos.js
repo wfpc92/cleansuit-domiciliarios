@@ -1,4 +1,11 @@
-var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootScope, RequestManual) {
+var RecursosFactory = function($log, 
+							$http,
+							$q,
+							API_ENDPOINT,
+							APP_EVENTS,
+							$rootScope,
+							RequestManual,
+							ModalCargaFactory) {
 	var self = this;
 	this.$log = $log;
 	this.$http = $http;
@@ -11,7 +18,13 @@ var RecursosFactory = function($log, $http, $q, API_ENDPOINT, APP_EVENTS, $rootS
 		requestConfig.url = self._apiUrl + recurso;
 		$log.debug("solicitud para consumir servicio de api cleansuit");
 		$log.debug("RecursosFactory.requestConfig: ", JSON.stringify(requestConfig))
-		return $http(requestConfig);
+		
+		ModalCargaFactory.mostrar("Cargando...", null);
+    	
+    	return $http(requestConfig)
+    	.finally(function() {
+    		ModalCargaFactory.ocultar();
+    	});
 	};
 
 	return {

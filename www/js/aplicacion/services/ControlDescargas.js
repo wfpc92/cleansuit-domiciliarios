@@ -47,6 +47,12 @@ var ControlDescargasFactory = function($q,
 		.finally(function() {
 			comprobarCarga(++carga, n);
 		});
+
+		OrdenesFactory
+		.cargarAsignadas()
+		.finally(function() {
+			comprobarCarga(++carga, n);
+		});
 	};
 
 	var historialOrdenes = function() {
