@@ -188,7 +188,6 @@ var FormularioFactory = function(CarritoFactory,
 
 			if(posicion) {
 				mapa.setPosicion(posicion);
-
 			}
 
 			ModalCargaFactory.mostrar("Ubicando punto en mapa...", null);

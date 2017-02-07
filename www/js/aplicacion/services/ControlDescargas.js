@@ -119,15 +119,6 @@ var ControlDescargasFactory = function($q,
 		ModalCargaFactory.mostrar("Actualizando información...", null);	
 		$log.debug("Cargando datos iniciales... ");
 
-		//crear mapa de google maps
-		MapasFactory
-		.getMapa()
-		.then(function(mapa) {
-			$log.log("mapa de google creado: ", mapa)
-		}, function(error) {
-			$log.log("hubo error al crear mapa: ", error)
-		});	
-
 		cargarVersiones()
 		.finally(function() {
 			ModalCargaFactory.ocultar();
