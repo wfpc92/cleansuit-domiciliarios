@@ -58,17 +58,6 @@ var ControlDescargasFactory = function($q,
 	var historialOrdenes = function() {
 		var carga = 0, n = 2;
 
-		/*OrdenesFactory
-		.cargarOrdenesEnProceso()
-		.finally(function(){
-			comprobarCarga(++carga, n);
-		});
-
-		OrdenesFactory
-		.cargarHistorialOrdenes()
-		.finally(function() {
-			comprobarCarga(++carga, n);
-		});*/
 	};
 
 	var configuraciones = function() {
@@ -123,7 +112,7 @@ var ControlDescargasFactory = function($q,
 		.finally(function() {
 			ModalCargaFactory.ocultar();
 		});
-
+		
 		return deferred.promise;
 	};
 

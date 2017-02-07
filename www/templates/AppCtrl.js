@@ -34,7 +34,7 @@ var AppCtrl = function($scope,
 				event.preventDefault();
 				if(toState.name.indexOf("autenticacion.") !== -1){
 					// usuario quiere volver a autenticar?, no permitido
-					$state.go('app.recoleccion');
+					$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 				} else {
 					//solicitud de estado desconocido
 					$state.go('autenticacion.ingresar');
@@ -55,6 +55,11 @@ var AppCtrl = function($scope,
 	
 	$scope.$on(AUTH_EVENTS.loginSuccess, function(event, args){
 		$scope.usuario = UsuarioFactory.getUsuario();
+		ControlDescargasFactory
+		.cargaInicial()
+		.finally(function() {
+			$log.debug("Carga inicial finalizada.");
+		});
 		$state.go('app.recoleccion');
 	});
 
@@ -137,12 +142,6 @@ var AppCtrl = function($scope,
 		$rootScope.$broadcast("limpiarLista");
 		$state.go('autenticacion.ingresar');
 	};
-
-	ControlDescargasFactory
-	.cargaInicial()
-	.finally(function() {
-		$log.debug("Carga inicial finalizada.");
-	});
 };
 
 app.controller('AppCtrl', AppCtrl);
