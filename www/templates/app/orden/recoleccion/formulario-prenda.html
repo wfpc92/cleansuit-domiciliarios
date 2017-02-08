@@ -59,6 +59,14 @@
 					</div>
 				</ion-item>
 
+				<ion-item class="row" ng-repeat="(_id, adicional) in prenda.subservicio.adicionales" ng-if="adicional.checked">
+					<div class="col">
+						<input type="checkbox" ng-model="prenda.adicionales[_id].checked" ng-checked="prenda.adicionales[_id].checked">
+						<span class="input-label item-icon-right">{{ServiciosFactory.getNombreSubservicio(_id)}}</span>
+						
+					</div>
+				</ion-item>
+
 				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">

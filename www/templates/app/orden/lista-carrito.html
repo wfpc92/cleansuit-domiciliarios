@@ -12,7 +12,7 @@
 			<h2>{{item.subservicio.nombre}}</h2>
 			<p>{{item.subservicio.servicio.nombre}}</p>
 			<p>ID: {{item.codigo}}</p>
-			<h3>{{carrito.calcularPrecioPrenda(item) || 0  | currency : "$ " : 0 }}</h3>
+			<h3>{{carrito.calcularPrecioPrenda(item) || 0  | currency : "$ " : 0 }}{{(carrito.calcularTotalesAdicionales(item) > 0 ? " + " + (carrito.calcularTotalesAdicionales(item)  | currency:"$ ":0) : "") }}</h3>
 		</div>
 		<i  class="icon ion-ios-close-outline" ng-click="carrito.eliminarPrenda(index, validar)" ng-if="formulario.prendas.eliminar"></i>
 		<ion-checkbox ng-model="item.entregado" ng-checked="item.entregado" ng-if="formulario.prendas.entregar" ng-change="formulario.verificarEntrega(carrito.items)"></ion-checkbox>

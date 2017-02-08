@@ -10,6 +10,7 @@ var FormularioPrendaCtrl = function($scope,
 							$timeout) {
 
 	$log.debug("FormularioServicioCtrl", $scope.$id);
+	$scope.ServiciosFactory = ServiciosFactory;
 
 	$scope.$watchGroup([
 			'prenda.codigo',
