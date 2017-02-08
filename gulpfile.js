@@ -6,10 +6,13 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var patch = require('cordova-auto-patch');
 
 var paths = {
   sass: ['./www/scss/**/*.scss']
 };
+
+patch();
 
 gulp.task('default', ['sass']);
 
@@ -26,8 +29,9 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.sass, ['sass'])
 });
 
 gulp.task('install', ['git-check'], function() {
