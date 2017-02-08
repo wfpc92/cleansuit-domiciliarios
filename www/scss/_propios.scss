@@ -1706,16 +1706,18 @@ html input[disabled] {
 			}
 			.item-checkbox {
 				display: block;
-				width: 20px !important;
-				height: 20px !important;
+				width: 30px !important;
+				height: 30px !important;
 				margin: 0;
+				margin-top: -13px;
+				left: 74px;
 				.checkbox {
 					position: absolute;
 					top: 50%;
 					right: 8px;
-					left: 8px;
+					left: 0px;
 					z-index: 3;
-					margin-top: -21px;
+					margin-top: -15px;
 					width: 30px;
 				}
 			}
@@ -1757,19 +1759,75 @@ html input[disabled] {
 		font-family: 'fira_sansregular';
 		-webkit-appearance: none;
 		padding-right: 30px;
+		background-color: #FFFFFF;
 	}
 }
 .carro .item.producto {
 	padding-right: 120px;
 }
+.item-input textarea {
+	font-size: 1.2em;
+    height: 80px;
+    color: #000 !important;
+    opacity: 1.0 !important;
+    font-family: 'fira_sansregular';
+}
+.bar.bar-footer {
+	background-color: #B0D59F;
+}
 
+.item.item-checkbox {
+	position: absolute !important;
+	display: block;
+	top: 50%;
+	right: 12px;
+	width: 30px !important;
+	min-height: 30px !important;
+	padding: 0 ! important;
+	margin-top: -12px;
+	background-color: transparent !important;
+	.checkbox {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		top: auto;
+		right: auto;
+		left: auto;
+		margin-top: 0px;
+		padding: 0;
+		.checkbox-icon {
+			width: 30px;
+			height: 30px;
+		}
+		.checkbox-icon:before {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			border: 2px solid #3DA0EB;
+			background-color: #EFF8FF;
+			border-radius: 7px;
+		}
+		.checkbox-icon:after {
+			top: 3px;
+			left: 3px;
+			width: 24px;
+			height: 24px;
+			background: url('../img/checkbox.svg');
+			background-size: 24px;
+			transform: rotate(0deg);
+			border-width: 0px;
+		}
+	}
+}
 
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+	border-color: #3DA0EB;
+	background-color: #EFF8FF;
+}
 
-
-
-
-
-
+.orden-pendiente {
+	background-color: #FAFAFA;
+}
 
 
 /*
@@ -1922,4 +1980,9 @@ $fab-menu-padding: 0px;
 .icons-servicios {
 	bottom: 35px;
 	right: 85px;
+}
+
+.button.button-icon.button-clear.icons-generar_orden:before {
+	font-size: 30px;
+	line-height: 45px;
 }
