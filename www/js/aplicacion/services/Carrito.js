@@ -4,6 +4,7 @@ var CarritoFactory = function(RecursosFactory,
 							$state,
 							$ionicPopup,
 							ConfiguracionesFactory,
+							ServiciosFactory,
 							API_ENDPOINT,
 							$location){
 	/**
@@ -268,12 +269,12 @@ var CarritoFactory = function(RecursosFactory,
 				//precio * cantidad
 				
 				subtotal += this.calcularPrecioPrenda(this.items.prendas[index])
-
+				subtotal += this.calcularTotalesAdicionales(this.items.prendas[index])
 				//revisar en lista de descuentos del cupon si este item aplica para descuento
 				/*if(this.totales.promocion && this.totales.promocion.items[index]){
 					//$log.debug("CarritoFactory.calcularTotales: ",	this.totales.promocion, this.totales.promocion.items[index]);
 					descuento += item.precio * item.cantidad * (this.totales.promocion.items[index].descuento / 100.0);
-				}*/	
+				}*/
 			}
 			
 			for (var index in this.items.productos) {
@@ -296,6 +297,16 @@ var CarritoFactory = function(RecursosFactory,
 
 			//$log.debug("CarritoFactory.calcularTotales", this.totales)
 			return this.totales;
+		},
+
+		calcularTotalesAdicionales: function(prenda) {
+			var res = 0; 
+			for (var ia in prenda.adicionales) {
+				if (prenda.adicionales[ia].checked) {
+					res += ServiciosFactory.getPrecioSubservicio(ia);
+				}
+			}
+			return res;
 		},
 
 		/**
@@ -394,7 +405,7 @@ var CarritoFactory = function(RecursosFactory,
 				contPrendas++;
 			}
 
-			if (contPrendas != 0 && contProductos != 0) {
+			if (contPrendas == 0 && contProductos != 0) {
 				tipo = "Órden de venta directa de producto"
 			}
 
@@ -405,6 +416,7 @@ var CarritoFactory = function(RecursosFactory,
 			if (contPrendas != 0 && contProductos == 0) {
 				tipo = "Órden de servicio";
 			}
+			
 			return tipo;
 		}
 	};
