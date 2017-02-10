@@ -41,7 +41,7 @@
 				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Tipo de servicio</span>
+							<span class="input-label item-icon-right tipServicio">Tipo de servicio</span>
 						</label>
 						<select ng-options="s as s.nombre for s in servicios track by s._id" ng-model="prenda.servicio" ng-change="cargarSubservicios()" required ></select>
 						<i class="icon ico-flechaabajo"></i>
@@ -51,7 +51,7 @@
 				<ion-item class="row">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
-							<span class="input-label item-icon-right">Categoría</span>
+							<span class="input-label item-icon-right categoria">Categoría</span>
 						</label>
 						<select ng-options="s as s.nombre for s in prenda.servicio.subservicios track by s._id" ng-model="prenda.subservicio" required></select>
 						

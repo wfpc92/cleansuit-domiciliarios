@@ -10664,7 +10664,10 @@ p {
     width: 300px;
     background-color: white; }
     .popup-container .popup .popup-head {
-      background: #fff; }
+      background: #fff;
+      border: none;
+      color: #666666;
+      padding: 30px 10px 15px; }
       .popup-container .popup .popup-head h3 {
         background: #fff;
         color: #666666;
@@ -10677,11 +10680,40 @@ p {
         border-top: 1px solid #dddddd;
         border-bottom: 1px solid #dddddd; }
     .popup-container .popup .popup-buttons {
-      padding: 10px 30px; }
+      padding: 10px 25px 25px;
+      flex-direction: column; }
       .popup-container .popup .popup-buttons .button {
-        display: block;
         padding: 0px;
-        width: 100px; }
+        margin: 0 0 10px 0;
+        border-radius: 0; }
+
+.button-ligth.volverCancelar {
+  background-color: transparent;
+  color: #9C9C9C;
+  font-family: 'fira_sansmedium'; }
+
+.button.enviarMotivo {
+  margin: 0 65px 10px !important; }
+
+.item-radio .radio-content .item-content {
+  background-color: #FFFFFF !important;
+  padding: 14px 49px 14px 2px; }
+
+.item-radio .radio-content .radio-icon {
+  border: 2px solid #44A01A;
+  border-radius: 20px;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  top: 8px; }
+
+.ion-checkmark:before {
+  content: "";
+  width: 31px;
+  height: 31px;
+  border: 2px solid #FFF;
+  background-color: #44A01A;
+  border-radius: 20px; }
 
 .platform-android .popover {
   margin-top: -17px; }
@@ -11062,13 +11094,14 @@ html input[disabled] {
       display: block; }
       .serviadd form .fotos ul.listfotos li {
         position: relative;
-        display: inline-block;
+        display: block;
+        float: left;
         width: 65px;
         height: 65px;
         border: 1px solid #e9e9e9;
         overflow: hidden;
         padding: 5px 0;
-        margin-right: 5px; }
+        margin: 0 3px 5px; }
         .serviadd form .fotos ul.listfotos li img {
           display: block;
           height: 100%;
@@ -11225,18 +11258,25 @@ html input[disabled] {
 .list {
   padding-bottom: 0px; }
 
+.prenda .tipServicio, .prenda .categoria {
+  opacity: 1;
+  margin-bottom: 8px; }
+
 .prenda select {
   border: none;
   display: block;
-  width: 95%;
+  width: 100%;
   font-size: 1em;
   height: auto;
   color: #000 !important;
   opacity: 1.0 !important;
   font-family: 'fira_sansregular';
   -webkit-appearance: none;
-  padding-right: 30px;
+  padding-right: 45px;
   background-color: #FFFFFF; }
+
+.prenda .checkbox {
+  border: 2px solid red; }
 
 .carro .item.producto {
   padding-right: 120px; }
@@ -11295,7 +11335,7 @@ html input[disabled] {
   background-color: #EFF8FF; }
 
 .orden-pendiente {
-  background-color: #FAFAFA; }
+  background-color: #FAF8BD; }
 
 /*
 * Mixins
