@@ -57,14 +57,15 @@ var VentaProductosCtrl = function($scope,
 	    	buttons: [
 		    	{
 		    		text: 'Si',
+		    		type: 'button-calm',
 		    		onTap: function(e) {
 		    			//aqui se borra (limpiar) el pedido de productos del carrito.
 		    			$scope.carrito.vaciar();
 		    		}
 		    	},
 		      	{
-			    	text: '<b>No</b>',
-			    	type: 'button-positive'
+			    	text: 'No',
+			    	type: 'button-calm'
 		      	}
 		    ]
 	    });

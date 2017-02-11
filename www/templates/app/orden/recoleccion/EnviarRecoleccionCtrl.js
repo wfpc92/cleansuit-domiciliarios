@@ -8,6 +8,12 @@ var EnviarRecoleccionCtrl = function($scope,
 							OrdenesFactory, 
 							$timeout) {
 	
+	var asignarClaseNueva = function(nuevaClase) {
+		var popupButtons = angular.element(document.getElementsByClassName("popup-buttons"));
+		for (var i = 0; i < popupButtons.length; i++) {
+			popupButtons[i].className += " " + nuevaClase;
+		};
+	}
 	
 	$log.debug("VentaProductosCtrl", $scope.$id);
 
@@ -30,6 +36,7 @@ var EnviarRecoleccionCtrl = function($scope,
 					disableBack:'true'
 				});
 		    	$state.go("app.recoleccion");
+		    	asignarClaseNueva("btnOk");
 		    }) 
 		});
 	};

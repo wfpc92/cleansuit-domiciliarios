@@ -49,14 +49,15 @@ var FormularioPrendaCtrl = function($scope,
 	    	buttons: [
 		    	{
 		    		text: 'Si',
+		    		type: 'button-calm',
 		    		onTap: function(e) {
 		    			console.log("eliminar fotos...", index)
 		    			delete $scope.prenda.fotos.splice(index, 1);
 		    		}
 		    	},
 		      	{
-			    	text: '<b>No</b>',
-			    	type: 'button-positive'
+			    	text: 'No',
+			    	type: 'button-calm'
 		      	}
 		    ]
 	    });
@@ -95,13 +96,14 @@ var FormularioPrendaCtrl = function($scope,
 		    	buttons: [
 			    	{
 			    		text: 'Si',
+			    		type: 'button-calm',
 			    		onTap: function(e) {
 			    			$ionicHistory.goBack();
 			    		}
 			    	},
 			      	{
-				    	text: '<b>No</b>',
-				    	type: 'button-positive'
+				    	text: 'No',
+				    	type: 'button-calm'
 			      	}
 			    ]
 		    });

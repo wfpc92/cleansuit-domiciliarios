@@ -51,16 +51,18 @@ var RecoleccionProductosCtrl = function($scope,
 	    	buttons: [
 		    	{
 		    		text: 'Si',
+		    		type: 'button-calm',
 		    		onTap: function(e) {
 		    			$ionicHistory.goBack();
 		    		}
 		    	},
 		      	{
-			    	text: '<b>No</b>',
-			    	type: 'button-positive'
+			    	text: 'No',
+			    	type: 'button-calm'
 		      	}
 		    ]
 	    });
+
 	};
 
 	$scope.guardarPedidoProductos = function() {

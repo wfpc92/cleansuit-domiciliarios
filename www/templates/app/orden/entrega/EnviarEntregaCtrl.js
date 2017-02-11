@@ -7,6 +7,13 @@ var EnviarEntregaCtrl = function($scope,
 							$ionicListDelegate,
 							OrdenesFactory, 
 							$timeout) {
+
+	var asignarClaseNueva = function(nuevaClase) {
+		var popupButtons = angular.element(document.getElementsByClassName("popup-buttons"));
+		for (var i = 0; i < popupButtons.length; i++) {
+			popupButtons[i].className += " " + nuevaClase;
+		};
+	}
 	
 	$log.debug("VentaProductosCtrl", $scope.$id);
 	
@@ -20,13 +27,14 @@ var EnviarEntregaCtrl = function($scope,
 			.alert({
 		    	title: 'Orden enviada',
 		    	template: 'Revise en el Menú las ordenes entregadas.',
-		    })
+		    })		    
 		    .then(function(){
 		    	$ionicHistory.clearHistory();
 				$ionicHistory.nextViewOptions({
 					disableBack:'true'
 				});
 		    	$state.go("app.entrega");
+		    	asignarClaseNueva("btnOk");
 		    });
 		});
 	};

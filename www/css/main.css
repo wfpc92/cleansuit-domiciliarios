@@ -9807,7 +9807,8 @@ img.logoinicio {
   color: #004C9E;
   font-size: 20px;
   height: 56px;
-  line-height: 56px; }
+  line-height: 56px;
+  right: 0 !important; }
 
 .bar.bar-positive .title.title-left, .bar.bar-positive .title {
   color: #80A3CD; }
@@ -10659,7 +10660,8 @@ p {
   padding: 20px; }
 
 .popup-container {
-  background: rgba(0, 71, 154, 0.9); }
+  background: rgba(0, 71, 154, 0.9);
+  z-index: 102; }
   .popup-container .popup {
     width: 300px;
     background-color: white; }
@@ -10673,19 +10675,24 @@ p {
         color: #666666;
         font-size: 18px; }
     .popup-container .popup .popup-body {
-      padding: 30px;
+      padding: 15px 30px;
       border: none; }
       .popup-container .popup .popup-body .list .item {
         border: none;
         border-top: 1px solid #dddddd;
         border-bottom: 1px solid #dddddd; }
     .popup-container .popup .popup-buttons {
-      padding: 10px 25px 25px;
-      flex-direction: column; }
+      padding: 10px 25px 25px; }
       .popup-container .popup .popup-buttons .button {
-        padding: 0px;
-        margin: 0 0 10px 0;
+        padding: 5px;
+        margin: 0 5px 10px 5px;
         border-radius: 0; }
+      .popup-container .popup .popup-buttons .button.button-positive {
+        background-color: #44A01A;
+        margin: 0 50px; }
+
+.btnEnFilas {
+  flex-direction: column; }
 
 .button-ligth.volverCancelar {
   background-color: transparent;
@@ -10707,7 +10714,7 @@ p {
   height: 35px;
   top: 8px; }
 
-.ion-checkmark:before {
+.item-radio .radio-content .ion-checkmark:before {
   content: "";
   width: 31px;
   height: 31px;
@@ -11273,20 +11280,60 @@ html input[disabled] {
   font-family: 'fira_sansregular';
   -webkit-appearance: none;
   padding-right: 45px;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  white-space: normal; }
 
 .prenda .checkbox {
-  border: 2px solid red; }
+  padding: 10px 0 0;
+  width: 100%; }
+  .prenda .checkbox input {
+    height: 28px;
+    border-radius: 0;
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    margin-top: -13px; }
+  .prenda .checkbox span {
+    padding: 10px 0 0; }
+  .prenda .checkbox .checkbox-icon:before {
+    border-color: #3DA0EB;
+    background-color: #EFF8FF;
+    border-radius: 0; }
+  .prenda .checkbox span {
+    color: #000;
+    white-space: normal;
+    display: block;
+    width: 80%; }
+
+.checkbox input:before, .checkbox-icon:before {
+  width: 26px;
+  height: 26px;
+  border-color: #3DA0EB;
+  background-color: #EFF8FF;
+  border-radius: 8px;
+  border-width: 2px; }
+
+.checkbox input:after, .checkbox-icon:after {
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: url("../img/checkbox.svg");
+  background-size: 20px;
+  transform: rotate(0deg);
+  border-width: 0px; }
 
 .carro .item.producto {
   padding-right: 120px; }
 
 .item-input textarea {
   font-size: 1.2em;
-  height: 80px;
+  line-height: 20px;
+  height: 100px;
   color: #000 !important;
   opacity: 1.0 !important;
-  font-family: 'fira_sansregular'; }
+  font-family: 'fira_sansregular';
+  resize: none; }
 
 .bar.bar-footer {
   background-color: #B0D59F; }
@@ -11335,7 +11382,7 @@ html input[disabled] {
   background-color: #EFF8FF; }
 
 .orden-pendiente {
-  background-color: #FAF8BD; }
+  background-color: #FEFED5; }
 
 /*
 * Mixins

@@ -7,6 +7,13 @@ var VentaProductoConfirmarCtrl = function($scope,
 							$ionicPopup,
 							$log) {
 
+	var asignarClaseNueva = function(nuevaClase) {
+		var popupButtons = angular.element(document.getElementsByClassName("popup-buttons"));
+		for (var i = 0; i < popupButtons.length; i++) {
+			popupButtons[i].className += " " + nuevaClase;
+		};
+	}
+
 	$log.debug("VentaProductoConfirmarCtrl", $scope.$id);
 
 	
@@ -72,6 +79,7 @@ var VentaProductoConfirmarCtrl = function($scope,
 					    	buttons: [
 						    	{
 						    		text: 'Si',
+						    		type: 'button-calm',
 						    		onTap: function(e) {
 						    			//aqui se borra (limpiar) el pedido de productos del carrito.
 						    			$scope.carrito.vaciar();
@@ -83,8 +91,8 @@ var VentaProductoConfirmarCtrl = function($scope,
 						    		}
 						    	},
 						      	{
-							    	text: '<b>No</b>',
-							    	type: 'button-positive'
+							    	text: 'No',
+							    	type: 'button-calm'
 						      	}
 						    ]
 					    });
@@ -92,6 +100,8 @@ var VentaProductoConfirmarCtrl = function($scope,
 		      	}
 		    ]
 	    });
+
+		asignarClaseNueva("btnEnFilas");
 	};
 
 	$scope.siguiente = function() {

@@ -94,6 +94,7 @@ img.logoinicio {
 	font-size: 20px;
 	height: 56px;
 	line-height: 56px;
+	right: 0 !important;
 }
 .bar.bar-positive {	
 	.title.title-left, .title {
@@ -1079,6 +1080,7 @@ $inputcolor: #000;
 }
 .popup-container  {
 	background: rgba(0,71,154, 0.9);
+	z-index: 102;
 	.popup {
 		width: 300px;
 		background-color: rgba(255, 255, 255, 1);
@@ -1094,7 +1096,7 @@ $inputcolor: #000;
 			}
 		}
 		.popup-body {
-			padding: 30px;
+			padding: 15px 30px;
 			border: none;
 			.list .item { 
 				border: none;
@@ -1108,16 +1110,21 @@ $inputcolor: #000;
 		}
 		.popup-buttons {
 			padding: 10px 25px 25px;
-			flex-direction: column;
 			.button {
-				padding: 0px;
-				margin: 0 0 10px 0;
+				padding: 5px;
+				margin: 0 5px 10px 5px;
 				border-radius: 0;
 			}
-			.button:after {
+			.button.button-positive {
+				background-color: $calm;
+				margin: 0 50px;
+
 			}
 		}		
 	}
+}
+.btnEnFilas {
+	flex-direction: column;
 }
 .button-ligth.volverCancelar {
 	background-color: transparent;
@@ -1141,16 +1148,17 @@ $inputcolor: #000;
 			height: 35px;
 			top: 8px;
 		}
+		.ion-checkmark:before {
+			content: "";
+			width: 31px;
+			height: 31px;
+			border: 2px solid #FFF;
+			background-color: #44A01A;
+			border-radius: 20px;
+		}
 	}
 }
-.ion-checkmark:before {
-	content: "";
-	width: 31px;
-	height: 31px;
-	border: 2px solid #FFF;
-	background-color: #44A01A;
-	border-radius: 20px;
-}
+
 .platform-android .popover {
 	margin-top: -17px;
 }
@@ -1803,20 +1811,64 @@ html input[disabled] {
 		-webkit-appearance: none;
 		padding-right: 45px;
 		background-color: #FFFFFF;
+		white-space: normal;
 	}
 	.checkbox {
-		border: 2px solid red;
+		padding: 10px 0 0;
+		width: 100%;
+		input {
+			height: 28px;
+			border-radius: 0;
+			position: absolute;
+    		right: 13px;
+    		top: 50%;
+    		margin-top: -13px;	
+		}
+		span {
+			padding: 10px 0 0;
+		}
+		.checkbox-icon:before {
+			border-color: #3DA0EB;
+			background-color: #EFF8FF;
+			border-radius: 0;
+		}
+		span {
+			color: #000;
+			white-space: normal;
+			display: block;
+    		width: 80%;
+		}
 	}
+}
+.checkbox input:before, .checkbox-icon:before {
+	width: 26px;
+	height: 26px;
+	border-color: #3DA0EB;
+	background-color: #EFF8FF;
+	border-radius: 8px;
+	border-width: 2px;
+}
+.checkbox input:after, .checkbox-icon:after {
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: url('../img/checkbox.svg');
+	background-size: 20px;
+	transform: rotate(0deg);
+	border-width: 0px;
 }
 .carro .item.producto {
 	padding-right: 120px;
 }
 .item-input textarea {
 	font-size: 1.2em;
-	height: 80px;
+	line-height: 20px;
+	height: 100px;
 	color: #000 !important;
 	opacity: 1.0 !important;
 	font-family: 'fira_sansregular';
+	resize: none;
 }
 .bar.bar-footer {
 	background-color: #B0D59F;
@@ -1872,7 +1924,7 @@ html input[disabled] {
 }
 
 .orden-pendiente {
-	background-color: #FAF8BD;
+	background-color: #FEFED5;
 }
 
 

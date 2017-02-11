@@ -4,6 +4,13 @@ var CancelarOrdenFactory = function($ionicPopup,
 									$rootScope,
 									OrdenesFactory) {
 	
+	var asignarClaseNueva = function(nuevaClase) {
+		var popupButtons = angular.element(document.getElementsByClassName("popup-buttons"));
+		for (var i = 0; i < popupButtons.length; i++) {
+			popupButtons[i].className += " " + nuevaClase;
+		};
+	}
+
 	return {
 		$scope: null, 
 
@@ -48,12 +55,9 @@ var CancelarOrdenFactory = function($ionicPopup,
 						}
 					}
 				]
-			}).then(function() {
-				var array = document.getElementsByClassName('popup-buttons');
-				for (var i = 0; i < array.length; i++) {
-					array[i].setAttribute('class', 'btnCulm');
-				};
-			})
+			});
+
+			asignarClaseNueva("btnEnFilas");
 		},
 
 		mostrarMotivos: function() {
@@ -72,7 +76,7 @@ var CancelarOrdenFactory = function($ionicPopup,
 				scope: scope,
 				buttons: [					
 					{
-						text: '<b>Enviar</b>',
+						text: 'Enviar',
 						type: 'button-calm enviarMotivo',
 						onTap: function(e) {
 							//enviar motivo de suspension de Pedido
@@ -86,6 +90,8 @@ var CancelarOrdenFactory = function($ionicPopup,
 					}
 				]
 			});
+
+			asignarClaseNueva("btnEnFilas");
 		},
 
 		mostrarEnviarCancelacion: function(indexMotivo) {
@@ -127,12 +133,12 @@ var CancelarOrdenFactory = function($ionicPopup,
 				template: '',
 				buttons: [
 					{
-						text: 'El cliente esta de acuerdo con la orden',
+						text: 'El cliente está de acuerdo con la orden',
 						type: 'button-calm',
 						onTap: self.cb.deacuerdo
 					},
 					{
-						text: '<b>El cliente no esta de acuerdo con la orden</b>',
+						text: 'El cliente No está de acuerdo con la orden',
 						type: 'button-calm',
 						onTap: function(e) {
 							self.mostrarMotivos();
@@ -140,6 +146,8 @@ var CancelarOrdenFactory = function($ionicPopup,
 					}
 				]
 			});
+
+			asignarClaseNueva("btnEnFilas");
 		}
 	};
 };
