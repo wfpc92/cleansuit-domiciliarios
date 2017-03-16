@@ -42,6 +42,9 @@ var OrdenEntregadaCtrl = function($scope,
 		cupon: {
 			hide: true,
 		},
+		abono: {
+			hide: true
+		},
 		valido: false,
 		prendas: {
 			eliminar: false

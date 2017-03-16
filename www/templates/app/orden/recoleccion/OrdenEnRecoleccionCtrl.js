@@ -22,6 +22,7 @@ var OrdenEnRecoleccionCtrl = function($scope,
 		$scope.formulario.entrega.hora.disabled = true;
 		$scope.formulario.telefono.disabled = true;
 		$scope.formulario.formaPago.hide = true;
+		$scope.formulario.cupon.hide = typeof $scope.carrito.infoOrden.orden.cupon == 'undefined';
 		$scope.formulario.cupon.disabled = true;
 		$scope.formulario.abono.hide = true;
 		$scope.formulario.totales.hide = true;

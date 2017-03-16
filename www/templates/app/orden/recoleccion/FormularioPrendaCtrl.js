@@ -21,7 +21,7 @@ var FormularioPrendaCtrl = function($scope,
 		} else {
 			$scope.formulario.valido = false;
 		}
-		console.log("Watch$$$$$: ",newV, oldV, $scope.formulario.valido);
+		//console.log("Watch$$$$$: ",newV, oldV, $scope.formulario.valido);
 	});
 
 	$scope.$on("$ionicView.beforeEnter", function() {
@@ -29,12 +29,12 @@ var FormularioPrendaCtrl = function($scope,
 		//la informacionde la prenda, en caso de edicion se obtiene la informaion de la
 		$scope.indexPrenda = $stateParams.indexPrenda;
 		$scope.esNueva = $scope.indexPrenda.length == 0;
-		console.log("index prenda :" + $scope.indexPrenda+ ":", $scope.esNueva, $scope.indexPrenda.length)
+		//console.log("index prenda :" + $scope.indexPrenda+ ":", $scope.esNueva, $scope.indexPrenda.length)
 		
 		$scope.prenda = $scope.esNueva ? { fotos: [] } : $scope.carrito.items.prendas[$scope.indexPrenda];
 
-		console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", $scope.carrito.items)
-		console.log("prenda vacia/editable: ", $scope.prenda);
+		//console.log("agregar/editar prenda: (", $scope.indexPrenda.length, ")", $scope.carrito.items)
+		//console.log("prenda vacia/editable: ", $scope.prenda);
 		$scope.formulario.init();
 		$scope.formulario.cancelar.texto = "Cancelar prenda";
 		$scope.formulario.siguiente.texto = "GUARDAR PRENDA";
@@ -130,6 +130,14 @@ var FormularioPrendaCtrl = function($scope,
 			}
 
 			if ($scope.esNueva) {
+				$scope.prenda.novedades = [{
+					hayNovedad: false,
+					proceso: {
+						_id: 0,
+						nombre: "Recolectada"
+					},
+					fecha: new Date()
+				}];
 				agregar = $scope.carrito.agregar($scope.prenda, 'PRENDA', 1);
 			}
 

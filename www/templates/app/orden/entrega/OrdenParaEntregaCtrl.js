@@ -21,6 +21,7 @@ var OrdenParaEntregaCtrl = function($scope,
 		$scope.formulario.formaPago.disabled = true;
 		$scope.formulario.formaPago.editable = true;
 		$scope.formulario.cupon.disabled = true;
+		$scope.formulario.abono.hide = true;
 		$scope.formulario.prendas.entregar = true;
 		$scope.formulario.productos.entregar = true;
 		$scope.formulario.cancelar.hide = true;

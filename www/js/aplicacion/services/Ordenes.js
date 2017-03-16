@@ -229,7 +229,7 @@ var OrdenesFactory = function(UsuarioFactory,
 			var self = this;
 			$log.debug("OrdenFactory.enviarVentaDirecta(): ", CarritoFactory.infoOrden);	
 			
-			CarritoFactory.infoOrden.entrega = {
+			CarritoFactory.infoOrden.recoleccion = {
 				items: CarritoFactory.items, 
 			};
 			CarritoFactory.infoOrden.estado = 5;
