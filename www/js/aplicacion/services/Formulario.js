@@ -85,6 +85,10 @@ var FormularioFactory = function(CarritoFactory,
 			this.nombre= {
 				disabled: false
 			};
+			this.docId = {
+				disabled: false,
+				hide: false
+			};
 			this.recoleccion= {
 				direccion: {
 					hide: false

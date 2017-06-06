@@ -19,6 +19,15 @@
 						</label>
 					</div>
 				</ion-item>
+
+				<ion-item class="row" ng-hide="formulario.docId.hide">
+					<div class="col">
+						<label class="item-input item-stacked-label izq">
+							<span class="input-label">Cédula o Nit para facturar</span>
+							<input type="text" placeholder="Cédula o Nit para facturar" ng-model="carrito.infoOrden.cliente_id.docId" style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.docId.disabled">
+						</label>
+					</div>
+				</ion-item>
 				
 				<ion-item class="row" ng-hide="carrito.soloHayProductos() || formulario.recoleccion.direccion.hide">
 					<div class="col item-icon-right">
@@ -39,6 +48,7 @@
 					</div>
 				</ion-item>
 
+				<!--
 				<ion-item class="row" ng-hide="carrito.soloHayProductos() || formulario.recoleccion.hora.hide">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -46,8 +56,9 @@
 							<input type="text" placeholder="Hora de recolección" ng-model="carrito.infoOrden.orden.recoleccion.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.recoleccion.hora.disabled" />
 						</label>
 						<!--<i class="icon ico-flechaabajo" ng-click="openPopover('HORARECOLECCION', $event)"></i>-->
-					</div>
+				<!--	</div>
 				</ion-item>
+				-->
 
 				<ion-item class="row" ng-hide="formulario.entrega.direccion.hide">
 					<div class="col item-icon-right">
@@ -68,6 +79,7 @@
 					</div>
 				</ion-item>
 
+				<!--
 				<ion-item class="row" ng-hide="formulario.entrega.hora.hide">
 					<div class="col item-icon-right">
 						<label class="item-input item-stacked-label item-floating-label">
@@ -75,9 +87,10 @@
 							<input type="text" placeholder="Hora de entrega" ng-model="carrito.infoOrden.orden.entrega.hora" required style="color: #000 !important; opacity: 1.0 !important" ng-disabled="formulario.entrega.hora.disabled" />
 						</label>
 						<!--<i class="icon ico-flechaabajo" ng-click="openPopover('HORAENTREGA', $event)"></i>-->
-					</div>
+				<!--	</div>
 				</ion-item>			
-				
+				-->
+
 				<ion-item class="row" ng-hide="formulario.telefono.hide">
 					<div class="col">
 						<label class="item-input item-stacked-label item-floating-label">

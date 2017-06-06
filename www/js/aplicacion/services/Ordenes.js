@@ -233,6 +233,7 @@ var OrdenesFactory = function(UsuarioFactory,
 				items: CarritoFactory.items, 
 			};
 			CarritoFactory.infoOrden.estado = 5;
+			CarritoFactory.infoOrden.orden.docId = CarritoFactory.infoOrden.cliente_id.docId;
 
 			return RecursosFactory
 			.post("/ordenes/venta-directa", CarritoFactory.infoOrden)

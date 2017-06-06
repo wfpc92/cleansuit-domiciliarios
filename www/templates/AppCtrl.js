@@ -36,6 +36,7 @@ var AppCtrl = function($scope,
 					// usuario quiere volver a autenticar?, no permitido
 					$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 				} else {
+					$scope.logout();
 					//solicitud de estado desconocido
 					$state.go('autenticacion.ingresar');
 					$rootScope.$broadcast(AUTH_EVENTS.noAutorizado);
@@ -50,8 +51,8 @@ var AppCtrl = function($scope,
 				}
 			}
 		}
-			
 	});
+	
 	
 	$scope.$on(AUTH_EVENTS.loginSuccess, function(event, args){
 		$scope.usuario = UsuarioFactory.getUsuario();

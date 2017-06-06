@@ -16,14 +16,13 @@ var VentaProductoConfirmarCtrl = function($scope,
 
 	$log.debug("VentaProductoConfirmarCtrl", $scope.$id);
 
-	
-
 	$scope.$on('$ionicView.afterEnter', function(event) {
 		$scope.formulario.init();
 		$scope.formulario.titulo.texto = "Venta directa de productos";
 		$scope.formulario.recoleccion.direccion.hide = true;
 		$scope.formulario.recoleccion.fecha.hide = true;
 		$scope.formulario.recoleccion.hora.hide = true;
+		$scope.formulario.entrega.hora.hide = true;
 		$scope.formulario.formaPago.disabled = true;
 		$scope.formulario.formaPago.editable = true;
 		$scope.formulario.cupon.hide = true;
@@ -46,7 +45,7 @@ var VentaProductoConfirmarCtrl = function($scope,
 					$scope.validoCampos = false;
 				}
 				$scope.validar();
-				console.log("Watch$$$$$: ",newV, oldV, $scope.valido);
+				console.log("Watch$$$$$: ",newV, oldV, $scope.formulario.valido);
 		});
 	});
 

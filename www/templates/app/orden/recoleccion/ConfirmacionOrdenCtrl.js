@@ -14,6 +14,7 @@
 		$scope.$on('$ionicView.beforeEnter', function(event) {
 			$scope.formulario.init();
 			$scope.formulario.nombre.disabled = true;
+			$scope.formulario.docId.disabled = true;
 			$scope.formulario.recoleccion.direccion.disabled = true;
 			$scope.formulario.recoleccion.fecha.disabled = true;
 			$scope.formulario.recoleccion.hora.disabled = true;

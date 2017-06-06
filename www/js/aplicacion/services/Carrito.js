@@ -88,7 +88,8 @@ var CarritoFactory = function(RecursosFactory,
 			if (!this.ventaDirecta) {
 				this.init({
 					cliente_id: {
-						nombre: null
+						nombre: null,
+						docId: null,
 					},
 					orden: {
 						recoleccion: {
